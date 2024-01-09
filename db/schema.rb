@@ -23,7 +23,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_09_145203) do
 
   create_table "plates", force: :cascade do |t|
     t.integer "stock"
-    t.string "categories"
     t.float "new_price"
     t.text "description"
     t.string "name"
