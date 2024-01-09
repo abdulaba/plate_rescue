@@ -46,7 +46,7 @@ puts "Users created successfully"
 #Restaurants
 puts "Creating restaurants"
 
-restaurant1 = Restaurant.new(
+restaurant1 = Restaurant.create!(
   name: "Ristorante delizioso",
   address: "Av. Santa Fe 1234, Palermo, Buenos Aires, Argentina",
   opening_date: "Monday-Sunday",
@@ -54,7 +54,7 @@ restaurant1 = Restaurant.new(
   user_id: sofia_alfaro.id
 )
 
-restaurant2 = Restaurant.new(
+restaurant2 = Restaurant.create!(
   name: "La Taquería auténtica",
   address: "Calle Defensa 567, San Telmo, Buenos Aires, Argentina",
   opening_date: "Tuesday-Sunday",
@@ -62,7 +62,7 @@ restaurant2 = Restaurant.new(
   user_id: ana_cabral.id
 )
 
-restaurant3 = Restaurant.new(
+restaurant3 = Restaurant.create!(
   name: "Sabor del Este",
   address: "Av. Cabildo 890, Belgrano, Buenos Aires, Argentina",
   opening_date: "Monday-Saturday",
@@ -70,7 +70,7 @@ restaurant3 = Restaurant.new(
   user_id: francisco_macias.id
 )
 
-restaurant4 = Restaurant.new(
+restaurant4 = Restaurant.create!(
   name: "Veggie Haven",
   address: "Calle Thames 456, Palermo, Buenos Aires, Argentina",
   opening_date: "Monday-Sunday",
@@ -78,7 +78,7 @@ restaurant4 = Restaurant.new(
   user_id: sofia_alfaro.id
 )
 
-restaurant5 = Restaurant.new(
+restaurant5 = Restaurant.create!(
   name: "Carnes y Brasas",
   address: "Av. Corrientes 3456, Almagro, Buenos Aires, Argentina",
   opening_date: "Wednesday-Sunday",
@@ -86,7 +86,7 @@ restaurant5 = Restaurant.new(
   user_id: ana_cabral.id
 )
 
-restaurant6 = Restaurant.new(
+restaurant6 = Restaurant.create!(
   name: "Pasta Paradiso",
   address: "Calle Scalabrini Ortiz 678, Villa Crespo, Buenos Aires, Argentina",
   opening_date: "Monday-Friday",
@@ -94,7 +94,7 @@ restaurant6 = Restaurant.new(
   user_id: francisco_macias.id
 )
 
-restaurant7 = Restaurant.new(
+restaurant7 = Restaurant.create!(
   name: "Tokyo Bites",
   address: "Av. Libertador 4321, Palermo, Buenos Aires, Argentina",
   opening_date: "Tuesday-Saturday",
@@ -102,7 +102,7 @@ restaurant7 = Restaurant.new(
   user_id: ana_cabral.id
 )
 
-restaurant8 = Restaurant.new(
+restaurant8 = Restaurant.create!(
   name: "El Sazón Exótico",
   address: "Calle Bolívar 987, San Telmo, Buenos Aires, Argentina",
   opening_date: "Monday-Thursday",
@@ -110,7 +110,7 @@ restaurant8 = Restaurant.new(
   user_id: sofia_alfaro.id
 )
 
-restaurant9 = Restaurant.new(
+restaurant9 = Restaurant.create!(
   name: "Kaime",
   address: "Av. Las Heras 2101, Recoleta, Buenos Aires, Argentina",
   opening_date: "Friday-Monday",
@@ -118,7 +118,7 @@ restaurant9 = Restaurant.new(
   user_id: francisco_macias.id
 )
 
-restaurant10 = Restaurant.new(
+restaurant10 = Restaurant.create!(
   name: "BBQ Grill Master",
   address: "Calle Cerrito 1500, Retiro, Buenos Aires, Argentina",
   opening_date: "Monday-Sunday",
@@ -140,7 +140,7 @@ plate1 = Plate.new(
 )
 file1 = URI.open("https://images.unsplash.com/photo-1588047750516-f846a13ff314?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
 plate1.photo.attach(io: file1, filename: 'plate1.png', content_type: 'image/png')
-plate1.save
+plate1.save!
 
 plate2 = Plate.new(
   name: "Pizza Margherita",
@@ -153,7 +153,7 @@ plate2 = Plate.new(
 )
 file2 = URI.open("https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
 plate2.photo.attach(io: file2, filename: 'plate2.png', content_type: 'image/png')
-plate2.save
+plate2.save!
 
 plate3 = Plate.new(
   name: "Pizza Quattro Formaggi",
@@ -166,7 +166,7 @@ plate3 = Plate.new(
 )
 file3 = URI.open("https://images.unsplash.com/photo-1620374645498-af6bd681a0bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
 plate3.photo.attach(io: file3, filename: 'plate3.png', content_type: 'image/png')
-plate3.save
+plate3.save!
 
 plate4 = Plate.new(
   name: "Surprise Taco",
@@ -179,7 +179,7 @@ plate4 = Plate.new(
 )
 file4 = URI.open("https://images.unsplash.com/photo-1579888944880-d98341245702?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
 plate4.photo.attach(io: file4, filename: 'plate4.png', content_type: 'image/png')
-plate4.save
+plate4.save!
 
 plate5 = Plate.new(
   name: "Pollo & Queso Taco",
@@ -192,7 +192,7 @@ plate5 = Plate.new(
 )
 file5 = URI.open("https://plus.unsplash.com/premium_photo-1685314943840-80c0ad6ba886?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
 plate5.photo.attach(io: file5, filename: 'plate5.png', content_type: 'image/png')
-plate5.save
+plate5.save!
 
 
 plate6 = Plate.new(
@@ -206,7 +206,7 @@ plate6 = Plate.new(
 )
 file6 = URI.open("https://images.unsplash.com/photo-1641244942334-ce44db547cec?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
 plate6.photo.attach(io: file6, filename: 'plate6.png', content_type: 'image/png')
-plate6.save
+plate6.save!
 
 plate7 = Plate.new(
   name: "Spaghetti Carbonara",
@@ -219,7 +219,7 @@ plate7 = Plate.new(
 )
 file7 = URI.open("https://images.unsplash.com/photo-1612874742237-6526221588e3?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
 plate7.photo.attach(io: file7, filename: 'plate7.png', content_type: 'image/png')
-plate7.save
+plate7.save!
 
 
 plate8 = Plate.new(
@@ -233,7 +233,7 @@ plate8 = Plate.new(
 )
 file8 = URI.open("https://images.unsplash.com/photo-1673081849734-98f0969d436b?q=80&w=2650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
 plate8.photo.attach(io: file8, filename: 'plate8.png', content_type: 'image/png')
-plate8.save
+plate8.save!
 
 plate9 = Plate.new(
   name: "Vegetarian Pizza w/ mushrooms",
@@ -246,7 +246,7 @@ plate9 = Plate.new(
 )
 file9 = URI.open("https://unsplash.com/photos/a-slice-of-pizza-with-mushrooms-and-other-toppings-mEOLd8sxBtk")
 plate9.photo.attach(io: file9, filename: 'plate9.png', content_type: 'image/png')
-plate9.save
+plate9.save!
 
 
 plate10 = Plate.new(
@@ -260,7 +260,7 @@ plate10 = Plate.new(
 )
 file10 = URI.open("https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
 plate10.photo.attach(io: file10, filename: 'plate10.png', content_type: 'image/png')
-plate10.save
+plate10.save!
 
 plate11 = Plate.new(
   name: "Falafel Wrap w/ Hummus",
@@ -273,7 +273,7 @@ plate11 = Plate.new(
 )
 file11 = URI.open("https://images.pexels.com/photos/6546022/pexels-photo-6546022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")
 plate11.photo.attach(io: file11, filename: 'plate11.png', content_type: 'image/png')
-plate11.save
+plate11.save!
 
 plate12 = Plate.new(
   name: "Strip Roast with Chimichurri",
@@ -286,7 +286,7 @@ plate12 = Plate.new(
 )
 file12 = URI.open("https://images.pexels.com/photos/1251208/pexels-photo-1251208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")
 plate12.photo.attach(io: file12, filename: 'plate12.png', content_type: 'image/png')
-plate12.save
+plate12.save!
 
 plate13 = Plate.new(
   name: "Surprise Sushi Rolls",
@@ -299,7 +299,7 @@ plate13 = Plate.new(
 )
 file13 = URI.open("https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=2650&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
 plate13.photo.attach(io: file13, filename: 'plate13.png', content_type: 'image/png')
-plate13.save
+plate13.save!
 
 plate14 = Plate.new(
   name: "Couscous with Vegetables and Curry Chickpeas",
@@ -312,7 +312,7 @@ plate14 = Plate.new(
 )
 file14 = URI.open("https://unsplash.com/photos/rice-with-green-leaf-vegetable-on-white-ceramic-plate-RELOvb0rrCE")
 plate14.photo.attach(io: file14, filename: 'plate14.png', content_type: 'image/png')
-plate14.save
+plate14.save!
 
 plate15 = Plate.new(
   name: "Assorted Cookies",
@@ -325,7 +325,7 @@ plate15 = Plate.new(
 )
 file15 = URI.open("https://unsplash.com/photos/flatbread-display-store-RwjciZ9JEfg")
 plate15.photo.attach(io: file15, filename: 'plate15.png', content_type: 'image/png')
-plate15.save
+plate15.save!
 
 plate16 = Plate.new(
   name: "Barbecue Ribs with Mashed Sweet Potatoes",
@@ -338,4 +338,138 @@ plate16 = Plate.new(
 )
 file16 = URI.open("https://unsplash.com/photos/a-close-up-of-a-fish-on-a-cutting-board-m2qIYZXyGbs")
 plate16.photo.attach(io: file16, filename: 'plate16.png', content_type: 'image/png')
-plate16.save
+plate16.save!
+
+#Categories
+puts "Creating categories"
+
+category1 = Category.create!(
+  name: "Pizza"
+)
+
+category2 = Category.create!(
+  name: "Pasta"
+)
+
+category3 = Category.create!(
+  name: "Bakery"
+)
+
+category4 = Category.create!(
+  name: "BBQ"
+)
+
+category5 = Category.create!(
+  name: "Vegetarian"
+)
+
+category6 = Category.create!(
+  name: "Tacos"
+)
+
+category7 = Category.create!(
+  name: "Sushi"
+)
+
+category8 = Category.create!(
+  name: "Vegan"
+)
+
+#Category Plates
+puts "Assigning categories to plates"
+
+categoryplate1 = CategoryPlate.create!(
+  category_id: category2.id,
+  plate_id: plate1.id
+)
+
+
+categoryplate2 = CategoryPlate.create!(
+  category_id: category1.id,
+  plate_id: plate2.id
+)
+
+categoryplate3 = CategoryPlate.create!(
+  category_id: category1.id,
+  plate_id: plate3.id
+)
+
+categoryplate4 = CategoryPlate.create!(
+  category_id: category6.id,
+  plate_id: plate4.id
+)
+
+categoryplate5 = CategoryPlate.create!(
+  category_id: category6.id,
+  plate_id: plate5.id
+)
+
+categoryplate6 = CategoryPlate.create!(
+  category_id: category1.id,
+  plate_id: plate6.id
+)
+
+categoryplate7 = CategoryPlate.create!(
+  category_id: category2.id,
+  plate_id: plate7.id
+)
+
+categoryplate8 = CategoryPlate.create!(
+  category_id: category2.id,
+  plate_id: plate8.id
+)
+
+categoryplate9 = CategoryPlate.create!(
+  category_id: category5.id,
+  plate_id: plate9.id
+)
+
+categoryplate10 = CategoryPlate.create!(
+  category_id: category3.id,
+  plate_id: plate10.id
+)
+
+categoryplate11 = CategoryPlate.create!(
+  category_id: category5.id,
+  plate_id: plate11.id
+)
+
+categoryplate12 = CategoryPlate.create!(
+  category_id: category4.id,
+  plate_id: plate12.id
+)
+
+categoryplate13 = CategoryPlate.create!(
+  category_id: category7.id,
+  plate_id: plate13.id
+)
+
+categoryplate14 = CategoryPlate.create!(
+  category_id: category8.id,
+  plate_id: plate14.id
+)
+
+categoryplate15 = CategoryPlate.create!(
+  category_id: category3.id,
+  plate_id: plate15.id
+)
+
+categoryplate16 = CategoryPlate.create!(
+  category_id: category4.id,
+  plate_id: plate16.id
+)
+
+categoryplate17 = CategoryPlate.create!(
+  category_id: category5.id,
+  plate_id: plate8.id
+)
+
+categoryplate18 = CategoryPlate.create!(
+  category_id: category8.id,
+  plate_id: plate11.id
+)
+
+categoryplate14 = CategoryPlate.create!(
+  category_id: category5.id,
+  plate_id: plate14.id
+)
