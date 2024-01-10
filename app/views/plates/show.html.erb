@@ -6,9 +6,8 @@
   <p><strong>Description:</strong> <%= @plate.description %></p>
   <p><strong>Cooked Date:</strong> <%= @plate.cooked_date %></p>
   <p><strong>Stock:</strong> <%= @plate.stock %></p>
-  <p><strong>Discount Price:</strong> <%= @plate.new_price %></p>
-  <p><strong>Price:</strong> <%= @plate.old_price %></p>
-  <p><strong>Photo:</strong></p>
+  <p><strong>Discount Price:</strong> $<%= @plate.new_price %>0</p>
+  <p><strong>Price:</strong> $<%= @plate.old_price %>0</p>
   <%= image_tag @plate.photo.url, width: 300, height: 200 if @plate.photo.attached? %>
 </div>
 

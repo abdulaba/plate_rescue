@@ -35,20 +35,19 @@ class PlatesController < ApplicationController
   end
 
   def update
-    @restaurant = Restaurant.find(params[:restaurant_id])
-    @plate = @restaurant.plates.find(params[:id])
+    #@restaurant = Restaurant.find(params[:restaurant_id])
+    @plate = Plate.find(params[:id])
+    #@plate.restaurant_id = @restaurant.id
     if @plate.update(plate_params)
-      redirect_to restaurant_plate_path(@restaurant, @plate), notice: 'Plate was successfully updated'
+      redirect_to restaurant_plates_path(@plate.restaurant_id), notice: 'Plate was successfully updated'
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    raise
     #@restaurant = Restaurant.find(params[:restaurant_id])
     @plate = Plate.find(params[:id])
-
     @plate.destroy
     redirect_to restaurant_plates_path(@plate.restaurant_id), status: :see_other, notice: 'Plate was successfully deleted.'
   end
