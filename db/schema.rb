@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_09_200533) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_10_142049) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_09_200533) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "date"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -90,6 +91,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_09_200533) do
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
+  create_table "selectedplates", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.bigint "plate_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "price"
+    t.index ["cart_id"], name: "index_selectedplates_on_cart_id"
+    t.index ["plate_id"], name: "index_selectedplates_on_plate_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -113,4 +124,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_09_200533) do
   add_foreign_key "category_plates", "plates"
   add_foreign_key "plates", "restaurants"
   add_foreign_key "restaurants", "users"
+  add_foreign_key "selectedplates", "carts"
+  add_foreign_key "selectedplates", "plates"
 end
