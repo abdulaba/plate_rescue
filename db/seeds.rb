@@ -383,7 +383,6 @@ categoryplate1 = CategoryPlate.create!(
   plate_id: plate1.id
 )
 
-
 categoryplate2 = CategoryPlate.create!(
   category_id: category1.id,
   plate_id: plate2.id
