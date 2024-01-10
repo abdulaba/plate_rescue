@@ -1,1 +1,53 @@
 // Specific CSS for your home-page
+.info-cards {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  justify-content: center;
+}
+
+.info-cards .green-soft {
+  background-color: #90A955;
+}
+
+.info-cards .green-strong {
+  background-color: #4F772D;
+
+}
+
+.info-cards .green-stronger {
+  background-color: #31572C;
+}
+
+.info-cards .info-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 200px; /* Increase the height for a larger card */
+  width: 200px; /* Increase the width for a larger card */
+  border-radius: 10px;
+  padding: 15px;
+  color: white;
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.info-cards .info-card p.tip {
+  font-size: 0,5em;
+  font-weight: 700;
+}
+
+.info-cards .info-card p.second-text {
+  font-size: .7em;
+}
+
+.info-cards .info-card:hover {
+  transform: scale(1.2, 1.2);
+}
+
+.info-cards:hover > .info-card:not(:hover) {
+  //filter: blur(10px);
+  transform: scale(0.9, 0.9);
+}
