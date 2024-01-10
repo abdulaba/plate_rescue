@@ -1,0 +1,12 @@
+
+<div class="container">
+  
+<%= simple_form_for(@restaurant) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :opening_date %>
+    <%= f.input :opening_time %>
+    <%= f.submit %>
+  <% end %>
+<%= link_to "Back to #{@restaurant.name}", restaurant_path(@restaurant) %>
+</div>
