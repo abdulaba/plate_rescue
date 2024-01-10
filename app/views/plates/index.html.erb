@@ -33,9 +33,9 @@
         <td>$<%= plate.old_price %>0</td>
         <td>
           <%= link_to 'Show', plate_path(plate) %>
-          <%= link_to 'Edit', edit_plate_path(plate.restaurant.id) %>
-          <%#= link_to 'Destroy', plate_path(plate), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-          <%= link_to 'Destroy', plate_path(plate), method: :delete, data: { turbo: 'false'}%>
+          <%= link_to 'Edit', edit_plate_path(plate) %>
+          <%= link_to 'Destroy', plate_path(plate), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+          <%#= link_to 'Destroy', delete_plate_path(plate), method: :delete, data: { turbo: 'false'}%>
         </td>
       </tr>
     <% end %>

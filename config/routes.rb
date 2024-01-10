@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :restaurants do
     resources :plates, only: %i[new create index]
   end
-  resources :plates, only: %i[destroy show edit update]
+  resources :plates, only: %i[show edit update]
+  delete "plates/:id", to: 'plates#destroy', as: :delete_plate
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
