@@ -1,0 +1,43 @@
+
+<h1>Plates for <%= @restaurant.name %></h1>
+
+<%= link_to 'New Plate', new_restaurant_plate_path(@restaurant) %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Stock</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Categories</th>
+      <th>Cooked Date</th>
+      <th>Discount Price</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @restaurant.plates.each do |plate| %>
+      <tr>
+        <td><%= image_tag plate.photo.url, width: 100, height: 100 %></td>
+        <td><%= plate.stock %></td>
+        <td><%= plate.name %></td>
+        <td><%= plate.description %></td>
+        <td>
+          <% plate.categories.each do |category| %>
+          <%= category.name %>
+          <% end %>
+        </td>
+        <td><%= plate.cooked_date %></td>
+        <td>$<%= plate.new_price %>0</td>
+        <td>$<%= plate.old_price %>0</td>
+        <td>
+          <%= link_to 'Show', plate_path(plate) %>
+          <%= link_to 'Edit', edit_plate_path(plate.restaurant.id) %>
+          <%#= link_to 'Destroy', plate_path(plate), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+          <%= link_to 'Destroy', plate_path(plate), method: :delete, data: { turbo: 'false'}%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
