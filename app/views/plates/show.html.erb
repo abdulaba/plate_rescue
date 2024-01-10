@@ -1,0 +1,17 @@
+<div class= "container">
+<h1>Plate Details</h1>
+
+<div>
+  <p><strong>Name:</strong> <%= @plate.name %></p>
+  <p><strong>Description:</strong> <%= @plate.description %></p>
+  <p><strong>Cooked Date:</strong> <%= @plate.cooked_date %></p>
+  <p><strong>Stock:</strong> <%= @plate.stock %></p>
+  <p><strong>Discount Price:</strong> <%= @plate.new_price %></p>
+  <p><strong>Price:</strong> <%= @plate.old_price %></p>
+  <p><strong>Photo:</strong></p>
+  <%= image_tag @plate.photo.url, width: 300, height: 200 if @plate.photo.attached? %>
+</div>
+
+<%= link_to 'Edit', edit_plate_path(@plate) %>
+<%= link_to 'Back to Plates List', restaurant_plates_path(@plate.restaurant_id) %>
+</div>

@@ -1,17 +1,24 @@
 class PlatesController < ApplicationController
   def index
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    #@plates = @restaurant.plates
+    @categories = Category.all
+
   end
 
   def show
+    #@restaurant = Restaurant.find(params[:restaurant_id])
+    @plate = Plate.find(params[:id])
   end
 
   def new
+    @categories = Category.all
     @restaurant = Restaurant.find(params[:restaurant_id])
     @plate = Plate.new
   end
 
   def create
-  @restaurant = Restaurant.find(params[:restaurant_id])
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @plate = Plate.new(plate_params)
     @plate.restaurant_id = @restaurant.id
     if @plate.save
@@ -22,16 +29,34 @@ class PlatesController < ApplicationController
   end
 
   def edit
+    #@restaurant = Restaurant.find(params[:restaurant_id])
+    @plate = Plate.find(params[:id])
+    @categories = Category.all
   end
 
   def update
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @plate = @restaurant.plates.find(params[:id])
+    if @plate.update(plate_params)
+      redirect_to restaurant_plate_path(@restaurant, @plate), notice: 'Plate was successfully updated'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    raise
+    #@restaurant = Restaurant.find(params[:restaurant_id])
+    @plate = Plate.find(params[:id])
+
+    @plate.destroy
+    redirect_to restaurant_plates_path(@plate.restaurant_id), status: :see_other, notice: 'Plate was successfully deleted.'
   end
-  
+
   private
-  def dish_params
-    params.require(:dish).permit(:name, :description, :price, :photo)
+
+  def plate_params
+    params.require(:plate).permit(:name, :description, :cooked_date, :stock, :new_price, :old_price, :photo)
   end
+
 end

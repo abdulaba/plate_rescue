@@ -1,10 +1,24 @@
+<div class= "container">
+<h1><%= @restaurant.name %></h1>
 <%= simple_form_for [@restaurant, @plate] do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :stock %>
   <%= f.input :old_price %>
   <%= f.input :new_price %>
-  <%= f.input :cooked_date %>
+  <%= f.input :cooked_date, as: :date, label: 'Start Date', class: 'form-control', html5: true %>
+  <%= f.input :category_ids,
+                as: :select,
+                input_html: {
+                  data: {
+                    controller: "dropdown"
+                  },
+                  multiple: true,
+                  },
+                collection: @categories,
+                label: 'Selecciona una categoría'
+                %>
   <%= f.input :photo, as: :file %>
   <%= f.submit %>
 <% end %>
+</div>
