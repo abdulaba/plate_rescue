@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <h1 class="mb-4">My Restaurants</h1>
+
+  <div class="row">
+    <% @restaurants.each do |restaurant| %>
+      <div class="col-md-12 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= restaurant.name %></h5>
+            <p class="card-text"><%= restaurant.address %></p>
+            <p class="card-text"><%= restaurant.opening_date %></p>
+            <p class="card-text"><%= restaurant.opening_time %></p>
+            <p class="card-text"><strong>Created:</strong> <%= time_ago_in_words(restaurant.created_at) %> ago</p>
+             <% if restaurant.photo.present? %>
+                <%= cl_image_tag restaurant.photo.key, width: 400, height: 300, crop: :fill, class: "img-fluid rounded mb-2" %>
+              <% end %>
+            <!-- Add more restaurant details here -->
+          </div>
+            <%= link_to 'Edit my restaurant', edit_restaurant_path(restaurant) %>
+            <%= link_to 'Delete my restaurant', restaurant_path(restaurant), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <div class="row justify-content-start">
+    <div class="col-lg-8 d-flex flex-column align-items-start">
+      <h5>Need to add a new restaurant? </h5>
+      <%= link_to 'New restaurant', new_restaurant_path, class: 'btn btn-success btn-sm mb-2' %>
+    </div>
+  </div>
+</div>
