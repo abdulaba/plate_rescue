@@ -2,6 +2,14 @@ class RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.all
+    @markers = @restaurants.geocoded.map do |restaurant|
+      {
+        lat: restaurant.latitude,
+        lng: restaurant.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {restaurant: restaurant}),
+        marker_html: render_to_string(partial: "marker", locals: {restaurant: restaurant})
+      }
+    end
   end
 
   def show
@@ -17,9 +25,9 @@ class RestaurantsController < ApplicationController
     @restaurant.user_id = current_user.id
 
     if @restaurant.save
-      redirect_to restaurant_path(@restaurant), notice: 'Restaurant was successfully created.'
+      redirect_to my_restaurants_path(@restaurant), notice: 'Restaurant was successfully created.'
     else
-      ender :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +38,7 @@ class RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
     if @restaurant.update(restaurant_params)
-      redirect_to restaurant_path(@restaurant), notice: 'Restaurant was successfully updated.'
+      redirect_to my_restaurants_path, notice: 'Restaurant was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -38,8 +46,13 @@ class RestaurantsController < ApplicationController
 
   def destroy
     @restaurant = Restaurant.find(params[:id])
+    @restaurant.plates.destroy_all
     @restaurant.destroy
-    redirect_to restaurants_path, notice: 'Restaurant was successfully destroyed.'
+    redirect_to my_restaurants_path, notice: 'Restaurant was successfully destroyed.', status: :see_other
+  end
+
+  def my_restaurants
+    @restaurants = Restaurant.where(user_id: current_user.id)
   end
 
   private
