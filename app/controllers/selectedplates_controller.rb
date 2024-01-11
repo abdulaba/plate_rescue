@@ -13,12 +13,17 @@ class SelectedplatesController < ApplicationController
     @selected_item.cart_id = @cart.id
     @selected_item.plate_id = plate.id
     @selected_item.price = plate.new_price
+    if plate.stock >= Selectedplate.where(plate_id: plate.id, cart_id: @cart.id).count
+
     respond_to do |format|
       if @selected_item.save
         format.html { redirect_to cart_path(@cart.id) }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
+    end
+    else
+     redirect_to restaurant_plates_path(plate.restaurant_id), notice: 'The restaurant does not have enough stock to add that item to your cart'
     end
   end
 
