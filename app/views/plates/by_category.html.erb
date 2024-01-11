@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Plates in Category: <%= @category.name %></h1>
+  <p>Plates found: <%= @plates.count %></p>
+  <% @plates.each do |plate| %>
+  <p><%= link_to plate.name, plate_path(plate) %> from <%= plate.restaurant.name %></p>
+  <% end %>
+</div>
+
+<%= link_to 'Back', restaurants_path %>

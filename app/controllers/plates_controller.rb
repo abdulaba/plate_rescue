@@ -52,6 +52,11 @@ class PlatesController < ApplicationController
     redirect_to restaurant_plates_path(@plate.restaurant_id), status: :see_other, notice: 'Plate was successfully deleted.'
   end
 
+  def by_category
+    @category = Category.find(params[:category_id])
+    @plates = @category.plates
+  end
+
   private
 
   def plate_params
