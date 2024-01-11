@@ -53,7 +53,7 @@ gem "sassc-rails"
 
 gem "cloudinary"
 
-gem "geocoder"
+
 
 
 group :development, :test do
