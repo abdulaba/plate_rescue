@@ -11,26 +11,34 @@
     </tr>
   </thead>
   <tbody>
-  <% ids = {} %>
+    <% ids = {} %>
+    <% total_amount = 0 %>
     <% @cart.selectedplates.each do |item| %>
-      <% ids[item.plate_id] = 0 %>
+      <% ids[item.plate_id] ||= { quantity: 0, plate: item.plate } %>
+      <% ids[item.plate_id][:quantity] += 1 %>
+      <% total_amount += item.plate.new_price %>
     <% end %>
-    <% @cart.selectedplates.each do |item| %>
-      <% ids[item.plate_id] += 1 %>
-    <% end %>
+
     <% ids.each do |key, value| %>
-    <% plate = Plate.find(key)%>
+      <% plate = value[:plate] %>
       <tr>
         <th scope="row"><%= image_tag plate.photo, size: "50x50" %></th>
         <td><%= plate.name %></td>
-        <td><%= value %></td>
+        <td><%= value[:quantity] %></td>
         <td>$<%= plate.new_price %>0</td>
-        <td><%= plate.description%></td>
+        <td><%= plate.description %></td>
         <td><%= button_to "Add 1 more", selectedplates_path(plate_id: plate.id), class: "btn btn-primary bnt-sm" %></td>
         <td><%= link_to 'Remove from Cart', selectedplate_path(Selectedplate.where(plate_id: plate.id, cart_id: @cart.id).last), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </tr>
-
     <% end %>
+
+    <tr>
+      <td colspan="2"></td>
+      <td><strong>TOTAL:</strong></td>
+      <td>$<%= total_amount %>0</td>
+      <td></td>
+      <td></td>
+    </tr>
   </tbody>
 </table>
-    <%= link_to 'Back to Restaurant', restaurant_plates_path(@restaurant), class: 'btn btn-secondary' %>
+<%= link_to 'Back to Restaurant', restaurant_plates_path(@restaurant), class: 'btn btn-secondary' %>
