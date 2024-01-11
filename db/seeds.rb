@@ -9,9 +9,11 @@
 #   end
 require 'open-uri'
 puts "Cleaning the database"
-User.destroy_all
-Restaurant.destroy_all
 Plate.destroy_all
+Restaurant.destroy_all
+CategoryPlate.destroy_all
+Category.destroy_all
+User.destroy_all
 puts "Database cleaned"
 
 puts "Creating users"
@@ -24,6 +26,10 @@ francisco_macias = User.create!(
   address: "Arenales 3435, Buenos Aires, Argentina",
   password: "123456"
 )
+avatar1 = URI.open("https://avatars.githubusercontent.com/u/106785762?v=4")
+francisco_macias.photo.attach(io: avatar1, filename: 'avatar1.png', content_type: 'image/png')
+francisco_macias.save!
+
 ana_cabral = User.create!(
   first_name: "Ana",
   last_name: "Cabral",
@@ -32,6 +38,9 @@ ana_cabral = User.create!(
   address: "Baez 626, Buenos Aires, Argentina",
   password: "123456"
 )
+avatar2 = URI.open("https://avatars.githubusercontent.com/u/146119016?v=4")
+ana_cabral.photo.attach(io: avatar2, filename: 'avatar2.png', content_type: 'image/png')
+ana_cabral.save!
 
 sofia_alfaro = User.create!(
   first_name: "Sofia",
@@ -41,6 +50,9 @@ sofia_alfaro = User.create!(
   address: "Av. Cabildo 1234, Buenos Aires, Argentina",
   password: "123456"
 )
+avatar3 = URI.open("https://avatars.githubusercontent.com/u/148254339?v=4")
+sofia_alfaro.photo.attach(io: avatar3, filename: 'avatar3.png', content_type: 'image/png')
+sofia_alfaro.save!
 puts "Users created successfully"
 
 #Restaurants
@@ -53,6 +65,9 @@ restaurant1 = Restaurant.create!(
   opening_time: "11am-11pm",
   user_id: sofia_alfaro.id
 )
+photorestaurant1 = URI.open("https://images.unsplash.com/photo-1587085416963-22efba033dd5?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant1.photo.attach(io: photorestaurant1, filename: 'photorestaurant1.png', content_type: 'image/png')
+restaurant1.save!
 
 restaurant2 = Restaurant.create!(
   name: "La Taquería auténtica",
@@ -61,6 +76,10 @@ restaurant2 = Restaurant.create!(
   opening_time: "12pm-10pm",
   user_id: ana_cabral.id
 )
+photorestaurant2 = URI.open("https://images.unsplash.com/photo-1582234383980-59933689fb44?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant2.photo.attach(io: photorestaurant2, filename: 'photorestaurant2.png', content_type: 'image/png')
+restaurant2.save!
+
 
 restaurant3 = Restaurant.create!(
   name: "Sabor del Este",
@@ -69,6 +88,9 @@ restaurant3 = Restaurant.create!(
   opening_time: "8am-5pm",
   user_id: francisco_macias.id
 )
+photorestaurant3 = URI.open("https://images.unsplash.com/photo-1587241321921-91a834d6d191?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant3.photo.attach(io: photorestaurant3, filename: 'photorestaurant3.png', content_type: 'image/png')
+restaurant3.save!
 
 restaurant4 = Restaurant.create!(
   name: "Veggie Haven",
@@ -77,6 +99,9 @@ restaurant4 = Restaurant.create!(
   opening_time: "9am-6pm",
   user_id: sofia_alfaro.id
 )
+photorestaurant4 = URI.open("https://images.unsplash.com/photo-1562215179-c938ed0995cf?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant4.photo.attach(io: photorestaurant4, filename: 'photorestaurant4.png', content_type: 'image/png')
+restaurant4.save!
 
 restaurant5 = Restaurant.create!(
   name: "Carnes y Brasas",
@@ -85,6 +110,9 @@ restaurant5 = Restaurant.create!(
   opening_time: "1pm-12am",
   user_id: ana_cabral.id
 )
+photorestaurant5 = URI.open("https://images.unsplash.com/photo-1576787498994-63269e082a29?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant5.photo.attach(io: photorestaurant5, filename: 'photorestaurant5.png', content_type: 'image/png')
+restaurant5.save!
 
 restaurant6 = Restaurant.create!(
   name: "Pasta Paradiso",
@@ -93,6 +121,10 @@ restaurant6 = Restaurant.create!(
   opening_time: "11am-11pm",
   user_id: francisco_macias.id
 )
+photorestaurant6 = URI.open("https://images.unsplash.com/photo-1585002400872-ec6f400e56b8?q=80&w=2760&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant6.photo.attach(io: photorestaurant6, filename: 'photorestaurant6.png', content_type: 'image/png')
+restaurant6.save!
+
 
 restaurant7 = Restaurant.create!(
   name: "Tokyo Bites",
@@ -101,6 +133,10 @@ restaurant7 = Restaurant.create!(
   opening_time: "6pm-11pm",
   user_id: ana_cabral.id
 )
+photorestaurant7 = URI.open("https://plus.unsplash.com/premium_photo-1668146932065-d08643791942?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHN1c2hpJTIwcmVzdGF1cmFudHxlbnwwfDB8MHx8fDA%3D")
+restaurant7.photo.attach(io: photorestaurant7, filename: 'photorestaurant7.png', content_type: 'image/png')
+restaurant7.save!
+
 
 restaurant8 = Restaurant.create!(
   name: "El Sazón Exótico",
@@ -109,6 +145,9 @@ restaurant8 = Restaurant.create!(
   opening_time: "10am-10pm",
   user_id: sofia_alfaro.id
 )
+photorestaurant8 = URI.open("https://plus.unsplash.com/premium_photo-1669150852127-2435412047f2?q=80&w=2834&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant8.photo.attach(io: photorestaurant8, filename: 'photorestaurant8.png', content_type: 'image/png')
+restaurant8.save!
 
 restaurant9 = Restaurant.create!(
   name: "Kaime",
@@ -117,6 +156,9 @@ restaurant9 = Restaurant.create!(
   opening_time: "10am-4pm",
   user_id: francisco_macias.id
 )
+photorestaurant9 = URI.open("https://images.unsplash.com/photo-1464979681340-bdd28a61699e?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant9.photo.attach(io: photorestaurant9, filename: 'photorestaurant9.png', content_type: 'image/png')
+restaurant9.save!
 
 restaurant10 = Restaurant.create!(
   name: "BBQ Grill Master",
@@ -125,6 +167,9 @@ restaurant10 = Restaurant.create!(
   opening_time: "4pm-12am",
   user_id: ana_cabral.id
 )
+photorestaurant10 = URI.open("https://images.unsplash.com/photo-1552604617-eea98aa27234?q=80&w=2826&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant10.photo.attach(io: photorestaurant10, filename: 'photorestaurant10.png', content_type: 'image/png')
+restaurant10.save!
 
 #Plates
 puts "Creating plates"
