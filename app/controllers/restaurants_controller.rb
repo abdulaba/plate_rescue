@@ -1,13 +1,11 @@
 class RestaurantsController < ApplicationController
 
-  # before_action
-
   def index
     @restaurants = Restaurant.all
   end
 
   def show
-    @restaurant = Restaurant.find_by(id: params[:id])
+    @restaurant = Restaurant.find(params[:id])
   end
 
   def new
@@ -15,11 +13,13 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(restaurants_params)
+    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.user_id = current_user.id
+
     if @restaurant.save
-      redirect_to restaurants_path, notice: "Restaurant created successfully"
+      redirect_to restaurant_path(@restaurant), notice: 'Restaurant was successfully created.'
     else
-      render :new, status: :unprocessable_entity
+      ender :new, status: :unprocessable_entity
     end
   end
 
@@ -29,9 +29,8 @@ class RestaurantsController < ApplicationController
 
   def update
     @restaurant = Restaurant.find(params[:id])
-    # @restaurant.user_id == current_user.id
-    if @restaurant.update(restaurants_params)
-      redirect_to restaurant_path(@restaurant.id)
+    if @restaurant.update(restaurant_params)
+      redirect_to restaurant_path(@restaurant), notice: 'Restaurant was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -45,14 +44,8 @@ class RestaurantsController < ApplicationController
 
   private
 
-  def restaurants_params
-    params.require(:restaurant).permit(:name, :address, :opening_date, :opening_time)
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :address, :opening_date, :opening_time, :photo)
   end
 
-  def set_restaurant
-    @restaurant = Restaurant.find(params[:id])
-    if @restaurant.nil?
-      redirect_to root_path, notice: "Restaurant not found"
-    end
-  end
 end
