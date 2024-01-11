@@ -1,0 +1,28 @@
+<h5>Your Cart</h5>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Photo</th>
+      <th scope="col">Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart.selectedplates.each do |item| %>
+      <tr>
+        <th scope="row"><%= image_tag item.plate.photo, size: "50x50" %></th>
+        <td><%= item.plate.name %></td>
+        <td><%#= item.quantity%></td>
+        <td>$<%= item.plate.new_price %>0</td>
+        <td><%= item.plate.description%></td>
+        <td><%= button_to "Add 1 more", selectedplates_path(plate_id: item.plate.id), class: "btn btn-primary bnt-sm" %></td>
+        <td><%= link_to 'Remove from Cart', selectedplate_path(item), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+    <%= link_to 'Back to Restaurant', restaurant_plates_path(@restaurant), class: 'btn btn-secondary' %>
