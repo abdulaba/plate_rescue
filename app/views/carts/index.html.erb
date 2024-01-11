@@ -1,0 +1,6 @@
+<% @carts.each do |cart| %>
+  <%= cart.date %>
+  <% cart.selectedplates.each do |selectedplate|%>
+    <%= selectedplate.plate.name %>
+  <% end %>
+<% end %>

@@ -37,8 +37,11 @@
       <td><strong>TOTAL:</strong></td>
       <td>$<%= total_amount %>0</td>
       <td></td>
-      <td></td>
+      <td><%= simple_form_for [@cart] do |f| %>
+      <%= f.submit "Check Out", class: "btn btn-success"%>
+      <% end %></td>
     </tr>
+
   </tbody>
 </table>
 <%= link_to 'Back to Restaurant', restaurant_plates_path(@restaurant), class: 'btn btn-secondary' %>
