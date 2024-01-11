@@ -1,0 +1,35 @@
+.plate-details {
+  padding: 10px;
+}
+
+.plate-details p strong {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.plate-details p strong::after {
+  content: ":";
+  margin-right: 5px;
+}
+
+.plate-details p strong + span {
+  display: inline-block;
+  text-decoration: line-through;
+  margin-left: 5px;
+}
+
+.plate-actions {
+  padding: 10px;
+  text-align: right;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 5px;
+  text-decoration: none;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background-color: #4285f4;
+  color: #fff;
+}
