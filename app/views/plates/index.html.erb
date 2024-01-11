@@ -16,8 +16,8 @@
             <p><del>$<%= plate.old_price %>0</del></p>
             <%= button_to "Add to Cart", selectedplates_path(plate_id: plate.id), class: "btn btn-primary bnt-sm" %>
             <%= link_to 'Show', plate_path(plate), class: 'btn btn-primary' %>
-            <%= link_to 'Edit', edit_plate_path(plate), class: 'btn btn-secondary' %>
-            <%= link_to 'Destroy', plate_path(plate), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            <%#= link_to 'Edit', edit_plate_path(plate), class: 'btn btn-secondary' %>
+            <%#= link_to 'Destroy', plate_path(plate), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
           </div>
         </div>
       </div>
