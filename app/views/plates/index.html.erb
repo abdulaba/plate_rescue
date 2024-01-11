@@ -1,43 +1,25 @@
+<div class="container">
+  <h1>Plates for <%= @restaurant.name %></h1>
+  <h5>Plates for <%= @restaurant.address %></h5>
+  <%= link_to 'New Plate', new_restaurant_plate_path(@restaurant), class: 'btn btn-primary' %>
 
-<h1>Plates for <%= @restaurant.name %></h1>
-
-<%= link_to 'New Plate', new_restaurant_plate_path(@restaurant) %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Photo</th>
-      <th>Stock</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Categories</th>
-      <th>Cooked Date</th>
-      <th>Discount Price</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <tbody>
+  <div class="row">
     <% @restaurant.plates.each do |plate| %>
-      <tr>
-        <td><%= image_tag plate.photo.url, width: 100, height: 100 %></td>
-        <td><%= plate.stock %></td>
-        <td><%= plate.name %></td>
-        <td><%= plate.description %></td>
-        <td>
-          <% plate.categories.each do |category| %>
-          <%= category.name %>
-          <% end %>
-        </td>
-        <td><%= plate.cooked_date %></td>
-        <td>$<%= plate.new_price %>0</td>
-        <td>$<%= plate.old_price %>0</td>
-        <td>
-          <%= link_to 'Show', plate_path(plate) %>
-          <%= link_to 'Edit', edit_plate_path(plate) %>
-          <%= link_to 'Destroy', plate_path(plate), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-          <%#= link_to 'Destroy', delete_plate_path(plate), method: :delete, data: { turbo: 'false'}%>
-        </td>
-      </tr>
+      <div class="col-md-4"> <!-- Adjust the column size based on your layout -->
+        <div class="card mb-4">
+          <img src="<%= plate.photo.url %>" alt="<%= plate.name %>" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title"><%= plate.name %></h5>
+            <p class="card-text"><%= plate.stock %> items in stock</p>
+            <p class="card-text">Cooked on <%= plate.cooked_date %></p>
+            <p class="card-text">$<%= plate.new_price %>0</p>
+            <p><del>$<%= plate.old_price %>0</del></p>
+            <%= link_to 'Show', plate_path(plate), class: 'btn btn-primary' %>
+            <%= link_to 'Edit', edit_plate_path(plate), class: 'btn btn-secondary' %>
+            <%= link_to 'Destroy', plate_path(plate), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>

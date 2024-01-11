@@ -1,16 +1,25 @@
-<div class= "container">
-<h1>Plate Details</h1>
+<div class="container">
+  <h1><%= @plate.restaurant.name %></h1>
 
-<div>
-  <p><strong>Name:</strong> <%= @plate.name %></p>
-  <p><strong>Description:</strong> <%= @plate.description %></p>
-  <p><strong>Cooked Date:</strong> <%= @plate.cooked_date %></p>
-  <p><strong>Stock:</strong> <%= @plate.stock %></p>
-  <p><strong>Discount Price:</strong> $<%= @plate.new_price %>0</p>
-  <p><strong>Price:</strong> $<%= @plate.old_price %>0</p>
-  <%= image_tag @plate.photo.url, width: 300, height: 200 if @plate.photo.attached? %>
-</div>
-
-<%= link_to 'Edit', edit_plate_path(@plate) %>
-<%= link_to 'Back to Plates List', restaurant_plates_path(@plate.restaurant_id) %>
+  <div class="card">
+    <% if @plate.photo.attached? %>
+      <%= image_tag @plate.photo.url, class: 'card-img-top', alt: @plate.name %>
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= @plate.name %></h5>
+      <p class="card-text"><%= @plate.description %></p>
+      <p class="card-text">Cooked on <%= @plate.cooked_date %></p>
+      <p class="card-text"><%= @plate.stock %> items in stock</p>
+      <p class="card-text"><del>$<%= @plate.old_price %>0</del></p>
+      <p class="card-text"> $<%= @plate.new_price %>0</p>
+      <p class="card-text"><% @plate.categories.each do |category| %>
+          <%= category.name %>
+        <% end %>
+      </p>
+    </div>
+    <div>
+      <%= link_to 'Edit', edit_plate_path(@plate), class: 'btn btn-primary' %>
+      <%= link_to 'Back to Plates List', restaurant_plates_path(@plate.restaurant_id), class: 'btn btn-secondary' %>
+    </div>
+  </div>
 </div>

@@ -2,6 +2,7 @@ class RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.all
+
     @markers = @restaurants.geocoded.map do |restaurant|
       {
         lat: restaurant.latitude,
@@ -9,6 +10,14 @@ class RestaurantsController < ApplicationController
         info_window_html: render_to_string(partial: "info_window", locals: {restaurant: restaurant}),
         marker_html: render_to_string(partial: "marker", locals: {restaurant: restaurant})
       }
+
+    if params[:city].present? && params[:food].present?
+      @restaurants = Restaurant.includes(:plates).where(plates: { id: Plate.select{|plate| plate.name.downcase.include?(params[:food].downcase)}.pluck(:id) }).select{|restaurant|restaurant.address.downcase.include?(params[:city].downcase)}# de este array de platos solo quiero los ID
+    elsif params[:city].present? # "pizza"
+        @restaurants = Restaurant.select{|restaurant|restaurant.address.downcase.include?(params[:city].downcase)}# de este array de platos solo quiero los ID
+    else
+      @restaurants = Restaurant.all
+
     end
   end
 
