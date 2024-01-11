@@ -8,14 +8,14 @@ class RestaurantsController < ApplicationController
       @restaurants = Restaurant.select{|restaurant|restaurant.address.downcase.include?(params[:city].downcase)}# de este array de platos solo quiero los ID
     else
       @restaurants = Restaurant.all
-      @markers = @restaurants.geocoded.map do |restaurant|
-        {
-          lat: restaurant.latitude,
-          lng: restaurant.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: {restaurant: restaurant}),
-          marker_html: render_to_string(partial: "marker", locals: {restaurant: restaurant})
-        }
-      end
+      #@markers = @restaurants.geocoded.map do |restaurant|
+       # {
+        #  lat: restaurant.latitude,
+         # lng: restaurant.longitude,
+          #info_window_html: render_to_string(partial: "info_window", locals: {restaurant: restaurant}),
+          #marker_html: render_to_string(partial: "marker", locals: {restaurant: restaurant})
+        #}
+      #end
     end
   end
   def show
