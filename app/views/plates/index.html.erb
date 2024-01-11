@@ -1,7 +1,8 @@
 <div class="container">
   <h1>Plates for <%= @restaurant.name %></h1>
-  <h5>Plates for <%= @restaurant.address %></h5>
-  <%= link_to 'New Plate', new_restaurant_plate_path(@restaurant), class: 'btn btn-primary' %>
+  <h5><%= @restaurant.address %></h5>
+  
+  <%#= link_to 'New Plate', new_restaurant_plate_path(@restaurant), class: 'btn btn-primary' %>
 
   <div class="row">
     <% @restaurant.plates.each do |plate| %>
