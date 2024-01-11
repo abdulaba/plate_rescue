@@ -10,21 +10,29 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
-      <% if user_signed_in? %>
-          <li class="nav-item active">
+        <% if params[:action] != "home" %>
+        <li class="nav-item active">
             <div class="form-group has-search mt-3 w-50 mx-auto">
               <%= form_with url: restaurants_path, method: :get do %>
+                <div class="d-flex justify-content-center d-none">
+                  <%= text_field_tag :city, params[:city], placeholder: "Enter some food" %>
+                </div>
                 <div class="d-flex justify-content-center">
                   <%= text_field_tag :food, nil, placeholder: "Enter some food" %>
                   <button class="main-button mx-1" type="submit">Search</button>
                 </div>
               <% end %>
             </div>
+        </li>
+        <%end%>
+        <% if user_signed_in? %>
+          <li class="nav-item ">
+            <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link" %>
           </li>
         <% else %>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-            <%= link_to "Signup", new_user_registration, class: "nav-link" %>
+            <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
           </li>
         <% end %>
       </ul>
