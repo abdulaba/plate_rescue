@@ -19,18 +19,22 @@
       <% total_amount += item.plate.new_price %>
     <% end %>
 
-    <% ids.each do |key, value| %>
-      <% plate = value[:plate] %>
-      <tr>
-        <th scope="row"><%= image_tag plate.photo, size: "50x50" %></th>
-        <td><%= plate.name %></td>
-        <td><%= link_to '-', selectedplate_path(Selectedplate.where(plate_id: plate.id, cart_id: @cart.id).last), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger bnt-sm' %>
-        <%= value[:quantity] %>
-        <%= button_to "+", selectedplates_path(plate_id: plate.id), class: "btn btn-primary bnt-sm" %></td>
-        <td><%=number_to_currency(plate.new_price, precision: 2) %></td>
-        <td><%= plate.description %></td>
-      </tr>
-    <% end %>
+ <% ids.each do |key, value| %>
+  <% plate = value[:plate] %>
+  <tr>
+    <th scope="row"><%= image_tag plate.photo, size: "50x50" %></th>
+    <td><%= plate.name %></td>
+    <td>
+      <div class="btn-group" role="group">
+        <%= link_to '-', selectedplate_path(Selectedplate.where(plate_id: plate.id, cart_id: @cart.id).last), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+        <span class="btn btn-light btn-sm"><%= value[:quantity] %></span>
+        <%= button_to "+", selectedplates_path(plate_id: plate.id), class: "btn btn-primary btn-sm" %>
+      </div>
+    </td>
+    <td><%= number_to_currency(plate.new_price, precision: 2) %></td>
+    <td><%= plate.description %></td>
+  </tr>
+<% end %>
 
     <tr>
       <td colspan="2"></td>
