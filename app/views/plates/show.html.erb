@@ -1,15 +1,16 @@
 <div class="container">
+  <%= link_to 'Back to Plates List', restaurant_plates_path(@plate.restaurant_id), class: 'btn btn-secondary' %>
   <h1><%= @plate.restaurant.name %></h1>
 
   <div class="card">
     <% if @plate.photo.attached? %>
-      <%= image_tag @plate.photo.url, class: 'card-img-top', alt: @plate.name %>
+      <%= image_tag @plate.photo.url, class: 'card-img-top', alt: @plate.name, style: 'width: 30%; height: auto;' %>
     <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= @plate.name %></h5>
       <p class="card-text"><%= @plate.description %></p>
       <p class="card-text">Cooked on <%= @plate.cooked_date %></p>
-      <p class="card-text"><%= @plate.stock %> items in stock</p>
+      <p class="card-text"><%= @plate.stock %> items on stock</p>
       <p class="card-text"><del><%=number_to_currency(@plate.old_price, precision: 2) %></del></p>
       <p class="card-text"> <%= number_to_currency(@plate.new_price, precision: 2) %></p>
       <p class="card-text"><% @plate.categories.each do |category| %>
@@ -20,7 +21,6 @@
     <div>
       <%= button_to "Add to Cart", selectedplates_path(plate_id: @plate.id), class: "btn btn-primary bnt-sm" %>
       <%#= link_to 'Edit', edit_plate_path(@plate), class: 'btn btn-primary' %>
-      <%= link_to 'Back to Plates List', restaurant_plates_path(@plate.restaurant_id), class: 'btn btn-secondary' %>
     </div>
   </div>
 </div>
