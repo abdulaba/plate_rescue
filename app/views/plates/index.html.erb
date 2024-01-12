@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Plates for <%= @restaurant.name %></h1>
   <h5><%= @restaurant.address %></h5>
-  
+
   <%#= link_to 'New Plate', new_restaurant_plate_path(@restaurant), class: 'btn btn-primary' %>
 
   <div class="row">
@@ -13,8 +13,8 @@
             <h5 class="card-title"><%= plate.name %></h5>
             <p class="card-text"><%= plate.stock %> items in stock</p>
             <p class="card-text">Cooked on <%= plate.cooked_date %></p>
-            <p class="card-text">$<%= plate.new_price %>0</p>
-            <p><del>$<%= plate.old_price %>0</del></p>
+            <p class="card-text"><%=number_to_currency(plate.new_price, precision: 2) %></p>
+            <p><del><%= number_to_currency(plate.old_price, precision: 2) %></del></p>
             <%= button_to "Add to Cart", selectedplates_path(plate_id: plate.id), class: "btn btn-primary bnt-sm" %>
             <%= link_to 'Show', plate_path(plate), class: 'btn btn-primary' %>
             <%#= link_to 'Edit', edit_plate_path(plate), class: 'btn btn-secondary' %>

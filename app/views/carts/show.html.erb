@@ -24,18 +24,18 @@
       <tr>
         <th scope="row"><%= image_tag plate.photo, size: "50x50" %></th>
         <td><%= plate.name %></td>
-        <td><%= value[:quantity] %></td>
-        <td>$<%= plate.new_price %>0</td>
+        <td><%= link_to '-', selectedplate_path(Selectedplate.where(plate_id: plate.id, cart_id: @cart.id).last), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger bnt-sm' %>
+        <%= value[:quantity] %>
+        <%= button_to "+", selectedplates_path(plate_id: plate.id), class: "btn btn-primary bnt-sm" %></td>
+        <td><%=number_to_currency(plate.new_price, precision: 2) %></td>
         <td><%= plate.description %></td>
-        <td><%= button_to "Add 1 more", selectedplates_path(plate_id: plate.id), class: "btn btn-primary bnt-sm" %></td>
-        <td><%= link_to 'Remove from Cart', selectedplate_path(Selectedplate.where(plate_id: plate.id, cart_id: @cart.id).last), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
 
     <tr>
       <td colspan="2"></td>
       <td><strong>TOTAL:</strong></td>
-      <td>$<%= total_amount %>0</td>
+      <td><%=number_to_currency(total_amount, precision: 2) %></td>
       <td></td>
       <td><%= simple_form_for [@cart] do |f| %>
       <%= f.submit "Check Out", class: "btn btn-success"%>

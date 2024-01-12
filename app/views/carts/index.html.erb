@@ -30,13 +30,13 @@
           <p class="card-text">
             <span class="badge bg-secondary">Quantity: <%= plate_quantity %></span>
             <%= plate.name %>
-            $<%= plate.new_price %>0
+            <%= number_to_currency(plate.new_price, precision: 2) %>
           </p>
 
           <% restaurants[restaurant_id][:plates][plate_id] = plate_quantity %>
         <% end %>
 
-        <h3 class="card-text"><strong>Total Cost: $<%= total_cost %>0</strong></h3>
+        <h3 class="card-text"><strong>Total Cost: <%= number_to_currency(total_cost, precision: 2) %></strong></h3>
       </div>
     </div>
   <% end %>

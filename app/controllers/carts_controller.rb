@@ -14,10 +14,8 @@ class CartsController < ApplicationController
     @cart.status = 'payed'
     @cart.date = Date.today
     @cart.save
-    Cart.create(user: current_user)
     redirect_to carts_path
   end
-
 
   def index
     @carts = current_user.carts
@@ -27,5 +25,6 @@ class CartsController < ApplicationController
       last_plate = cart.plates.last
       @restaurants << last_plate.restaurant_id if last_plate
     end
+
   end
 end
