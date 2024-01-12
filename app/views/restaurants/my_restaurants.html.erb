@@ -6,24 +6,41 @@
       <div class="col-md-12 mb-4">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"><%= restaurant.name %></h5>
-            <p class="card-text"><%= restaurant.address %></p>
-            <p class="card-text"><%= restaurant.opening_date %></p>
-            <p class="card-text"><%= restaurant.opening_time %></p>
+            <h5 class="card-title">Name:<%= restaurant.name %></h5>
+            <p class="card-text">Address:<%= restaurant.address %></p>
+            <p class="card-text">Opening date:<%= restaurant.opening_date %></p>
+            <p class="card-text">Opening time:<%= restaurant.opening_time %></p>
             <p class="card-text"><strong>Created:</strong> <%= time_ago_in_words(restaurant.created_at) %> ago</p>
-             <% if restaurant.photo.present? %>
-                <%= cl_image_tag restaurant.photo.key, width: 400, height: 300, crop: :fill, class: "img-fluid rounded mb-2" %>
-              <% end %>
-            <!-- Add more restaurant details here -->
+            <% if restaurant.photo.present? %>
+              <%= cl_image_tag restaurant.photo.key, width: 150, height: 150, crop: :fill %>
+            <% end %>
+            <%= link_to 'New plate', new_restaurant_plate_path(restaurant), class: 'btn btn-primary btn-sm mt-2' %>
+            <% restaurant.plates.each do |plate| %>
+              <div class="card mt-3">
+                <div class="card-body">
+                  <h6 class="card-title">Name: <%= plate.name %></h6>
+                  <p class="card-text"><%= plate.description %></p>
+                  <p class="card-text"><%= plate.cooked_date %></p>
+                  <p class="card-text">New price: $<%= plate.new_price %></p>
+                  <p class="card-text">Old price: $<%= plate.old_price %></p>
+                  <p class="card-text"><%= plate.stock %> units available</p>
+                  <% if plate.photo.attached? %>
+                    <%= image_tag plate.photo.url, alt: plate.name, width: 150, height: 150 %>
+                <% end %>
+                <%= link_to 'Edit plate', edit_plate_path(plate), class: 'btn btn-primary btn-sm mt-2' %>
+                <%= link_to 'Delete plate', plate_path(plate), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm mt-2' %>
+                <%#= link_to "Eliminar", some_resource_path(@resource), method: :delete, data: { turbo_action: "replace" }, class: "btn btn-danger", confirm: "¿Estás seguro?" %>
+                </div>
+              </div>
+            <% end %>
+            <%= link_to 'Edit my restaurant', edit_restaurant_path(restaurant), class: 'btn btn-primary btn-sm mt-2' %>
+            <%= link_to 'Delete my restaurant', restaurant_path(restaurant), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm mt-2' %>
           </div>
-            <%= link_to 'Edit my restaurant', edit_restaurant_path(restaurant) %>
-            <%= link_to 'Delete my restaurant', restaurant_path(restaurant), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
-
 <div class="container mt-3">
   <div class="row justify-content-start">
     <div class="col-lg-8 d-flex flex-column align-items-start">
