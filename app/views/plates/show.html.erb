@@ -1,7 +1,6 @@
 <div class="container">
   <%= link_to "Back to #{@plate.restaurant.name}", restaurant_plates_path(@plate.restaurant_id), class: 'btn btn-secondary' %>
   <h1><%= @plate.restaurant.name %></h1>
-
   <div class="card">
     <% if @plate.photo.attached? %>
       <%= image_tag @plate.photo.url, class: 'card-img-top', alt: @plate.name, style: 'width: 30%; height: auto;' %>
