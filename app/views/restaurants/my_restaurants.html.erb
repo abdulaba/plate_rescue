@@ -6,18 +6,19 @@
       <div class="col-md-12 mb-4">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"><%= restaurant.name %></h5>
-            <p class="card-text"><%= restaurant.address %></p>
-            <p class="card-text"><%= restaurant.opening_date %></p>
-            <p class="card-text"><%= restaurant.opening_time %></p>
+            <h5 class="card-title">Name:<%= restaurant.name %></h5>
+            <p class="card-text">Address:<%= restaurant.address %></p>
+            <p class="card-text">Opening date:<%= restaurant.opening_date %></p>
+            <p class="card-text">Opening time:<%= restaurant.opening_time %></p>
             <p class="card-text"><strong>Created:</strong> <%= time_ago_in_words(restaurant.created_at) %> ago</p>
             <% if restaurant.photo.present? %>
-              <%= cl_image_tag restaurant.photo.key, width: 30, height: 30, crop: :fill %>
+              <%= cl_image_tag restaurant.photo.key, width: 150, height: 150, crop: :fill %>
             <% end %>
+            <%= link_to 'New plate', new_restaurant_plate_path(restaurant), class: 'btn btn-primary btn-sm mt-2' %>
             <% restaurant.plates.each do |plate| %>
               <div class="card mt-3">
                 <div class="card-body">
-                  <h6 class="card-title"><%= plate.name %></h6>
+                  <h6 class="card-title">Name: <%= plate.name %></h6>
                   <p class="card-text"><%= plate.description %></p>
                   <p class="card-text"><%= plate.cooked_date %></p>
                   <p class="card-text">New price: $<%= plate.new_price %></p>
@@ -26,10 +27,12 @@
                   <% if plate.photo.attached? %>
                     <%= image_tag plate.photo.url, alt: plate.name, width: 150, height: 150 %>
                 <% end %>
+                <%= link_to 'Edit plate', edit_plate_path(plate), class: 'btn btn-primary btn-sm mt-2' %>
+                <%= link_to 'Delete plate', plate_path(plate), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm mt-2' %>
                 </div>
               </div>
             <% end %>
-            <%= link_to 'Edit my restaurant', edit_restaurant_path(restaurant), class: 'btn btn-primary btn-sm mt-2' %> |
+            <%= link_to 'Edit my restaurant', edit_restaurant_path(restaurant), class: 'btn btn-primary btn-sm mt-2' %>
             <%= link_to 'Delete my restaurant', restaurant_path(restaurant), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm mt-2' %>
           </div>
         </div>

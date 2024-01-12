@@ -22,7 +22,7 @@ class PlatesController < ApplicationController
     @plate = Plate.new(plate_params)
     @plate.restaurant_id = @restaurant.id
     if @plate.save
-      redirect_to restaurant_path(@restaurant.id)
+      redirect_to my_restaurants_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -39,7 +39,7 @@ class PlatesController < ApplicationController
     @plate = Plate.find(params[:id])
     #@plate.restaurant_id = @restaurant.id
     if @plate.update(plate_params)
-      redirect_to restaurant_plates_path(@plate.restaurant_id), notice: 'Plate was successfully updated'
+      redirect_to my_restaurants_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -52,10 +52,10 @@ class PlatesController < ApplicationController
     redirect_to restaurant_plates_path(@plate.restaurant_id), status: :see_other, notice: 'Plate was successfully deleted.'
   end
 
-  def by_category
-    @category = Category.find(params[:category_id])
-    @plates = @category.plates
-  end
+    def by_category
+      @category = Category.find(params[:category_id])
+      @plates = @category.plates
+    end
 
   private
 

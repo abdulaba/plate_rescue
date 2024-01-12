@@ -1,9 +1,20 @@
-<div class="container">
-  <h1>Plates in Category: <%= @category.name %></h1>
-  <p>Plates found: <%= @plates.count %></p>
-  <% @plates.each do |plate| %>
-  <p><%= link_to plate.name, plate_path(plate) %> from <%= plate.restaurant.name %></p>
-  <% end %>
+<div class="container mt-4">
+  <h1 class="mb-4">Plates in Category: <%= @category.name %></h1>
+  <p class="mb-4">Plates found: <%= @plates.count %></p>
+  <div class="row">
+    <% @plates.each do |plate| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to plate.name, plate_path(plate) %></h5>
+            <p class="card-text">From: <%= plate.restaurant.name %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<%= link_to 'Back', restaurants_path %>
+<div class="container mt-4">
+  <%= link_to 'Back', restaurants_path, class: 'btn btn-primary' %>
+</div>
