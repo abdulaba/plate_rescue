@@ -1,8 +1,12 @@
 class CartsController < ApplicationController
   def show
     @cart = Cart.find(current_user.carts.last.id)
-    @restaurant = @cart.plates.last.restaurant_id
-    @selected_items = @cart.selectedplates.includes(:plate)
+    if @cart.plates.any?
+      @restaurant = @cart.plates.last.restaurant
+      @selected_items = @cart.selectedplates.includes(:plate)
+    else
+      redirect_to restaurants_path, notice: 'Your cart is empty.'
+    end
   end
 
   def update
@@ -10,11 +14,17 @@ class CartsController < ApplicationController
     @cart.status = 'payed'
     @cart.date = Date.today
     @cart.save
-    Cart.create(user: current_user)
     redirect_to carts_path
   end
 
   def index
     @carts = current_user.carts
+    @restaurants = []
+
+    @carts.each do |cart|
+      last_plate = cart.plates.last
+      @restaurants << last_plate.restaurant_id if last_plate
+    end
+
   end
 end

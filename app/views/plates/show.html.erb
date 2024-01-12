@@ -10,8 +10,8 @@
       <p class="card-text"><%= @plate.description %></p>
       <p class="card-text">Cooked on <%= @plate.cooked_date %></p>
       <p class="card-text"><%= @plate.stock %> items in stock</p>
-      <p class="card-text"><del>$<%= @plate.old_price %>0</del></p>
-      <p class="card-text"> $<%= @plate.new_price %>0</p>
+      <p class="card-text"><del><%=number_to_currency(@plate.old_price, precision: 2) %></del></p>
+      <p class="card-text"> <%= number_to_currency(@plate.new_price, precision: 2) %></p>
       <p class="card-text"><% @plate.categories.each do |category| %>
           <%= category.name %>
         <% end %>
