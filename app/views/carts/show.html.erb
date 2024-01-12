@@ -44,4 +44,8 @@
 
   </tbody>
 </table>
-<%= link_to 'Back to Restaurant', restaurant_plates_path(@restaurant), class: 'btn btn-secondary' %>
+<% if @restaurant %>
+  <%= link_to 'Back to Restaurant', restaurant_plates_path(@restaurant), class: 'btn btn-secondary' %>
+<% else %>
+  <%= link_to 'Back to Restaurants', restaurants_path, class: 'btn btn-secondary' %>
+<% end %>

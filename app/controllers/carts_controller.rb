@@ -1,8 +1,12 @@
 class CartsController < ApplicationController
   def show
     @cart = Cart.find(current_user.carts.last.id)
-    @restaurant = @cart.plates.last.restaurant_id
-    @selected_items = @cart.selectedplates.includes(:plate)
+    if @cart.plates.any?
+      @restaurant = @cart.plates.last.restaurant
+      @selected_items = @cart.selectedplates.includes(:plate)
+    else
+      redirect_to restaurants_path, notice: 'Your cart is empty.'
+    end
   end
 
   def update
