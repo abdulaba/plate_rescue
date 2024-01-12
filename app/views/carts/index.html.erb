@@ -1,6 +1,43 @@
-<% @carts.each do |cart| %>
-  <%= cart.date %>
-  <% cart.selectedplates.each do |selectedplate|%>
-    <%= selectedplate.plate.name %>
+<div class="container">
+  <h1 class="mt-4 mb-4">My Orders</h1>
+
+  <% @carts.each do |cart| %>
+    <div class="card mb-4">
+      <div class="card-body">
+        <p class="card-title">Delivered</p>
+        <p class="card-text"><%= cart.date %></p>
+
+        <% restaurants = {} %>
+        <% total_cost = 0 %>
+
+        <% cart.selectedplates.group_by { |sp| sp.plate_id }.each do |plate_id, selectedplates| %>
+          <% plate = selectedplates.first.plate %>
+          <% restaurant_id = plate.restaurant_id %>
+          <% @restaurant = restaurants[restaurant_id] || plate.restaurant %>
+
+          <% if !restaurants[restaurant_id] %>
+            <div class="d-flex justify-content-between align-items-center">
+              <h4 class="card-subtitle mb-2 text-muted"><%= @restaurant.name %></h4>
+            </div>
+            <%= cl_image_tag @restaurant.photo.key, width: 200, height: 200, crop: :fill, class: "img-fluid rounded mb-2" %>
+            <% restaurants[restaurant_id] = { plates: {} } %>
+          <% end %>
+
+          <% plate_quantity = selectedplates.size %>
+          <% plate_cost = plate_quantity * plate.new_price %>
+          <% total_cost += plate_cost %>
+
+          <p class="card-text">
+            <span class="badge bg-secondary">Quantity: <%= plate_quantity %></span>
+            <%= plate.name %>
+            $<%= plate.new_price %>0
+          </p>
+
+          <% restaurants[restaurant_id][:plates][plate_id] = plate_quantity %>
+        <% end %>
+
+        <h3 class="card-text"><strong>Total Cost: $<%= total_cost %>0</strong></h3>
+      </div>
+    </div>
   <% end %>
-<% end %>
+</div>

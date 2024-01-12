@@ -14,7 +14,14 @@ class CartsController < ApplicationController
     redirect_to carts_path
   end
 
+
   def index
     @carts = current_user.carts
+    @restaurants = []
+
+    @carts.each do |cart|
+      last_plate = cart.plates.last
+      @restaurants << last_plate.restaurant_id if last_plate
+    end
   end
 end
