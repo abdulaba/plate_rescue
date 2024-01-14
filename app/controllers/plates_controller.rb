@@ -52,6 +52,7 @@ class PlatesController < ApplicationController
   def destroy
     #@restaurant = Restaurant.find(params[:restaurant_id])
     @plate = Plate.find(params[:id])
+    @plate.category_plates.destroy_all
     @plate.destroy
     redirect_to my_restaurants_path, status: :see_other, notice: 'Plate was successfully deleted.'
   end
@@ -64,7 +65,7 @@ class PlatesController < ApplicationController
   private
 
   def plate_params
-    params.require(:plate).permit(:name, :description, :cooked_date, :stock, :new_price, :old_price, :photo, :restaurant_id, category_plate_ids: [])
+    params.require(:plate).permit(:name, :description, :cooked_date, :stock, :new_price, :old_price, :photo, :restaurant_id, category_plate_id: [])
   end
 
 end
