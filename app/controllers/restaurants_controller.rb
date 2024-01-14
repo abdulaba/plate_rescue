@@ -47,10 +47,13 @@ class RestaurantsController < ApplicationController
   end
   def destroy
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.plates.destroy_all
+    @restaurant.plates.each do |plate|
+      plate.category_plates.destroy_all
+    end
     @restaurant.destroy
     redirect_to my_restaurants_path, notice: 'Restaurant was successfully destroyed.', status: :see_other
   end
+
   def my_restaurants
     @restaurants = Restaurant.where(user_id: current_user.id)
   end
