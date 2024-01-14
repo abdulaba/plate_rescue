@@ -22,7 +22,11 @@ class PlatesController < ApplicationController
     @plate = Plate.new(plate_params)
     @plate.restaurant_id = @restaurant.id
     if @plate.save
-      redirect_to my_restaurants_path
+      params[:plate][:category_ids].each do |category_id|
+        next if category_id.empty?
+        CategoryPlate.create(plate: @plate, category_id: category_id)
+      end
+      redirect_to my_restaurants_path, notice: "Plate was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -60,7 +64,7 @@ class PlatesController < ApplicationController
   private
 
   def plate_params
-    params.require(:plate).permit(:name, :description, :cooked_date, :stock, :new_price, :old_price, :photo,  category_plate_ids:[])
+    params.require(:plate).permit(:name, :description, :cooked_date, :stock, :new_price, :old_price, :photo, :restaurant_id, category_plate_ids: [])
   end
 
 end
