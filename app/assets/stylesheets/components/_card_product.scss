@@ -44,7 +44,7 @@ body {
   height: 100px;
 }
 .food-card .food-card_content .food-card_title-section .food-card_title {
-  margin-bottom: 8px;
+  //margin-bottom: 8px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -194,11 +194,6 @@ body {
   color: #949a98;
 }
 
-.item-price {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
 
 .item-price p {
   font-size: 16px; /* Adjust font size */
@@ -220,4 +215,26 @@ body {
 
 .outer:hover {
   transform: scale(1.01);
+}
+
+.food-card:hover {
+  /* Agrega los estilos que desees para el estado de hover */
+  transform: scale(1.05); /* Ejemplo: aumento de escala al pasar el ratón */
+  transition: transform 0.3s ease; /* Agrega una transición suave */
+}
+
+.food-card_price {
+  display: flex;
+  flex-direction: column;
+}
+
+.old-price del {
+  font-size: smaller;
+  text-decoration: line-through; /* Texto tachado */
+}
+
+.new-price {
+  font-size: larger;
+  font-weight: bold; /* Texto en negrita */
+  color: #132A13;
 }

@@ -1,65 +1,58 @@
-
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= @restaurant.photo.url %>')">
+  <div class="text-center">
+    <h1>Plates for <%= @restaurant.name %></h1>
+    <h5><%= @restaurant.address %></h5>
+  </div>
+</div>
 <div class="container">
-  <h1 class="text-center text-uppercase">Plates for <%= @restaurant.name %></h1>
-  <h5 class="text-center"><%= @restaurant.address %></h5>
-
-  <%#= link_to 'New Plate', new_restaurant_plate_path(@restaurant), class: 'btn btn-primary' %>
-
   <div class="row mt-3">
     <% @restaurant.plates.each do |plate| %>
-        <div class="col-sm-6 col-md-6 col-lg-4">
-          <div class="food-card bg-white rounded-lg overflow-hidden mb-4 shadow">
-            <div class="food-card_img position-relative">
-              <%= image_tag plate.photo %>
-              <a href="#!"><i class="far fa-heart"></i></a>
+      <div class="col-6 col-md-4" onclick="window.location='<%= plate_path(plate) %>';">
+        <div class="food-card bg-white rounded-lg overflow-hidden mb-4 shadow food-card-hover">
+          <div class="food-card_img position-relative">
+            <%= image_tag plate.photo %>
+            <a href="#!"><i class="far fa-heart"></i></a>
+          </div>
+          <div class="food-card_content">
+            <div class="food-card_title-section overflow-hidden">
+              <h3 class="food-card_title">
+                <%= link_to plate.name, plate_path(plate), class: "text-decoration-none", style: "color: inherit;" %>
+              </h3>
+              <div class="rating-box">
+                <div class="rating-stars d-inline-block position-relative mr-2">
+                  <img src="https://1.bp.blogspot.com/-6VpHaVlQ1wE/YTK-0mDjdEI/AAAAAAAACdE/AyLHXTaCyGEI4XX1ena2Axo4VSLPdzwoACNcBGAsYHQ/s0/grey-star.png" alt="">
+                  <div class="filled-star" style="width:86%"></div>
+                </div>
+                <small class="text-muted"><%= rand(23..456) %> Reviews</small>
+              </div>
             </div>
-            <div class="food-card_content">
-              <div class="food-card_title-section overflow-hidden">
-                <h3 class="food-card_title"><%= link_to plate.name, plate_path(plate) %></h3>
-                  <span class="fs-6 ms-2">
-                    <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= plate.description%>"></i>
-                  </span>
-                  </h3>
-                <div class="d-flex justify-content-between">
-                  <% plate.category_plates.each do |category| %>
-                    <p class="food-card_author btn btn-outline-info btn-sm"><%= category.category.name %></p>
-                  <% end %>
-                  <div class="rating-box">
-                    <div class="rating-stars d-inline-block position-relative mr-2">
-                      <img src="https://1.bp.blogspot.com/-6VpHaVlQ1wE/YTK-0mDjdEI/AAAAAAAACdE/AyLHXTaCyGEI4XX1ena2Axo4VSLPdzwoACNcBGAsYHQ/s0/grey-star.png" alt="">
-                      <div class="filled-star" style="width:86%"></div>
-                    </div>
-
-                    <small class="text-muted"><%= rand(23..456) %> Reviews</small>
-                  </div>
+            <div class="food-card_bottom-section">
+              <div class="d-flex justify-content-between">
+                <div><span class="fa-solid fa-bowl-rice me-1"></span> Cooked on <%= plate.cooked_date %></div>
+                <div>
+                  <span class="badge badge-success">Veg</span>
                 </div>
               </div>
-              <div class="food-card_bottom-section">
-                <div class="d-flex justify-content-between">
-                  <div><span class="fa-solid fa-bowl-rice me-1"></span><%= plate.cooked_date %></div>
-                  <div>
-                    <span class="badge badge-success">Veg</span>
-                  </div>
+              <hr>
+              <div class="d-flex justify-content-between">
+                <div class="food-card_price">
+                  <span class="old-price"><del><%= number_to_currency(plate.old_price, precision: 2) %></del></span>
+                  <span class="new-price"><%= number_to_currency(plate.new_price, precision: 2) %> </span>
                 </div>
-                <hr>
-                <div class="d-flex justify-content-between">
-                  <div class="food-card_price">
-                    <span><del><%= number_to_currency(plate.old_price, precision: 2) %></del></span>
-                    <span class="ms-5 text-price"><%= number_to_currency(plate.new_price, precision: 2) %> </span>
-                  </div>
-                  <div class="">
-                    <div class="mb-3">
-                      <%= button_to "add to cart",selectedplates_path(plate_id: plate.id), class: "button rounded-pill" %>
-                    </div>
+                <div class="">
+                  <div class="mb-3">
+                    <button class="CartBtn">
+                      <span class="IconContainer">
+                      </span>
+                      <p class="text">Add 1 to order</p>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-            <%#= link_to 'Show', plate_path(plate), class: 'btn btn-primary' %>
-            <%#= link_to 'Edit', edit_plate_path(plate), class: 'btn btn-secondary' %>
-            <%#= link_to 'Destroy', plate_path(plate), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      </div>
     <% end %>
   </div>
 </div>
