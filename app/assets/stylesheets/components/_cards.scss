@@ -6,9 +6,54 @@
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 24px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card-trip {
+  overflow: hidden;
+  background: white;
+  border: none !important;
+}
+
+.card-trip > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+.card-trip > img:hover {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1.2, 1.2);
+}
+
+.card-trip p {
+  font-size: 10px;
+  opacity: .7;
+  margin: 0;
+}
+
+.card-trip .card-trip-infos {
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.card-trip-infos .card-trip-user {
+  position: absolute;
+  right: 16px;
+  top: -20px;
+  width: 40px;
+}
+
+.category-card {
+  transition: transform 0.3s ease-in-out;
+}
+
+.category-card:hover {
+  transform: scale(0.9, 0.9);
 }

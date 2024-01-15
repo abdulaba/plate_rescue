@@ -1,5 +1,6 @@
 class PlatesController < ApplicationController
   def index
+    @cart = current_user.cart
     @restaurant = Restaurant.find(params[:restaurant_id])
     #@plates = @restaurant.plates
     @categories = Category.all

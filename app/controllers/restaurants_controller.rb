@@ -2,6 +2,7 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   def index
+    @cart = current_user.cart
     @restaurants = Restaurant.all
     @categories = Category.all.order(:name)
     @city = params[:city]
