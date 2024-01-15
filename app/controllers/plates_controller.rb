@@ -22,11 +22,12 @@ class PlatesController < ApplicationController
     @plate = Plate.new(plate_params)
     @plate.restaurant_id = @restaurant.id
     if @plate.save
+      @plate.image.attach(params[:plate][:image])
       params[:plate][:category_ids].each do |category_id|
         next if category_id.empty?
         CategoryPlate.create(plate: @plate, category_id: category_id)
+        redirect_to my_restaurants_path, notice: "Plate was successfully created."
       end
-      redirect_to my_restaurants_path, notice: "Plate was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
