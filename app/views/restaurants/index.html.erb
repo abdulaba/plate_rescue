@@ -5,13 +5,13 @@
       <div class="row">
         <% @restaurants.each do |restaurant| %>
           <div class="card-trip col-lg-4">
-            <div class="card">
+            <div class="card border-0">
               <%= link_to restaurant_path(restaurant) do %>
                 <% if restaurant.photo.present? %>
-                  <%= cl_image_tag restaurant.photo.key, width: 300, height: 200, crop: :fill, class: "card-img-top img-fluid rounded mb-2" %>
+                  <%= cl_image_tag restaurant.photo.key, width: 300, height: 200, crop: :fill, class: "card-img-top img-fluid rounded mb-2 zoom-efect", style: "border-radius: 50px;" %>
                 <% end %>
               <% end %>
-              <div class="card-trip-infos card-body">
+              <div class="card-trip-infos">
                 <div>
                   <h4 class="card-title"><%= restaurant.name %></h4>
                   <h6 class="card-text"><strong>Created:</strong> <%= time_ago_in_words(restaurant.created_at) %> ago</h6>
@@ -21,7 +21,7 @@
                   <% counter += plate.old_price %>
                   <% counter -= plate.new_price %>
                 <% end %>
-                <h4 class="card-trip-pricing">Save up to: $<%= counter %></h4>
+                <p class="card-trip-pricing">Save up to: $<%= counter %></p>
               </div>
             </div>
           </div>
