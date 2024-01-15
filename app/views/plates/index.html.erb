@@ -7,15 +7,17 @@
 <div class="container">
   <div class="row mt-3">
     <% @restaurant.plates.each do |plate| %>
-      <div class="col-6 col-md-4">
-        <div class="food-card bg-white rounded-lg overflow-hidden mb-4 shadow">
+      <div class="col-6 col-md-4" onclick="window.location='<%= plate_path(plate) %>';">
+        <div class="food-card bg-white rounded-lg overflow-hidden mb-4 shadow food-card-hover">
           <div class="food-card_img position-relative">
             <%= image_tag plate.photo %>
             <a href="#!"><i class="far fa-heart"></i></a>
           </div>
           <div class="food-card_content">
             <div class="food-card_title-section overflow-hidden">
-              <h3 class="food-card_title"> <%= link_to plate.name, plate_path(plate), class: "text-decoration-none" %></h3>
+              <h3 class="food-card_title">
+                <%= link_to plate.name, plate_path(plate), class: "text-decoration-none", style: "color: inherit;" %>
+              </h3>
               <div class="rating-box">
                 <div class="rating-stars d-inline-block position-relative mr-2">
                   <img src="https://1.bp.blogspot.com/-6VpHaVlQ1wE/YTK-0mDjdEI/AAAAAAAACdE/AyLHXTaCyGEI4XX1ena2Axo4VSLPdzwoACNcBGAsYHQ/s0/grey-star.png" alt="">
@@ -34,15 +36,15 @@
               <hr>
               <div class="d-flex justify-content-between">
                 <div class="food-card_price">
-                  <span><del><%= number_to_currency(plate.old_price, precision: 2) %></del></span>
-                  <span class="ms-5 text-price"><%= number_to_currency(plate.new_price, precision: 2) %> </span>
+                  <span class="old-price"><del><%= number_to_currency(plate.old_price, precision: 2) %></del></span>
+                  <span class="new-price"><%= number_to_currency(plate.new_price, precision: 2) %> </span>
                 </div>
                 <div class="">
                   <div class="mb-3">
                     <button class="CartBtn">
                       <span class="IconContainer">
-                    </span>
-                    <p class="text">Add to order </p>
+                      </span>
+                      <p class="text">Add 1 to order</p>
                     </button>
                   </div>
                 </div>
