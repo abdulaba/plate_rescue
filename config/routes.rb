@@ -21,8 +21,9 @@ Rails.application.routes.draw do
 
   resources :selectedplates, only: %i[create destroy]
   resources :carts, only: %i[show] do
-    resources :checkouts
+    resources :checkouts, only: %i[create]
   end
+  resources :checkouts, only: %i[index]
   # Defines the root path route ("/")
   # root "posts#index"
 end
