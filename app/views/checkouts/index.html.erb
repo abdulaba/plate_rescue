@@ -1,0 +1,42 @@
+<body>
+  <h1 class="mt-4 mb-4">My Orders</h1>
+
+  <% @checkouts.each do |checkout| %>
+    <% restaurants = {} %>
+    <% total_cost = 0 %>
+
+    <% checkout.dish.each do |dish| %>
+      <% @restaurant = Restaurant.find(dish["restaurant_id"]) %>
+      <% dish_quantity = checkout.dish.count { |d| d["restaurant_id"] == @restaurant.id } %>
+      <% dish_cost = dish_quantity * dish["new_price"] %>
+      <% total_cost += dish_cost %>
+
+      <% if !restaurants.has_key?(@restaurant.id) %>
+        <figure class="pizza">
+          <div class="pizza__hero">
+            <%= cl_image_tag @restaurant.photo.key, class: "pizza__img" %>
+          </div>
+
+          <div class="pizza__content">
+            <div class="pizza__title">
+              <h1 class="pizza__heading"><%= @restaurant.name %></h1>
+              <div class="pizza__tag pizza__tag--1 pizza__tag--date"><%= checkout.created_at %></div>
+            </div>
+
+            <p class="pizza__description">
+              <%= dish_quantity %>x <%= dish["name"] %> <%= number_to_currency(dish["new_price"], precision: 2) %>
+            </p>
+
+            <div class="pizza__details">
+              <p class="pizza__detail"><span class="emoji">⏱</span> Delivered </p>
+              <p class="pizza__detail"><span class="emoji">⭐️</span><%= "#{rand(3.0..5.0).round(1)} / 5" %></p>
+            </div>
+          </div>
+
+          <div class="pizza__price"><strong>Total Cost: <%= number_to_currency(total_cost, precision: 2) %></strong></div>
+        </figure>
+        <% restaurants[@restaurant.id] = true %>
+      <% end %>
+    <% end %>
+  <% end %>
+</body>

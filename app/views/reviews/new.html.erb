@@ -1,9 +1,9 @@
 <div class="vh-100 d-flex flex-column justify-content-center align-items-center">
   <h3 class="m-3 text-center">Create Review</h3>
   <div class="col-lg-6 col-sm-12">
-    <%= simple_form_for([@restaurant, @review], html: { class: 'p-4 rounded' }) do |f| %>
+    <%= simple_form_for([@restaurant, @review], html: { class: 'p-4 rounded', data: { controller: "submit" } }) do |f| %>
       <div class="form-group">
-        <%= f.input :rating, collection: (1..5).to_a, label: 'Rating', input_html: { class: 'form-control', placeholder: 'Enter rating' } %>
+        <%= f.input :rating, collection: (1..5).to_a, label: 'Rating', input_html: { class: 'form-control', placeholder: 'Enter rating', data: {controller: "star-rating"} } %>
       </div>
       <div class="form-group">
         <%= f.input :comment, label: 'Comment', input_html: { class: 'form-control', placeholder: 'Enter comment' } %>

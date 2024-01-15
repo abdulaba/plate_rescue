@@ -1,8 +1,8 @@
 class Cart < ApplicationRecord
   belongs_to :user
-  has_many :selectedplates
+  has_many :selectedplates, dependent: :destroy
   has_many :plates, through: :selectedplates
-  
+
   def add_product(plate)
     selected_item = selectedplates.find_by(plate_id: plate.id)
 
