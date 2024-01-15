@@ -31,7 +31,10 @@
                 <div class="reviews">
                   <% restaurant.reviews.each do |review| %>
                     <p><strong><%= review.user.first_name %>:</strong></p>
-                    <p>Rating:<%= review.rating %></p>
+                    <p><% review.rating.times do  %>
+                      <i class="fa-solid fa-star"></i>
+                    <% end %>
+                    </p>
                     <p>Comment:<%= review.comment %></p>
                   <% end %>
                 </div>

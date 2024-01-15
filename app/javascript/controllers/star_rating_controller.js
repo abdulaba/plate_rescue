@@ -3,6 +3,7 @@ import StarRating from "star-rating.js"
 
 export default class extends Controller {
   connect() {
+    console.log("Connecting");
     new StarRating(this.element)
   }
 }
