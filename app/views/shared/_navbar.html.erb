@@ -10,13 +10,13 @@
     <% if params[:action] != "home" %>
     <div class="nav-item active">
             <div class="form-group form has-search w-50 mx-auto">
-              <%= form_with url: restaurants_path, method: :get do %>
+              <%= form_with url: restaurants_path, method: :get, class:"search" do %>
                 <div class="d-flex justify-content-center d-none">
-                  <%= text_field_tag :city, params[:city], placeholder: "Enter some food" %>
+                  <%= text_field_tag :city, params[:city], placeholder: "Enter some food"%>
                 </div>
-                <div class="d-flex justify-content-center">
-                  <%= text_field_tag :food, nil, placeholder: "Enter some food" %>
-                  <button class="main-button mx-1" type="submit">Search</button>
+                <div class="align-items-center d-flex justify-content-center">
+                  <%= text_field_tag :food, nil, placeholder: "Enter some food", class:"search__input" %>
+                  <button class="search__button mx-1" type="submit"><i class="search__icon fa-solid fa-magnifying-glass"></i></button>
                 </div>
               <% end %>
             </div>
