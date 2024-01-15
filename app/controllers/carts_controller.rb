@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   def show
     @cart = Cart.find(current_user.carts.last.id)
+    @checkout = Checkout.new 
     if @cart.plates.any?
       @restaurant = @cart.plates.last.restaurant
       @selected_items = @cart.selectedplates.includes(:plate)
@@ -25,6 +26,5 @@ class CartsController < ApplicationController
       last_plate = cart.plates.last
       @restaurants << last_plate.restaurant_id if last_plate
     end
-
   end
 end

@@ -19,8 +19,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :selectedplates, only: %i[create destroy]
-  resources :carts, only: %i[show update index]
-
+  resources :carts, only: %i[show update index] do
+    resources :checkouts
+  end
   # Defines the root path route ("/")
   # root "posts#index"
 end
