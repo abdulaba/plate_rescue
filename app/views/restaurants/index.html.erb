@@ -28,6 +28,13 @@
                     <%= cl_image_tag restaurant.photo.key, width: 400, height: 300, crop: :fill, class: "img-fluid rounded mb-2" %>
                   <% end %>
                 </div>
+                <div class="reviews">
+                  <% restaurant.reviews.each do |review| %>
+                    <p><strong><%= review.user.first_name %>:</strong></p>
+                    <p>Rating:<%= review.rating %></p>
+                    <p>Comment:<%= review.comment %></p>
+                  <% end %>
+                </div>
                 <%= link_to 'View Dishes', restaurant_plates_path(restaurant), class: 'btn btn-success rounded-pill' %>
               </div>
             </div>
