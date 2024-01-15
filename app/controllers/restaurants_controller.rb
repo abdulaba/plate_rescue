@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
   def index
+    @cart = current_user.cart
     @restaurants = Restaurant.all
     @categories = Category.all.order(:name)
     @city = params[:city]
