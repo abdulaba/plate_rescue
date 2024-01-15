@@ -218,9 +218,7 @@ body {
 }
 
 .food-card:hover {
-  /* Agrega los estilos que desees para el estado de hover */
-  transform: scale(1.05); /* Ejemplo: aumento de escala al pasar el ratón */
-  transition: transform 0.3s ease; /* Agrega una transición suave */
+  transform: scale(1.05);
 }
 
 .food-card_price {
@@ -237,4 +235,10 @@ body {
   font-size: larger;
   font-weight: bold; /* Texto en negrita */
   color: #132A13;
+}
+
+.card-title {
+  justify-content:flex-start;
+  text-align:left;
+  padding: 3px;
 }
