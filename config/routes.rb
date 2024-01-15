@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "my_restaurants", to: "restaurants#my_restaurants", as: :my_restaurants
 
   resources :restaurants do
-    resources :plates, only: %i[new create index]
+    resources :plates, only: %i[new create index] 
     resources :reviews, only: [:new, :create]
   end
 
