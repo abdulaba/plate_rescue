@@ -26,7 +26,7 @@
             </div>
             <div class="food-card_bottom-section">
               <div class="d-flex justify-content-between">
-                <div><span class="fa-solid fa-bowl-rice me-1"></span><%= plate.cooked_date %></div>
+                <div><span class="fa-solid fa-bowl-rice me-1"></span> Cooked on <%= plate.cooked_date %></div>
                 <div>
                   <span class="badge badge-success">Veg</span>
                 </div>
@@ -39,7 +39,11 @@
                 </div>
                 <div class="">
                   <div class="mb-3">
-                    <%= button_to "add to cart", selectedplates_path(plate_id: plate.id), class: "button rounded-pill" %>
+                    <button class="CartBtn">
+                      <span class="IconContainer">
+                    </span>
+                    <p class="text">Add to order </p>
+                    </button>
                   </div>
                 </div>
               </div>
