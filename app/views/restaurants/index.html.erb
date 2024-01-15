@@ -36,24 +36,7 @@
                   <% counter += plate.old_price %>
                   <% counter -= plate.new_price %>
                 <% end %>
-
-                <p>Save up to: $<%= counter %></p>
-                <div class="card-text">
-                  <% if restaurant.photo.present? %>
-                    <%= cl_image_tag restaurant.photo.key, width: 400, height: 300, crop: :fill, class: "img-fluid rounded mb-2" %>
-                  <% end %>
-                </div>
-                <div class="reviews">
-                  <% restaurant.reviews.each do |review| %>
-                    <p><strong><%= review.user.first_name %>:</strong></p>
-                    <p><% review.rating.times do  %>
-                      <i class="fa-solid fa-star"></i>
-                    <% end %>
-                    </p>
-                    <p><%= review.comment %></p>
-                  <% end %>
-                </div>
-                <%= link_to 'View Dishes', restaurant_plates_path(restaurant), class: 'btn btn-success rounded-pill' %>
+                <p>Up to: $<%= counter %> off!</p>
               </div>
             </div>
           </div>
