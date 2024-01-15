@@ -3,10 +3,14 @@ class CheckoutsController < ApplicationController
     @cart = Cart.find(params[:cart_id])
     @dishes = @cart.plates
     @checkout = Checkout.new(dish: @dishes)
-
+    @checkout.user_id = current_user.id
     if @checkout.save
+      @dishes.each do |dish|
+        dish.stock = dish.stock - 1
+        dish.save
+      end
       @cart.destroy
-      redirect_to cart_checkouts_path(@cart)
+      redirect_to checkouts_path
     else
       redirect_to cart_path(@cart), notice: 'We could not complete your order.'
     end
@@ -14,8 +18,7 @@ class CheckoutsController < ApplicationController
 
 
   def index
-    @cart = current_user.cart || Cart.create(user: current_user)
-    @checkouts = Checkout.all
+    @checkouts = Checkout.where(user_id: current_user.id)
     render :index
   end
 end
