@@ -1,4 +1,6 @@
 class RestaurantsController < ApplicationController
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+
   def index
     @cart = current_user.cart
     @restaurants = Restaurant.all
@@ -58,8 +60,14 @@ class RestaurantsController < ApplicationController
   def my_restaurants
     @restaurants = Restaurant.where(user_id: current_user.id)
   end
+
   private
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :opening_date, :opening_time, :photo)
   end
+
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:id])
+  end
+
 end
