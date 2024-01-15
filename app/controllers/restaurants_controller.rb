@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
   def index
     @restaurants = Restaurant.all
+    @categories = Category.all.order(:name)
     @city = params[:city]
     if params[:city].present? && params[:food].present?
       @restaurants = Restaurant.includes(:plates).where(plates: { id: Plate.select{|plate| plate.name.downcase.include?(params[:food].downcase)}.pluck(:id) }).select{|restaurant|restaurant.address.downcase.include?(params[:city].downcase)}# de este array de platos solo quiero los ID
@@ -46,10 +47,13 @@ class RestaurantsController < ApplicationController
   end
   def destroy
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.plates.destroy_all
+    @restaurant.plates.each do |plate|
+      plate.category_plates.destroy_all
+    end
     @restaurant.destroy
     redirect_to my_restaurants_path, notice: 'Restaurant was successfully destroyed.', status: :see_other
   end
+
   def my_restaurants
     @restaurants = Restaurant.where(user_id: current_user.id)
   end

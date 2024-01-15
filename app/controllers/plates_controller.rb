@@ -22,7 +22,11 @@ class PlatesController < ApplicationController
     @plate = Plate.new(plate_params)
     @plate.restaurant_id = @restaurant.id
     if @plate.save
-      redirect_to restaurant_path(@restaurant.id)
+      params[:plate][:category_ids].each do |category_id|
+        next if category_id.empty?
+        CategoryPlate.create(plate: @plate, category_id: category_id)
+      end
+      redirect_to my_restaurants_path, notice: "Plate was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -39,7 +43,7 @@ class PlatesController < ApplicationController
     @plate = Plate.find(params[:id])
     #@plate.restaurant_id = @restaurant.id
     if @plate.update(plate_params)
-      redirect_to restaurant_plates_path(@plate.restaurant_id), notice: 'Plate was successfully updated'
+      redirect_to my_restaurants_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -48,14 +52,20 @@ class PlatesController < ApplicationController
   def destroy
     #@restaurant = Restaurant.find(params[:restaurant_id])
     @plate = Plate.find(params[:id])
+    @plate.category_plates.destroy_all
     @plate.destroy
-    redirect_to restaurant_plates_path(@plate.restaurant_id), status: :see_other, notice: 'Plate was successfully deleted.'
+    redirect_to my_restaurants_path, status: :see_other, notice: 'Plate was successfully deleted.'
   end
+
+    def by_category
+      @category = Category.find(params[:category_id])
+      @plates = @category.plates
+    end
 
   private
 
   def plate_params
-    params.require(:plate).permit(:name, :description, :cooked_date, :stock, :new_price, :old_price, :photo)
+    params.require(:plate).permit(:name, :description, :cooked_date, :stock, :new_price, :old_price, :photo, :restaurant_id, category_plate_id: [])
   end
 
 end
