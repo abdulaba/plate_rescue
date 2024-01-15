@@ -1,21 +1,22 @@
-
-<div class="container mt-5">
+<div class="container mt-5 text-center">
   <div class="d-flex flex-wrap justify-content-center mt-5">
-  <ul>
-    <% @categories.each do |category| %>
-    <li>
-      <div class="p-2">
-        <%= link_to category.name, plates_by_category_path(category.id) %>
-      </div>
-    <% end %>
-    </li>
-  </ul>
+    <ul class="list-unstyled d-flex flex-wrap justify-content-center">
+      <% @categories.each do |category| %>
+        <li class="p-2">
+          <%= link_to plates_by_category_path(category.id), class: "text-decoration-none" do %>
+            <div class="category-card rounded-circle overflow-hidden" style="width: 100px; height: 100px;">
+              <%= image_tag "#{category.name}.png", alt: "Le Wagon", class: "w-100 h-100 object-fit-cover" %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 
   <div class="row justify-content-center">
     <div class="col-lg-10">
-      <h1 class="display-4 mb-5">Explore Our Restaurants in </h1>
-      <div class="row">
+      <h3 class="display-4 mb-5">Explore Our Restaurants in <%= params[:city].capitalize %></h3>
+      <div class="row g-0 justify-content-center align-items-center">
         <% @restaurants.each do |restaurant| %>
           <div class="outer m-2">
             <div class="inner">

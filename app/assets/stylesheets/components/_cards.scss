@@ -6,7 +6,6 @@
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 24px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -30,13 +29,6 @@
   transform: scale(1.2, 1.2);
 }
 
-
-.card-trip h2 {
-  font-size: 13px;
-  font-weight: bolder;
-  margin: 0;
-}
-
 .card-trip p {
   font-size: 10px;
   opacity: .7;
@@ -56,4 +48,12 @@
   right: 16px;
   top: -20px;
   width: 40px;
+}
+
+.category-card {
+  transition: transform 0.3s ease-in-out;
+}
+
+.category-card:hover {
+  transform: scale(0.9, 0.9);
 }
