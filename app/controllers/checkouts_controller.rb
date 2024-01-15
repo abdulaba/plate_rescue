@@ -18,7 +18,6 @@ class CheckoutsController < ApplicationController
 
 
   def index
-
     @checkouts = Checkout.where(user_id: current_user.id)
     render :index
   end
