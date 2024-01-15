@@ -517,3 +517,6 @@ categoryplate14 = CategoryPlate.create!(
   category_id: category5.id,
   plate_id: plate14.id
 )
+
+
+#category images

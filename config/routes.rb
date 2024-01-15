@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :restaurants do
     resources :plates, only: %i[new create index]
+    resources :reviews, only: [:new, :create]
   end
 
   resources :plates, only: %i[show edit update]
