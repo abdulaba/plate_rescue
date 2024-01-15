@@ -1,3 +1,4 @@
+<%# aca empiezan las categorias %>
 <div class="container mt-5 text-center">
   <div class="d-flex flex-wrap justify-content-center mt-5">
     <ul class="list-unstyled d-flex flex-wrap justify-content-center">
@@ -16,31 +17,48 @@
   <div class="row justify-content-center">
     <div class="col-lg-10">
       <h3 class="display-4 mb-5">Explore Our Restaurants in <%= params[:city]&.capitalize || 'the City' %></h3>
-      <div class="row g-0 justify-content-center align-items-center">
-        <% @restaurants.each do |restaurant| %>
-          <div class="outer m-2">
-            <div class="inner">
-              <%= link_to restaurant_plates_path(restaurant) do %>
-                <% if restaurant.photo.present? %>
-                  <%= cl_image_tag restaurant.photo.key, width: 300, height: 200, crop: :fill, class: "card-img-top img-fluid rounded mb-2", style: "border-radius: 50px;" %>
-                <% end %>
-              <% end %>
+
+<%# aca empiezan las cards %>
+      <div class="container">
+        <div class="row mt-3">
+          <% @restaurants.each do |restaurant| %>
+            <div class="col-6 col-md-4">
+              <a href="<%= restaurant_plates_path(restaurant) %>" class="text-decoration-none">
+                <div class="food-card bg-white rounded-lg overflow-hidden mb-4 shadow food-card-hover">
+                  <div class="food-card_img position-relative">
+                    <% if restaurant.photo.present? %>
+                      <%= cl_image_tag restaurant.photo.key, width: 300, height: 200, crop: :fill, class: "card-img-top img-fluid rounded mb-2", style: "border-radius: 50px;" %>
+                    <% else %>
+                      <%= image_tag "default_restaurant_image.jpg", alt: "Default Restaurant Image", class: "card-img-top img-fluid rounded mb-2", style: "border-radius: 50px;" %>
+                    <% end %>
+                    <a href="#!"><i class="far fa-heart"></i></a>
+                  </div>
+                 <div class="card-title px-2">
+                 <h3> <%=restaurant.name%> </h3>
+                 </div>
+                 <div class="px-2 rating-box">
+                    <div class="rating-stars d-inline-block position-relative mr-2">
+                      <img src="https://1.bp.blogspot.com/-6VpHaVlQ1wE/YTK-0mDjdEI/AAAAAAAACdE/AyLHXTaCyGEI4XX1ena2Axo4VSLPdzwoACNcBGAsYHQ/s0/grey-star.png" alt="">
+                      <div class="filled-star" style="width:86%"></div>
+                    </div>
+                    <small class="text-muted"><%= rand(23..456) %> Reviews</small>
+                  </div>
+                  <div class="food-card_bottom-section">
+                    <div class="d-flex justify-content-between">
+                      <div class="food-card_price">
+                        <% counter = 0 %>
+                        <% restaurant.plates.each do |plate| %>
+                          <% counter += (plate.old_price - plate.new_price) %>
+                        <% end %>
+                        <span class="py-1 px-3 new-price"> poner un save up to</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
             </div>
-            <div class="item">
-              <div class="item-name">
-                <h4><%= restaurant.name %></h4>
-              </div>
-              <div class="item-price">
-                <% counter = 0 %>
-                <% restaurant.plates.each do |plate| %>
-                  <% counter += plate.old_price %>
-                  <% counter -= plate.new_price %>
-                <% end %>
-                <p>Up to: $<%= counter %> off!</p>
-              </div>
-            </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
