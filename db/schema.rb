@@ -66,6 +66,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_15_134645) do
     t.index ["plate_id"], name: "index_category_plates_on_plate_id"
   end
 
+  create_table "checkouts", force: :cascade do |t|
+    t.string "dish"
+    t.string "restaurant"
+    t.string "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "plates", force: :cascade do |t|
     t.integer "stock"
     t.float "new_price"
