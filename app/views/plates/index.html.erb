@@ -57,3 +57,35 @@
     <% end %>
   </div>
 </div>
+  <% user_ids = Checkout.pluck(:user_id) %>
+    <% if user_ids.include?(current_user.id) %>
+<div class="vh-100 d-flex flex-column justify-content-center align-items-center">
+  <h3 class="m-3 text-center">Create Review</h3>
+  <div class="col-lg-6 col-sm-12">
+    <%= simple_form_for([@restaurant, @review], html: { class: 'p-4 rounded', data: { controller: "submit" } }) do |f| %>
+      <div class="form-group">
+        <%= f.input :rating, collection: (1..5).to_a, label: 'Rating', input_html: { class: 'form-control', placeholder: 'Enter rating', data: {controller: "star-rating"} } %>
+      </div>
+      <div class="form-group">
+        <%= f.input :comment, label: 'Comment', input_html: { class: 'form-control', placeholder: 'Enter comment' } %>
+      </div>
+      <div class="form-group">
+        <%= f.submit 'Submit', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+    <div class="text-center mt-4">
+      <%= link_to "Back to Restaurant", restaurant_path(@restaurant) %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<div class="container">
+  <h3>Rating:</h3>
+  <% @restaurant.reviews.each do |review| %>
+  <% end %>
+  <% promedio = @restaurant.reviews.pluck(:rating).sum.to_f / @restaurant.reviews.count %>
+  <% promedio.to_i.times do  %>
+     <i class="fa-solid fa-star"></i>
+  <% end %>
+</div>
