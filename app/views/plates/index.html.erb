@@ -6,7 +6,7 @@
 </div>
   <div class="row mt-3">
     <% @restaurant.plates.each do |plate| %>
-      <div class="col-6 col-md-4">
+      <div class="restaurant_card col-5 col-md-3">
         <div class="food-card bg-white rounded-lg overflow-hidden mb-4 shadow food-card-hover">
           <div class="food-card_img position-relative">
             <%= image_tag plate.photo %>
@@ -52,6 +52,8 @@
           </div>
         </div>
       </div>
+
+
       <div class="modal fade" id="modal<%= plate.id %>" tabindex="-1" aria-labelledby="modal<%= plate.id %>Label" aria-hidden="true">
         <div class="plate_card modal-dialog modal-dialog-centered ">
             <div class="modal-body">
@@ -78,6 +80,7 @@
                 </div>
                 <div>
                   <%= button_to "Add to Cart", selectedplates_path(plate_id: plate.id), class: "btn__green" %>
+    
                   <%#= link_to 'Edit', edit_plate_path(@plate), class: 'btn btn-primary' %>
                 </div>
               </div>
