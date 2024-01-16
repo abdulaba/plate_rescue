@@ -32,6 +32,7 @@
               <p class="pizza__detail"><span class="emoji">⭐️</span><%= "#{rand(3.0..5.0).round(1)} / 5" %></p>
               <%= link_to 'Add Review', new_restaurant_review_path(@restaurant), data: { review_target: "link" } %>
             </div>
+          </div>
 
           <div class="pizza__price"><strong>Total Cost: <%= number_to_currency(total_cost, precision: 2) %></strong></div>
         </figure>
