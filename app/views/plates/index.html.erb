@@ -4,8 +4,6 @@
     <h5><%= @restaurant.address %></h5>
   </div>
 </div>
-
-<div class="container">
   <div class="row mt-3">
     <% @restaurant.plates.each do |plate| %>
       <div class="col-6 col-md-4">
@@ -42,7 +40,7 @@
                 </div>
                 <div class="">
                   <div class="mb-3">
-                    <button class="CartBtn">
+                    <button class="CartBtn" data-bs-toggle="modal" data-bs-target="#modal<%= plate.id %>">
                       <span class="IconContainer">
                       </span>
                       <p class="text">Add 1 to order</p>
@@ -54,6 +52,19 @@
           </div>
         </div>
       </div>
+      <div class="modal fade" id="modal<%= plate.id %>" tabindex="-1" aria-labelledby="modal<%= plate.id %>Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Acá va el form
+            </div>
+          </div>
+        </div>
+      </div>
+
     <% end %>
   </div>
 </div>
