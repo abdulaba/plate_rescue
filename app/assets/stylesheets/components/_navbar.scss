@@ -1,5 +1,9 @@
 .navbar {
   background-color: #4F772D;
+  position: sticky; // Add semicolon here
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 4px -2px;
 }
 .navbar-lewagon {
   justify-content: space-between;
@@ -10,7 +14,7 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 60px;
 }
 
 .navbar-lewagon .food-search {
