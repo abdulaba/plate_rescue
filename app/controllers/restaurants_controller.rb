@@ -24,7 +24,9 @@ class RestaurantsController < ApplicationController
   end
   def show
     @restaurant = Restaurant.find(params[:id])
+    @checkouts = Checkout.where(restaurant_id: params[:id])
   end
+
   def new
     @restaurant = Restaurant.new
   end

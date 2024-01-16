@@ -9,6 +9,33 @@
   <p><strong>Opening Date:</strong> <%= @restaurant.opening_date %></p>
   <p><strong>Opening Time:</strong> <%= @restaurant.opening_time %></p>
 
-  <%= link_to 'My restaurants', my_restaurants_path(@restaurant) %>
-
+  <%= link_to 'Back to My restaurants', my_restaurants_path(@restaurant) %>
 </div>
+
+
+<% if current_user && current_user.id == @restaurant.user_id %>
+  <div>
+    <h2>Plates Sold by <%= @restaurant.name %>:</h2>
+    <% @checkouts.each do |checkout| %>
+      <% total_cost = 0 %>
+      <h5><%= checkout.created_at.strftime("%B %d, %Y") %></h5>
+      <ul>
+        <% dish_quantities = Hash.new(0) %>
+        <% checkout.dish.each do |dish| %>
+          <% dish_quantities[dish["name"]] += 1 %>
+        <% end %>
+
+        <% dish_quantities.each do |dish_name, quantity| %>
+          <% dish = checkout.dish.find { |d| d["name"] == dish_name } %>
+          <% dish_cost = quantity * dish["new_price"] %>
+          <% total_cost += dish_cost %>
+
+          <p><%= "#{quantity}x #{dish_name} #{number_to_currency(dish['new_price'], precision: 2)}" %></p>
+        <% end %>
+      </ul>
+      <p><strong>Total Revenue: <%= number_to_currency(total_cost, precision: 2) %></strong></p>
+    <% end %>
+  </div>
+<% else %>
+  <p>Unauthorized to view plates sold by this restaurant.</p>
+<% end %>

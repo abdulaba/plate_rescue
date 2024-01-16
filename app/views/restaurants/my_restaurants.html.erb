@@ -6,7 +6,7 @@
       <div class="col-md-12 mb-4">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Name:<%= restaurant.name %></h5>
+            <h3 class="card-title"><%= link_to restaurant.name, restaurant_path(restaurant), class: "text-decoration-none", style: "color: inherit;" %> </h3>
             <p class="card-text">Address:<%= restaurant.address %></p>
             <p class="card-text">Opening date:<%= restaurant.opening_date %></p>
             <p class="card-text">Opening time:<%= restaurant.opening_time %></p>
@@ -14,11 +14,11 @@
             <% if restaurant.photo.present? %>
               <%= cl_image_tag restaurant.photo.key, width: 150, height: 150, crop: :fill %>
             <% end %>
-            <%= link_to 'New plate', new_restaurant_plate_path(restaurant), class: 'btn btn-primary btn-sm mt-2' %>
+            <%= link_to '+ New plate', new_restaurant_plate_path(restaurant), class: 'btn btn-primary btn-sm mt-2' %>
             <% restaurant.plates.each do |plate| %>
               <div class="card mt-3">
                 <div class="card-body">
-                  <h6 class="card-title">Name: <%= plate.name %></h6>
+                  <h6 class="card-title"><%= plate.name %></h6>
                   <p class="card-text"><%= plate.description %></p>
                   <p class="card-text"><%= plate.cooked_date %></p>
                   <p class="card-text">New price: $<%= plate.new_price %></p>
