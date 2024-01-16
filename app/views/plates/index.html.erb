@@ -53,18 +53,37 @@
         </div>
       </div>
       <div class="modal fade" id="modal<%= plate.id %>" tabindex="-1" aria-labelledby="modal<%= plate.id %>Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+        <div class="plate_card modal-dialog modal-dialog-centered ">
             <div class="modal-body">
-              Acá va el form
-            </div>
+              <%# aca empieza el form de modal %>
+              <div class="plate_card">
+                <div class="card__wrapper">
+                  <div class="card__back"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 24" height="24" width="14"><path stroke-linejoin="round" stroke-linecap="round" stroke-width="3" stroke="#000" d="M12 2L2 12L12 22"></path></svg></div>
+                </div>
+                <% if plate.photo.attached? %>
+                <div class="card__img"><%= image_tag plate.photo.url, class: 'card-img-top', alt: plate.name %>
+                <% end %></div>
+                <div class="card__title"><%= plate.name %></div>
+                <div class="card__subtitle"><%= plate.description %></div>
+                <div class="card__date">Cooked on <%= plate.cooked_date %></div>
+                <div class="card__stock"><%= plate.stock %> items on stock</div>
+                <div class="card__text"><del><%=number_to_currency(plate.old_price, precision: 2) %></del></div>
+                <div class="card__wrapper">
+                  <div class="card__price"><%= number_to_currency(plate.new_price, precision: 2) %></div>
+                  <div class="card__counter">
+                    <button class="card__btn">-</button>
+                    <div class="card__counter-score">1</div>
+                    <button class="card__btn card__btn-plus">+</button>
+                  </div>
+                </div>
+                <div>
+                  <%= button_to "Add to Cart", selectedplates_path(plate_id: plate.id), class: "btn__green" %>
+                  <%#= link_to 'Edit', edit_plate_path(@plate), class: 'btn btn-primary' %>
+                </div>
+              </div>
           </div>
         </div>
       </div>
-
     <% end %>
   </div>
 </div>
