@@ -59,7 +59,10 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Acá va el form
+              <%= simple_form_for Selectedplate.new do |f| %>
+                <%= f.input :plate_id, value: plate.id %>
+                <%= f.submit %>
+              <% end %>
             </div>
           </div>
         </div>
