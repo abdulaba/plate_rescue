@@ -27,7 +27,7 @@
             </div>
             <div class="food-card_bottom-section">
               <div class="d-flex justify-content-between">
-                <div><span class="fa-solid fa-bowl-rice me-1"></span> Cooked on <%= plate.cooked_date %></div>
+                <div><span class="fa-solid fa-bowl-rice me-1"></span> Cooked <%= time_ago_in_words(plate.cooked_date) %> ago</div>
                 <div>
                   <span class="badge badge-success">Veg</span>
                 </div>
