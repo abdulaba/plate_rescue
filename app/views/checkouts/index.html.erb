@@ -27,12 +27,11 @@
               <%= dish_quantity %>x <%= dish["name"] %> <%= number_to_currency(dish["new_price"], precision: 2) %>
             </p>
 
-            <div class="pizza__details">
+            <div class="pizza__details" data-controller="review">
               <p class="pizza__detail"><span class="emoji">⏱</span> Delivered </p>
               <p class="pizza__detail"><span class="emoji">⭐️</span><%= "#{rand(3.0..5.0).round(1)} / 5" %></p>
-              <%= link_to 'Add Review', new_restaurant_review_path(@restaurant) %>
+              <%= link_to 'Add Review', new_restaurant_review_path(@restaurant), data: { review_target: "link" } %>
             </div>
-          </div>
 
           <div class="pizza__price"><strong>Total Cost: <%= number_to_currency(total_cost, precision: 2) %></strong></div>
         </figure>
