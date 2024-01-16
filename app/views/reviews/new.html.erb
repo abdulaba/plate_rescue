@@ -6,7 +6,7 @@
         <%= f.input :rating, collection: (1..5).to_a, label: 'Rating', input_html: { class: 'form-control', placeholder: 'Enter rating', data: {controller: "star-rating"} } %>
       </div>
       <div class="form-group">
-        <%= f.input :comment, label: '', input_html: { class: 'form-control', placeholder: 'Enter comment' } %>
+        <%= f.input :comment, label: false, input_html: { class: 'form-control', placeholder: 'Enter comment' } %>
       </div>
       <div class="form-group">
         <%= f.submit 'Submit', data: { action: "review#disableLink" }, class: 'btn btn-primary' %>
