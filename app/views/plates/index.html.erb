@@ -4,12 +4,12 @@
     <h5><%= @restaurant.address %></h5>
   </div>
 </div>
+<div class="container">
   <div class="row mt-3">
     <% @restaurant.plates.each do |plate| %>
       <div class="restaurant_card col-5 col-md-3">
         <div class="food-card bg-white rounded-lg overflow-hidden mb-4 shadow food-card-hover">
           <div class="food-card_img position-relative">
-
             <%= image_tag plate.photo %>
             <a href="#!"><i class="far fa-heart"></i></a>
           </div>
@@ -56,26 +56,20 @@
       </div>
 
 
+
       <div class="modal fade" id="modal<%= plate.id %>" tabindex="-1" aria-labelledby="modal<%= plate.id %>Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <%# aca empieza el diseño  %>
+            <div class="modal-body plate_card">
+              <%# aca empieza el diseño del modal %>
                 <div class="plate_card">
-                  <div class="card__wrapper">
-                    <div class="card__back"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 24" height="24" width="14"><path stroke-linejoin="round" stroke-linecap="round" stroke-width="3" stroke="#000" d="M12 2L2 12L12 22"></path></svg></div>
-                  </div>
+
                   <% if plate.photo.attached? %>
                     <div class="card__img"><%= image_tag plate.photo.url, class: 'card-img-top', alt: plate.name %> </div>
                   <% end %>
                   <div class="card__title"><%= plate.name %></div>
                   <div class="card__subtitle"><%= plate.description %></div>
-                  <div class="card__date"> Cooked on <%= plate.cooked_date %></div>
+                  <div class="card__date"> Cooked <%= time_ago_in_words(plate.cooked_date) %> ago</div>
                   <div class="card__stock"><%= plate.stock %> items on stock</div>
                   <div class="card__text"><del><%=number_to_currency(plate.old_price, precision: 2) %></del></div>
                   <div class="card__wrapper">
@@ -87,7 +81,7 @@
                     </div>
                   </div>
                   <div>
-                    <%= button_to "Add to Cart", selectedplates_path(plate_id: plate.id), method: :post, class: "btn btn-primary bnt-sm" %>
+                    <%= button_to "Add to Cart", selectedplates_path(plate_id: plate.id), method: :post, class: "btn__green" %>
                     <%#= link_to 'Edit', edit_plate_path(@plate), class: 'btn btn-primary' %>
                   </div>
                 </div>
