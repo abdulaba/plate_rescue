@@ -1,7 +1,20 @@
 <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= @restaurant.photo.url %>')">
-  <div class="text-center">
-    <h1>Plates for <%= @restaurant.name %></h1>
-    <h5><%= @restaurant.address %></h5>
+  <div class="d-flex justify-content-center align-items-center p-5">
+    <div class="text-center">
+      <h1>Plates for <%= @restaurant.name %></h1>
+      <h5><%= @restaurant.address %></h5>
+      <div class="container">
+        <% @restaurant.reviews.each do |review| %>
+        <% end %>
+        <% if @restaurant.reviews.count > 0 %>
+          <% promedio = @restaurant.reviews.pluck(:rating).sum.to_f / @restaurant.reviews.count %>
+         <div class="rating_line"> <%= promedio %><span class="emoji">⭐️</span><span>(<%= @restaurant.reviews.count %>)</span></div>
+        <% else %>
+          <p>No reviews yet.</p>
+        <% end %>
+      </div>
+
+    </div>
   </div>
 </div>
 <div class="container">
@@ -63,7 +76,8 @@
             <div class="modal-body plate_card">
               <%# aca empieza el diseño del modal %>
                 <div class="plate_card">
-
+                  <div class="card__wrapper">
+                  </div>
                   <% if plate.photo.attached? %>
                     <div class="card__img"><%= image_tag plate.photo.url, class: 'card-img-top', alt: plate.name %> </div>
                   <% end %>
@@ -91,17 +105,4 @@
       </div>
     <% end %>
   </div>
-</div>
-<div class="container">
-  <h3>Rating:</h3>
-  <% @restaurant.reviews.each do |review| %>
-  <% end %>
-  <% if @restaurant.reviews.count > 0 %>
-    <% promedio = @restaurant.reviews.pluck(:rating).sum.to_f / @restaurant.reviews.count %>
-    <% promedio.to_i.times do  %>
-     <i class="fa-solid fa-star"></i>
-    <% end %>
-  <% else %>
-    <p>No reviews yet.</p>
-  <% end %>
 </div>
