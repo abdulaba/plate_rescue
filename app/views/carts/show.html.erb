@@ -1,56 +1,79 @@
 <h5>Your Cart</h5>
 
 <hr>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Photo</th>
-      <th scope="col">Name</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Price</th>
-      <th scope="col">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% ids = {} %>
-    <% total_amount = 0 %>
-    <% @cart.selectedplates.each do |item| %>
-      <% ids[item.plate_id] ||= { quantity: 0, plate: item.plate } %>
-      <% ids[item.plate_id][:quantity] += 1 %>
-      <% total_amount += item.plate.new_price %>
-    <% end %>
+<div class="card-product">
+  <% ids = {} %>
+          <% total_amount = 0 %>
+          <% @cart.selectedplates.each do |item| %>
+            <% ids[item.plate_id] ||= { quantity: 0, plate: item.plate } %>
+            <% ids[item.plate_id][:quantity] += 1 %>
+            <% total_amount += item.plate.new_price %>
+          <% end %>
+      <% ids.each do |key, value| %>
+        <% plate = value[:plate] %>
+  <%= image_tag plate.photo %>
+  <div class="card-product-infos">
+    <h2><%= plate.name %></h2>
+    <p><%= plate.description %></p>
+    <p style="font-weight: bold;"><%= number_to_currency(plate.new_price, precision: 2) %></p>
+  </div>
+  <% end %>
+</div>
 
- <% ids.each do |key, value| %>
-  <% plate = value[:plate] %>
+
+<div class="card-product">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+  <div class="card-product-infos">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% ids = {} %>
+          <% total_amount = 0 %>
+          <% @cart.selectedplates.each do |item| %>
+            <% ids[item.plate_id] ||= { quantity: 0, plate: item.plate } %>
+            <% ids[item.plate_id][:quantity] += 1 %>
+            <% total_amount += item.plate.new_price %>
+          <% end %>
+
+      <% ids.each do |key, value| %>
+        <% plate = value[:plate] %>
+        <tr>
+          <th scope="row"><%= image_tag plate.photo, size: "50x50" %></th>
+          <td><%= plate.name %></td>
+          <td>
+            <div class="btn-group" role="group">
+              <%= link_to '-', selectedplate_path(Selectedplate.where(plate_id: plate.id, cart_id: @cart.id).last), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+              <span class="btn btn-light btn-sm"><%= value[:quantity] %></span>
+              <%= button_to "+", selectedplates_path(plate_id: plate.id), class: "btn btn-primary btn-sm" %>
+            </div>
+          </td>
+          <td><%= number_to_currency(plate.new_price, precision: 2) %></td>
+          <td><%= plate.description %></td>
+        </tr>
+      <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
   <tr>
-    <th scope="row"><%= image_tag plate.photo, size: "50x50" %></th>
-    <td><%= plate.name %></td>
-    <td>
-      <div class="btn-group" role="group">
-        <%= link_to '-', selectedplate_path(Selectedplate.where(plate_id: plate.id, cart_id: @cart.id).last), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
-        <span class="btn btn-light btn-sm"><%= value[:quantity] %></span>
-        <%= button_to "+", selectedplates_path(plate_id: plate.id), class: "btn btn-primary btn-sm" %>
-      </div>
-    </td>
-    <td><%= number_to_currency(plate.new_price, precision: 2) %></td>
-    <td><%= plate.description %></td>
+    <td colspan="2"></td>
+    <td><strong>TOTAL:</strong></td>
+    <td><%=number_to_currency(total_amount, precision: 2) %></td>
+    <td></td>
+    <td><button type= "button" class= "btn btn-success" onclick= "document.getElementById('payment').classList.toggle('d-none')"> Show Payment Form</button></td>
   </tr>
-<% end %>
 
-    <tr>
-      <td colspan="2"></td>
-      <td><strong>TOTAL:</strong></td>
-      <td><%=number_to_currency(total_amount, precision: 2) %></td>
-      <td></td>
-      <td><button type= "button" class= "btn btn-success" onclick= "document.getElementById('payment').classList.toggle('d-none')"> Checkout</button></td>
-    </tr>
+      <% if @restaurant %>
+        <%= link_to "Back to #{@restaurant.name}", restaurant_plates_path(@restaurant), class: 'btn btn-secondary' %>
+      <% else %>
+        <%= link_to "Back to #{@restaurant.name}", restaurants_path, class: 'btn btn-secondary' %>
+      <% end %>
 
-  </tbody>
-</table>
-<% if @restaurant %>
-  <%= link_to "Back to #{@restaurant.name}", restaurant_plates_path(@restaurant), class: 'btn btn-secondary' %>
-<% else %>
-  <%= link_to "Back to #{@restaurant.name}", restaurants_path, class: 'btn btn-secondary' %>
-<% end %>
-
-<div id= "payment" class= "d-none"> <%= render "payment" %></div>
+      <div id= "payment" class= "d-none"> <%= render "payment" %></div>
