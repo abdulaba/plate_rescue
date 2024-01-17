@@ -43,10 +43,10 @@
       <% end %>
       <p>
         <%= link_to edit_restaurant_path(restaurant), class: 'text-decoration-none' do %>
-          <i class="fa-solid fa-pen-to-square" style="color: #4F772D;"></i>
+          <i class="fa-solid fa-pen-to-square fa-2x" style="color: #4F772D;"></i>
          <% end %>
         <%= link_to restaurant_path(restaurant), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
-          <i class="fa-solid fa-trash" style="color: #4F772D;"></i>
+          <i class="fa-solid fa-trash fa-2x" style="color: #4F772D;"></i>
         <% end %>
       </p>
     </div>
