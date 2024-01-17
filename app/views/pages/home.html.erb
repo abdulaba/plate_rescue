@@ -1,13 +1,14 @@
 <div class="banner text-center" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= image_path "bannepicture.jpg"%>');">
-      <h1>Your favourite plate at the best rate, no food waste!</h1>
-      <div class="form-group has-search mt-3 w-50 mx-auto">
-        <%= form_with url: restaurants_path, method: :get do %>
-          <div class="d-flex justify-content-center">
-            <%= text_field_tag :city, nil, class: "mx-1 flex-grow-1", placeholder:"Enter delivery address"%>
-            <button class="main-button mx-1" href="/restaurants/"> Search </button>
-          </div>
-        <% end %>
+  <h1>Your favourite plate at the best rate, no food waste!</h1>
+  <div class="form-group has-search mt-3 w-50 mx-auto">
+    <%= form_with url: restaurants_path, method: :get do %>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
+        <%= text_field_tag :city, nil, class: "form-control", placeholder: "Enter delivery address" %>
+        <button type="submit" class="main-button" style="margin-left: 10px"> Search</button>
       </div>
+    <% end %>
+  </div>
 </div>
 
 <h2 class="text-center mt-5 mb-5"> How to plate rescue? </h2>

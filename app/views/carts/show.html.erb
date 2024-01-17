@@ -1,18 +1,17 @@
 <div class="container">
   <div style="margin-top: 20px;">
-    <h2>Order summary</h2>
+    <h2>Order summary from <%= @restaurant.name %></h2>
   </div>
   <hr>
 
-  <% ids = {} %>
+  <% @ids = {} %>
   <% total_amount = 0 %>
   <% @cart.selectedplates.each do |item| %>
-    <% ids[item.plate_id] ||= { quantity: 0, plate: item.plate } %>
-    <% ids[item.plate_id][:quantity] += 1 %>
+    <% @ids[item.plate_id] ||= { quantity: 0, plate: item.plate } %>
+    <% @ids[item.plate_id][:quantity] += 1 %>
     <% total_amount += item.plate.new_price %>
   <% end %>
-
-  <% ids.each do |key, value| %>
+  <% @ids.each do |key, value| %>
     <% plate = value[:plate] %>
     <div class="add-to-cart" style="margin-bottom: 10px;"> <!-- Espacio entre tarjetas -->
       <%= image_tag plate.photo %>
@@ -22,7 +21,7 @@
         <div class="priceproduct"><%= number_to_currency(plate.new_price, precision: 2) %></div>
         <td>
           <div class="btn-group" role="group">
-            <%= link_to '-', selectedplate_path(Selectedplate.where(plate_id: plate.id, cart_id: @cart.id).last), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            <%= link_to '-', selectedplate_path(Selectedplate.where(plate_id: plate.id, cart_id: @cart.id).last), method: :delete, data: { turbo_method: :delete }, class: 'btn btn-danger btn-sm' %>
             <span class="btn btn-light btn-sm"><%= value[:quantity] %></span>
             <%= button_to "+", selectedplates_path(plate_id: plate.id), class: "btn btn-primary btn-sm" %>
           </div>
@@ -49,5 +48,5 @@
 </div>
 
 
-  <div id="payment" class="d-none"> <%= render "payment" %></div>
+  <div id="payment" class="d-none"> <%= render "payment", ids:@ids %></div>
 </div>

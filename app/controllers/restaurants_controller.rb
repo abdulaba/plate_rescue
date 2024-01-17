@@ -5,13 +5,26 @@ class RestaurantsController < ApplicationController
     @cart = current_user.cart
     @restaurants = Restaurant.all
     @categories = Category.all.order(:name)
+    category_id = params[:category_id]
+
     @city = params[:city]
-    if params[:city].present? && params[:food].present?
-      @restaurants = Restaurant.includes(:plates).where(plates: { id: Plate.select{|plate| plate.name.downcase.include?(params[:food].downcase)}.pluck(:id) }).select{|restaurant|restaurant.address.downcase.include?(params[:city].downcase)}# de este array de platos solo quiero los ID
-    elsif params[:city].present? # "pizza"
-      @restaurants = Restaurant.select{|restaurant|restaurant.address.downcase.include?(params[:city].downcase)}# de este array de platos solo quiero los ID
-    else
-      @restaurants = Restaurant.all
+    @restaurants = Restaurant.all
+    if params[:city].present?
+      #@restaurants = Restaurant.includes(:plates).where(plates: { id: Plate.select{|plate| plate.name.downcase.include?(params[:food].downcase)}.pluck(:id) }).select{|restaurant|restaurant.address.downcase.include?(params[:city].downcase)}# de este array de platos solo quiero los ID
+      @restaurants = Restaurant.all.select{|restaurant| restaurant.address.downcase.include?(params[:city].downcase)}
+    end
+
+    if params[:food].present?
+      if @categories.pluck(:name).include?(params[:food].capitalize)
+        @restaurants = Restaurant.joins(plates: :categories).where(categories: { name: params[:food].capitalize}).distinct
+      else
+      @restaurants = Restaurant.joins(:plates).where("plates.name ILIKE ?", "%#{params[:food]}%").distinct
+
+      end
+    end
+    #elsif params[:city].present? # "pizza"
+      #@restaurants = Restaurant.select{|restaurant|restaurant.address.downcase.include?(params[:city].downcase)}# de este array de platos solo quiero los ID
+    #else
       #@markers = @restaurants.geocoded.map do |restaurant|
        # {
         #  lat: restaurant.latitude,
@@ -20,9 +33,12 @@ class RestaurantsController < ApplicationController
           #marker_html: render_to_string(partial: "marker", locals: {restaurant: restaurant})
         #}
       #end
+    if category_id
+      @restaurants = Restaurant.joins(plates: [:categories]).where(categories: {id: category_id}).distinct
     end
   end
   def show
+    @cart = current_user&.cart
     @restaurant = Restaurant.find(params[:id])
     @checkouts = Checkout.where(restaurant_id: params[:id])
     @total_earned = 0
@@ -68,6 +84,7 @@ class RestaurantsController < ApplicationController
   end
 
   def my_restaurants
+    @cart = current_user&.cart
     @restaurants = Restaurant.where(user_id: current_user.id)
     @total_earned = 0
 
