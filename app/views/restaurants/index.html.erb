@@ -33,10 +33,10 @@
                     <% end %>
                     <a href="#!"><i class="far fa-heart"></i></a>
                   </div>
-                 <div class="card-title px-2">
+                 <div class="card-title p-2">
                  <h3> <%=restaurant.name%> </h3>
                  </div>
-                 <div class="px-2 rating-box">
+                 <div class="p-2 rating-box">
                     <div class="rating-stars d-inline-block position-relative mr-2">
                       <img src="https://1.bp.blogspot.com/-6VpHaVlQ1wE/YTK-0mDjdEI/AAAAAAAACdE/AyLHXTaCyGEI4XX1ena2Axo4VSLPdzwoACNcBGAsYHQ/s0/grey-star.png" alt="">
                       <div class="filled-star" style="width:86%"></div>
@@ -50,7 +50,7 @@
                         <% restaurant.plates.each do |plate| %>
                           <% counter += (plate.old_price - plate.new_price) %>
                         <% end %>
-                        <span class="py-1 px-3 new-price"> poner un save up to</span>
+                        <span class="py-1 px-3 new-price"> poner un save up</span>
                       </div>
                     </div>
                   </div>
