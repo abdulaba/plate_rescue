@@ -31,12 +31,14 @@
               <h3 class="food-card_title">
                 <%= link_to plate.name, plate_path(plate), class: "text-decoration-none", style: "color: inherit;" %>
               </h3>
-              <div class="rating-box">
-                <div class="rating-stars d-inline-block position-relative mr-2">
-                  <img src="https://1.bp.blogspot.com/-6VpHaVlQ1wE/YTK-0mDjdEI/AAAAAAAACdE/AyLHXTaCyGEI4XX1ena2Axo4VSLPdzwoACNcBGAsYHQ/s0/grey-star.png" alt="">
-                  <div class="filled-star" style="width:86%"></div>
-                </div>
-                <small class="text-muted"><%= rand(23..456) %> Reviews</small>
+              <div class="rating_line">
+
+                <% if @restaurant.reviews.count > 0 %>
+                  <% promedio = @restaurant.reviews.pluck(:rating).sum.to_f / @restaurant.reviews.count %>
+                <div class="rating_line"> <%= promedio %><span class="emoji">⭐️</span><span>(<%= @restaurant.reviews.count %>)</span></div>
+                <% else %>
+                  <p>No reviews yet.</p>
+                <% end %>
               </div>
             </div>
             <div class="food-card_bottom-section">
@@ -55,10 +57,16 @@
                 <div class="">
                   <div class="mb-3">
                   <%# boton que abre el modal %>
-                    <button class="CartBtn" data-bs-toggle="modal" data-bs-target="#modal<%= plate.id %>">
+                  <% if plate.stock == 0 %>
+                    <% mensaje="No stock" %>
+                    <% fondo= "bg-secondary" %>
+                  <%else%>
+                    <% mensaje = "Add 1 to order" %>
+                  <%end%>
+                    <button class="CartBtn <%=fondo%>" data-bs-toggle="modal" data-bs-target="#modal<%= plate.id %>">
                       <span class="IconContainer">
                       </span>
-                      <p class="text">Add 1 to order</p>
+                      <p class="text"><%= mensaje %></p>
                     </button>
                   </div>
                 </div>
@@ -88,11 +96,6 @@
                   <div class="card__text"><del><%=number_to_currency(plate.old_price, precision: 2) %></del></div>
                   <div class="card__wrapper">
                     <div class="card__price"><%= number_to_currency(plate.new_price, precision: 2) %></div>
-                    <div class="card__counter">
-                      <button class="card__btn">-</button>
-                      <div class="card__counter-score">1</div>
-                      <button class="card__btn card__btn-plus">+</button>
-                    </div>
                   </div>
                   <div>
                     <%= button_to "Add to Cart", selectedplates_path(plate_id: plate.id), method: :post, class: "btn__green" %>
