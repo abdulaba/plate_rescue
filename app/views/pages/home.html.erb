@@ -32,13 +32,13 @@
     <h2 class="text-center mt-5 mb-5">Our Mission</h2>
     <div class="col-md-4 text-center mb-5">
       <i class="fa-solid fa-utensils fa-2x mb-3"></i>
-      <h3>22% -  </h3>
-      <p><mark><strong>Partner with us</strong></mark> to turn unused dishes into extra revenue—choose sustainability and boost your profits.</p>
+      <h5>22%</h5>
+      <p>who<mark><strong>Partner with us</strong></mark> to turn unused dishes into extra revenue—choose sustainability and boost your profits.</p>
     </div>
     <div class="col-md-4 text-center mb-5">
       <i class="fa-solid fa-user fa-2x mb-3"></i>
-      <h3>55% -</h3>
-      <p>Savor excellence, save money, and champion the planet – a <strong><mark>wise dish choice for your wallet and our world.</mark></strong></p>
+      <h3>55% </h3>
+      <p>Who eats with us doSavor excellence, save money, and champion the planet – a <strong><mark>wise dish choice for your wallet and our world.</mark></strong></p>
     </div>
     <div class="col-md-4 text-center mb-5">
       <i class="fa-solid fa-earth-americas fa-2x mb-3"></i>
@@ -75,6 +75,7 @@
   <% @reviews.each do |review| %>
     <div class="review-card">
       <p><%= review.user.first_name %>:</p>
+      <p><%= review.restaurant.name %></p>
       <p><%= review.comment %></p>
       <% 5.times do |star| %>
         <i class="fa-solid fa-star" style="color: #ffb703;"></i>

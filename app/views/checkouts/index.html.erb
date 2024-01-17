@@ -29,7 +29,10 @@
             <div class="pizza__details" data-controller="review">
               <p class="pizza__detail"><span class="emoji">⏱</span> Delivered </p>
               <p class="pizza__detail"><span class="emoji">⭐️</span><%= "#{rand(3.0..5.0).round(1)} / 5" %></p>
+              <% if @restaurant.reviews.pluck(:user_id).include?(current_user.id) %>
+              <% else %>
                 <%= link_to 'Add Review', new_restaurant_review_path(@restaurant) %>
+              <% end %>
             </div>
           </div>
 
