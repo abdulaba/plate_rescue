@@ -7,4 +7,5 @@ class Restaurant < ApplicationRecord
   validates :user, presence: true
   validates :opening_date, presence: true
   validates :opening_time, presence: true
+  has_many :checkouts
 end

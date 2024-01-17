@@ -22,7 +22,6 @@ class SelectedplatesController < ApplicationController
     end
   end
 
-
   def destroy
     @selected_item = Selectedplate.find(params[:id])
     @selected_item.destroy

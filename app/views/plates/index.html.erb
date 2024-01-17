@@ -1,14 +1,26 @@
 <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= @restaurant.photo.url %>')">
-  <div class="text-center">
-    <h1>Plates for <%= @restaurant.name %></h1>
-    <h5><%= @restaurant.address %></h5>
+  <div class="d-flex justify-content-center align-items-center p-5">
+    <div class="text-center">
+      <h1>Plates for <%= @restaurant.name %></h1>
+      <h5><%= @restaurant.address %></h5>
+      <div class="container">
+        <% @restaurant.reviews.each do |review| %>
+        <% end %>
+        <% if @restaurant.reviews.count > 0 %>
+          <% promedio = @restaurant.reviews.pluck(:rating).sum.to_f / @restaurant.reviews.count %>
+         <div class="rating_line"> <%= promedio %><span class="emoji">⭐️</span><span>(<%= @restaurant.reviews.count %>)</span></div>
+        <% else %>
+          <p>No reviews yet.</p>
+        <% end %>
+      </div>
+
+    </div>
   </div>
 </div>
-
 <div class="container">
   <div class="row mt-3">
     <% @restaurant.plates.each do |plate| %>
-      <div class="col-6 col-md-4">
+      <div class="restaurant_card col-5 col-md-3">
         <div class="food-card bg-white rounded-lg overflow-hidden mb-4 shadow food-card-hover">
           <div class="food-card_img position-relative">
             <%= image_tag plate.photo %>
@@ -19,17 +31,19 @@
               <h3 class="food-card_title">
                 <%= link_to plate.name, plate_path(plate), class: "text-decoration-none", style: "color: inherit;" %>
               </h3>
-              <div class="rating-box">
-                <div class="rating-stars d-inline-block position-relative mr-2">
-                  <img src="https://1.bp.blogspot.com/-6VpHaVlQ1wE/YTK-0mDjdEI/AAAAAAAACdE/AyLHXTaCyGEI4XX1ena2Axo4VSLPdzwoACNcBGAsYHQ/s0/grey-star.png" alt="">
-                  <div class="filled-star" style="width:86%"></div>
-                </div>
-                <small class="text-muted"><%= rand(23..456) %> Reviews</small>
+              <div class="rating_line">
+
+                <% if @restaurant.reviews.count > 0 %>
+                  <% promedio = @restaurant.reviews.pluck(:rating).sum.to_f / @restaurant.reviews.count %>
+                <div class="rating_line"> <%= promedio %><span class="emoji">⭐️</span><span>(<%= @restaurant.reviews.count %>)</span></div>
+                <% else %>
+                  <p>No reviews yet.</p>
+                <% end %>
               </div>
             </div>
             <div class="food-card_bottom-section">
               <div class="d-flex justify-content-between">
-                <div><span class="fa-solid fa-bowl-rice me-1"></span> Cooked on <%= plate.cooked_date %></div>
+                <div><span class="fa-solid fa-bowl-rice me-1"></span> Cooked <%= time_ago_in_words(plate.cooked_date) %> ago</div>
                 <div>
                   <span class="badge badge-success">Veg</span>
                 </div>
@@ -42,10 +56,17 @@
                 </div>
                 <div class="">
                   <div class="mb-3">
-                    <button class="CartBtn">
+                  <%# boton que abre el modal %>
+                  <% if plate.stock == 0 %>
+                    <% mensaje="No stock" %>
+                    <% fondo= "bg-secondary" %>
+                  <%else%>
+                    <% mensaje = "Add 1 to order" %>
+                  <%end%>
+                    <button class="CartBtn <%=fondo%>" data-bs-toggle="modal" data-bs-target="#modal<%= plate.id %>">
                       <span class="IconContainer">
                       </span>
-                      <p class="text">Add 1 to order</p>
+                      <p class="text"><%= mensaje %></p>
                     </button>
                   </div>
                 </div>
@@ -54,20 +75,37 @@
           </div>
         </div>
       </div>
+
+
+
+      <div class="modal fade" id="modal<%= plate.id %>" tabindex="-1" aria-labelledby="modal<%= plate.id %>Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body plate_card">
+              <%# aca empieza el diseño del modal %>
+                <div class="plate_card">
+                  <div class="card__wrapper">
+                  </div>
+                  <% if plate.photo.attached? %>
+                    <div class="card__img"><%= image_tag plate.photo.url, class: 'card-img-top', alt: plate.name %> </div>
+                  <% end %>
+                  <div class="card__title"><%= plate.name %></div>
+                  <div class="card__subtitle"><%= plate.description %></div>
+                  <div class="card__date"> Cooked <%= time_ago_in_words(plate.cooked_date) %> ago</div>
+                  <div class="card__stock"><%= plate.stock %> items on stock</div>
+                  <div class="card__text"><del><%=number_to_currency(plate.old_price, precision: 2) %></del></div>
+                  <div class="card__wrapper">
+                    <div class="card__price"><%= number_to_currency(plate.new_price, precision: 2) %></div>
+                  </div>
+                  <div>
+                    <%= button_to "Add to Cart", selectedplates_path(plate_id: plate.id), method: :post, class: "btn__green" %>
+                    <%#= link_to 'Edit', edit_plate_path(@plate), class: 'btn btn-primary' %>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
-</div>
-
-<div class="container">
-  <h3>Rating:</h3>
-  <% @restaurant.reviews.each do |review| %>
-  <% end %>
-  <% if @restaurant.reviews.count > 0 %>
-    <% promedio = @restaurant.reviews.pluck(:rating).sum.to_f / @restaurant.reviews.count %>
-    <% promedio.to_i.times do  %>
-     <i class="fa-solid fa-star"></i>
-    <% end %>
-  <% else %>
-    <p>No reviews yet.</p>
-  <% end %>
 </div>
