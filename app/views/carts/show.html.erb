@@ -69,7 +69,6 @@
     <td><button type= "button" class= "btn btn-success" onclick= "document.getElementById('payment').classList.toggle('d-none')"> Show Payment Form</button></td>
   </tr>
 
-
       <% if @restaurant %>
         <%= link_to "Back to #{@restaurant.name}", restaurant_plates_path(@restaurant), class: 'btn btn-secondary' %>
       <% else %>
