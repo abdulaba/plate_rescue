@@ -38,6 +38,7 @@ class RestaurantsController < ApplicationController
     end
   end
   def show
+    @cart = current_user&.cart
     @restaurant = Restaurant.find(params[:id])
     @checkouts = Checkout.where(restaurant_id: params[:id])
     @total_earned = 0
@@ -83,6 +84,7 @@ class RestaurantsController < ApplicationController
   end
 
   def my_restaurants
+    @cart = current_user&.cart
     @restaurants = Restaurant.where(user_id: current_user.id)
     @total_earned = 0
 
