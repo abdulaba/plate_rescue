@@ -4,10 +4,11 @@
     <ul class="list-unstyled d-flex flex-wrap justify-content-center">
       <% @categories.each do |category| %>
         <li class="p-2">
-          <%= link_to plates_by_category_path(category.id), class: "text-decoration-none" do %>
-            <div class="category-card rounded-circle overflow-hidden" style="width: 100px; height: 100px;">
-              <%= image_tag "#{category.name}.png", alt: "Le Wagon", class: "w-100 h-100 object-fit-cover" %>
-            </div>
+          <%#= link_to "/restaurants?city=#{params[:city]}&food=#{category.name}", class: "text-decoration-none" do %>
+            <%= link_to restaurants_path(category_id: category.id, city: params[:city]), class: "text-decoration-none" do %>
+              <div class="category-card rounded-circle overflow-hidden" style="width: 100px; height: 100px;">
+                <%= image_tag "#{category.name}.png", alt: "Le Wagon", class: "w-100 h-100 object-fit-cover" %>
+              </div>
           <% end %>
         </li>
       <% end %>
