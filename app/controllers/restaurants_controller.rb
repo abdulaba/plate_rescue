@@ -25,6 +25,14 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     @checkouts = Checkout.where(restaurant_id: params[:id])
+    @total_earned = 0
+  @checkouts.each do |checkout|
+    total_cost = 0
+    checkout.dish.each do |dish|
+      total_cost += dish["new_price"].to_f
+    end
+    @total_earned += total_cost
+  end
   end
 
   def new
@@ -61,7 +69,27 @@ class RestaurantsController < ApplicationController
 
   def my_restaurants
     @restaurants = Restaurant.where(user_id: current_user.id)
+    @total_earned = 0
+
+    @checkouts = Checkout.where(restaurant_id: @restaurants.pluck(:id))
+
+    @restaurants.each do |restaurant|
+      restaurant_checkouts = @checkouts.where(restaurant_id: restaurant.id)
+
+      restaurant_checkouts.each do |checkout|
+        total_cost = 0
+
+        checkout.dish.each do |dish|
+          quantity = dish["quantity"].to_i
+          total_cost += quantity * dish["new_price"].to_f
+        end
+
+        @total_earned += total_cost
+      end
+    end
   end
+
+
 
   private
   def restaurant_params
