@@ -31,3 +31,40 @@
 .total-title {
   font-size: 14px;
 }
+
+.text-decoration-none .fa-pen-to-square:hover {
+  color: #789457 !important;
+}
+
+.text-decoration-none:hover .fa-pen-to-square {
+  color: #789457 !important;
+}
+
+.text-decoration-none .fa-trash:hover {
+  color: #789457 !important;
+}
+
+.text-decoration-none:hover .fa-trash {
+  color: #789457 !important;
+}
+
+h2 {
+  font-size: 26px;
+
+  a {
+    text-decoration: none;
+    color: #4F772D;
+
+    &:hover {
+      color: #789457;
+    }
+  }
+}
+
+.text-decoration-none .fa-arrow-left:hover {
+  color: #789457 !important;
+}
+
+.text-decoration-none:hover .fa-arrow-left {
+  color: #789457 !important;
+}

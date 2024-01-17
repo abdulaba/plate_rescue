@@ -22,17 +22,17 @@
 
 <div class="container mt-2">
 
-<%= link_to my_restaurants_path(@restaurant) do %>
+<%= link_to my_restaurants_path(@restaurant), class: 'text-decoration-none' do %>
   <i class="fa-solid fa-arrow-left fa-2x" style="color: #4F772D;"></i>
 <% end %>
 
 <% if current_user && current_user.id == @restaurant.user_id %>
   <div class="sold-container col mt-4 mb-4">
-  <h2>Latest Purchases for <%= @restaurant.name %> </h2>
+  <h3>Latest Purchases for <%= @restaurant.name %> </h3>
     <div class="row">
     <% @checkouts.each do |checkout| %>
     <div class="col-md-4">
-    <div class="card-myrest mb-3">
+    <div class="card-myrest mb-2">
       <div class="myrest-product-infos">
       <% total_cost = 0 %>
       <% total_earned = 0 %>
