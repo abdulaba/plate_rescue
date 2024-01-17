@@ -18,6 +18,7 @@ class CheckoutsController < ApplicationController
   end
 
   def index
+    @cart = current_user&.cart
     @checkouts = Checkout.where(user_id: current_user.id)
     render :index
   end
