@@ -24,7 +24,7 @@ class PlatesController < ApplicationController
     @plate = Plate.new(plate_params)
     @plate.restaurant_id = @restaurant.id
     if @plate.save
-      @plate.photo.attach(params[:plate][:image])
+      @plate.photo.attach(params[:plate][:photo])
       params[:plate][:category_ids].each do |category_id|
         next if category_id.empty?
         CategoryPlate.create(plate: @plate, category_id: category_id)
