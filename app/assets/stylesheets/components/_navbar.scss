@@ -75,3 +75,16 @@
   width: 1.3em;
   fill: #b4b4b4;
 }
+
+.mini-banner {
+  display: flex;
+  align-items: center;
+  background-color: #4F772D;
+  color: #ECF39E;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.mini-banner i {
+  margin-right: 5px;
+}

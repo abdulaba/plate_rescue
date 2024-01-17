@@ -1,55 +1,53 @@
-<h5>Your Cart</h5>
-<hr>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Photo</th>
-      <th scope="col">Name</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Price</th>
-      <th scope="col">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% ids = {} %>
-    <% total_amount = 0 %>
-    <% @cart.selectedplates.each do |item| %>
-      <% ids[item.plate_id] ||= { quantity: 0, plate: item.plate } %>
-      <% ids[item.plate_id][:quantity] += 1 %>
-      <% total_amount += item.plate.new_price %>
-    <% end %>
+<div class="container">
+  <div style="margin-top: 20px;">
+    <h2>Order summary</h2>
+  </div>
+  <hr>
 
- <% ids.each do |key, value| %>
-  <% plate = value[:plate] %>
-  <tr>
-    <th scope="row"><%= image_tag plate.photo, size: "50x50" %></th>
-    <td><%= plate.name %></td>
-    <td>
-      <div class="btn-group" role="group">
-        <%= link_to '-', selectedplate_path(Selectedplate.where(plate_id: plate.id, cart_id: @cart.id).last), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
-        <span class="btn btn-light btn-sm"><%= value[:quantity] %></span>
-        <%= button_to "+", selectedplates_path(plate_id: plate.id), class: "btn btn-primary btn-sm" %>
+  <% ids = {} %>
+  <% total_amount = 0 %>
+  <% @cart.selectedplates.each do |item| %>
+    <% ids[item.plate_id] ||= { quantity: 0, plate: item.plate } %>
+    <% ids[item.plate_id][:quantity] += 1 %>
+    <% total_amount += item.plate.new_price %>
+  <% end %>
+
+  <% ids.each do |key, value| %>
+    <% plate = value[:plate] %>
+    <div class="add-to-cart" style="margin-bottom: 10px;"> <!-- Espacio entre tarjetas -->
+      <%= image_tag plate.photo %>
+      <div class="add-to-cart-infos">
+        <h2><%= plate.name %></h2>
+        <p><%= plate.description %></p>
+        <div class="priceproduct"><%= number_to_currency(plate.new_price, precision: 2) %></div>
+        <td>
+          <div class="btn-group" role="group">
+            <%= link_to '-', selectedplate_path(Selectedplate.where(plate_id: plate.id, cart_id: @cart.id).last), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            <span class="btn btn-light btn-sm"><%= value[:quantity] %></span>
+            <%= button_to "+", selectedplates_path(plate_id: plate.id), class: "btn btn-primary btn-sm" %>
+          </div>
+        </td>
       </div>
-    </td>
-    <td><%= number_to_currency(plate.new_price, precision: 2) %></td>
-    <td><%= plate.description %></td>
+    </div>
+  <% end %>
+
+  <tr>
+    <td colspan="2"></td>
+    <h3><strong>TOTAL: <%= number_to_currency(total_amount, precision: 2) %> </strong></h3>
+    <td> </td>
   </tr>
-<% end %>
 
-    <tr>
-      <td colspan="2"></td>
-      <td><strong>TOTAL:</strong></td>
-      <td><%=number_to_currency(total_amount, precision: 2) %></td>
-      <td></td>
-      <td><button type= "button" class= "btn btn-success" onclick= "document.getElementById('payment').classList.toggle('d-none')"> Show Payment Form</button></td>
-    </tr>
+  </div>
 
-  </tbody>
-</table>
-<% if @restaurant %>
-  <%= link_to "Back to #{@restaurant.name}", restaurant_plates_path(@restaurant), class: 'btn btn-secondary' %>
-<% else %>
-  <%= link_to "Back to #{@restaurant.name}", restaurants_path, class: 'btn btn-secondary' %>
-<% end %>
+  <div class="container" style="display: flex; justify-content: flex-end;">
+  <% if @restaurant %>
+    <%= link_to "Back to Restaurant", restaurant_plates_path(@restaurant), class: 'btn_back' %>
+  <% else %>
+    <%= link_to "Back to Restaurant", restaurants_path, class: 'btn_back' %>
+  <% end %>
+  <button type="button" class="btn__pay" onclick="document.getElementById('payment').classList.toggle('d-none')">Go to pay</button>
+</div>
 
-<div id= "payment" class= "d-none"> <%= render "payment" %></div>
+
+  <div id="payment" class="d-none"> <%= render "payment" %></div>
+</div>

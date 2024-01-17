@@ -1,0 +1,70 @@
+.card-myrest {
+  overflow: hidden;
+  height: 100px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+.myrest-title {
+  font-size: 13px;
+}
+
+.myrest-product-infos {
+  font-size: 8px;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+.myplate-product .myplate-product-infos {
+  padding: 16px;
+  margin-left: auto;
+}
+
+.list-group-item {
+  background-color: #ECF39E;
+}
+
+.total-title {
+  font-size: 14px;
+}
+
+.text-decoration-none .fa-pen-to-square:hover {
+  color: #789457 !important;
+}
+
+.text-decoration-none:hover .fa-pen-to-square {
+  color: #789457 !important;
+}
+
+.text-decoration-none .fa-trash:hover {
+  color: #789457 !important;
+}
+
+.text-decoration-none:hover .fa-trash {
+  color: #789457 !important;
+}
+
+h2 {
+  font-size: 26px;
+
+  a {
+    text-decoration: none;
+    color: #4F772D;
+
+    &:hover {
+      color: #789457;
+    }
+  }
+}
+
+.text-decoration-none .fa-arrow-left:hover {
+  color: #789457 !important;
+}
+
+.text-decoration-none:hover .fa-arrow-left {
+  color: #789457 !important;
+}

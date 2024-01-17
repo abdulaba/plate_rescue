@@ -4,7 +4,6 @@
   <% @checkouts.each do |checkout| %>
     <% restaurants = {} %>
     <% total_cost = 0 %>
-
     <% checkout.dish.each do |dish| %>
       <% @restaurant = Restaurant.find(dish["restaurant_id"]) %>
       <% dish_quantity = checkout.dish.count { |d| d["restaurant_id"] == @restaurant.id } %>

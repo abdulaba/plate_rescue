@@ -4,6 +4,7 @@ class CheckoutsController < ApplicationController
     @dishes = @cart.plates
     @checkout = Checkout.new(dish: @dishes)
     @checkout.user_id = current_user.id
+    @checkout.restaurant_id = @dishes.first.restaurant_id
     if @checkout.save
       @dishes.each do |dish|
         dish.stock = dish.stock - 1
@@ -15,7 +16,6 @@ class CheckoutsController < ApplicationController
       redirect_to cart_path(@cart), notice: 'We could not complete your order.'
     end
   end
-
 
   def index
     @checkouts = Checkout.where(user_id: current_user.id)

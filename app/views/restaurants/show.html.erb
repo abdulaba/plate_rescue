@@ -1,14 +1,101 @@
-<div class="container mt-5">
-<div class="hero">
-  <p class="lead"><%= @restaurant.name %></p>
-  <% if @restaurant.photo.present? %>
-  <%= cl_image_tag @restaurant.photo.key, width: 400, height: 300, crop: :fill, class: "img-fluid rounded mb-2" %>
-  <% end %>
+<div class="card-category-myrestaurants" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= @restaurant.photo.url %>'); position: relative;">
+  <div class="header text-center">
+    <h1 class="mb-4"><%= @restaurant.name %></h1>
+    <span>
+        <i class="fa-solid fa-calendar-days" style="color: white;"></i> <%= @restaurant.opening_date %>
+        <i class="fa-solid fa-clock" style="color: white;"></i> <%= @restaurant.opening_time %>
+      </span>
+    <p class="info" style="position: absolute; top: 0; right: 0; margin: 10px;">
+      <span class="actions">
+        <%= link_to edit_restaurant_path(@restaurant), class: 'text-decoration-none mr-4' do %>
+          <i class="fa-solid fa-pen-to-square" style="color: white;"></i>
+        <% end %>
+        <%= link_to restaurant_path(@restaurant), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'text-decoration-none' do %>
+          <i class="fa-solid fa-trash" style="color: white;"></i>
+        <% end %>
+      </span>
+    </p>
+  </div>
+</div>
 
-  <p><strong>Address:</strong> <%= @restaurant.address %></p>
-  <p><strong>Opening Date:</strong> <%= @restaurant.opening_date %></p>
-  <p><strong>Opening Time:</strong> <%= @restaurant.opening_time %></p>
 
-  <%= link_to 'My restaurants', my_restaurants_path(@restaurant) %>
+
+<div class="container mt-2">
+
+<%= link_to my_restaurants_path(@restaurant), class: 'text-decoration-none' do %>
+  <i class="fa-solid fa-arrow-left fa-2x" style="color: #4F772D;"></i>
+<% end %>
+
+<% if current_user && current_user.id == @restaurant.user_id %>
+  <div class="sold-container col mt-4 mb-4">
+  <h3>Latest Purchases for <%= @restaurant.name %> </h3>
+    <div class="row">
+    <% @checkouts.each do |checkout| %>
+    <div class="col-md-4">
+    <div class="card-myrest mb-2">
+      <div class="myrest-product-infos">
+      <% total_cost = 0 %>
+      <% total_earned = 0 %>
+      <h5 class= "myrest-title"><%= checkout.created_at.strftime("%B %d, %Y") %></h5>
+      </div>
+      <div class="card-body">
+      <ul class="list-group">
+        <% dish_quantities = Hash.new(0) %>
+        <% checkout.dish.each do |dish| %>
+          <% dish_quantities[dish["name"]] += 1 %>
+        <% end %>
+
+        <% dish_quantities.each do |dish_name, quantity| %>
+          <% dish = checkout.dish.find { |d| d["name"] == dish_name } %>
+          <% dish_cost = quantity * dish["new_price"] %>
+          <% total_cost += dish_cost %>
+
+          <li class="list-group-item"><%= "#{quantity}x #{dish_name} #{number_to_currency(dish['new_price'], precision: 2)}" %></li>
+        <% end %>
+      </ul>
+      <p class="mt-2 total-title"><strong>Total: <%= number_to_currency(total_cost, precision: 2) %></strong></p>
+      <% total_earned += total_cost %>
+      </div>
+      </div>
+      </div>
+    <% end %>
+  </div>
+      <h5 class="mt-2 total-sold-container"><strong>Total Earned by <%= @restaurant.name %>: <%= number_to_currency(@total_earned, precision: 2) %></strong></h5>
+  </div>
+<% else %>
+  <p>Unauthorized to view plates sold by this restaurant.</p>
+<% end %>
+
+
+
+     <% @restaurant.plates.each do |plate| %>
+  <div class="card-myplates mb-2 d-flex">
+    <% if plate.photo.attached? %>
+      <%= image_tag plate.photo.url, alt: plate.name, width: 200, height: 200 %>
+    <% end %>
+    <div class="myplate-product-infos">
+      <h2 style="color: #4F772D;" ><%= plate.name %></h2>
+      <p><%= plate.description %></p>
+      <p><%= plate.cooked_date.strftime("%B %d, %Y") %></p>
+      <p><del><%= number_to_currency(plate.old_price, precision: 2) %></del></p>
+      <p><%= number_to_currency(plate.new_price, precision: 2) %></p>
+      <p><%= plate.stock %> items on stock</p>
+      <div>
+        <%= link_to edit_plate_path(plate), class: 'text-decoration-none' do %>
+          <i class="fa-solid fa-pen-to-square" style="color: #4F772D;"></i>
+        <% end %>
+        <%= link_to plate_path(plate), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'text-decoration-none' do %>
+          <i class="fa-solid fa-trash" style="color: #4F772D;"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<p class="my-button-style text-center">
+    <%= link_to new_restaurant_plate_path(@restaurant), class: 'my-button text-decoration-none d-flex flex-column align-items-center justify-content-center', style: 'color:inherit;' do %>
+    <i class="fa-solid fa-bowl-food"></i> New plate <% end %>
+</p>
 
 </div>
