@@ -24,6 +24,7 @@ class RestaurantsController < ApplicationController
   end
   def show
     @restaurant = Restaurant.find(params[:id])
+    @has_reviewed = @restaurant.reviews.exists?(user: current_user)
   end
   def new
     @restaurant = Restaurant.new
