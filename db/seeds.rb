@@ -9,10 +9,10 @@
 #   end
 require 'open-uri'
 puts "Cleaning the database"
-Plate.destroy_all
-Restaurant.destroy_all
 CategoryPlate.destroy_all
 Category.destroy_all
+Plate.destroy_all
+Restaurant.destroy_all
 User.destroy_all
 puts "Database cleaned"
 
