@@ -1,4 +1,4 @@
-<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= @restaurant.photo.url %>')">
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= url_for(@restaurant.photo) %>')">
   <div class="d-flex justify-content-center align-items-center p-5">
     <div class="text-center">
       <h1>Plates for <%= @restaurant.name %></h1>
@@ -29,7 +29,7 @@
           <div class="food-card_content">
             <div class="food-card_title-section overflow-hidden">
               <h3 class="food-card_title">
-                <%= link_to plate.name, plate_path(plate), class: "text-decoration-none", style: "color: inherit;" %>
+                <%= plate.name %>
               </h3>
               <div class="rating_line">
 
@@ -87,7 +87,7 @@
                   <div class="card__wrapper">
                   </div>
                   <% if plate.photo.attached? %>
-                    <div class="card__img"><%= image_tag plate.photo.url, class: 'card-img-top', alt: plate.name %> </div>
+                    <div class="card__img"><%= image_tag plate.photo, class: 'card-img-top', alt: plate.name %> </div>
                   <% end %>
                   <div class="card__title"><%= plate.name %></div>
                   <div class="card__subtitle"><%= plate.description %></div>

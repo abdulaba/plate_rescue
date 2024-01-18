@@ -1,4 +1,4 @@
-<div class="card-category-myrestaurants" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= @restaurant.photo.url %>'); position: relative;">
+<div class="card-category-myrestaurants" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= url_for(@restaurant.photo) %>'); position: relative;">
   <div class="header text-center">
     <h1 class="mb-4"><%= @restaurant.name %></h1>
     <span>
@@ -71,7 +71,7 @@
      <% @restaurant.plates.each do |plate| %>
   <div class="card-myplates mb-2 d-flex">
     <% if plate.photo.attached? %>
-      <%= image_tag plate.photo.url, alt: plate.name, width: 200, height: 200 %>
+      <%= image_tag plate.photo, alt: plate.name, width: 200, height: 200 %>
     <% end %>
     <div class="myplate-product-infos">
       <h2 style="color: #4F772D;" ><%= plate.name %></h2>

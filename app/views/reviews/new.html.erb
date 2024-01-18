@@ -9,7 +9,7 @@
         <%= f.input :comment, label: false, input_html: { class: 'form-control', placeholder: 'Enter comment' } %>
       </div>
       <div class="form-group">
-        <%= f.submit 'Submit', class: 'btn btn-primary' %>
+        <%= f.submit 'Submit', data: { action: "review#disableLink" }, class: 'btn btn-primary' %>
       </div>
     <% end %>
     <div class="text-center mt-4">
