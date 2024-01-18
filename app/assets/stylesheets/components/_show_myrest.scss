@@ -8,6 +8,19 @@
   font-size: 12px;
 }
 
+.card-mybody {
+  overflow: hidden;
+  height: 95px;
+  width: 176px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 4px;
+  border-radius: 5%;
+}
+
 .myrest-title {
   font-size: 13px;
 }
@@ -19,13 +32,14 @@
 }
 
 
-.myplate-product .myplate-product-infos {
-  padding: 16px;
-  margin-left: auto;
-}
 
 .list-group-item {
   background-color: #ECF39E;
+  height: 27px;
+  padding: 5px;
+  margin: 2px;
+  align-items: center;
+  border-radius: 5%;
 }
 
 .total-title {
@@ -67,4 +81,10 @@ h2 {
 
 .text-decoration-none:hover .fa-arrow-left {
   color: #789457 !important;
+}
+
+.trash-icon {
+  right: 40px;
+  position: absolute;
+  top: 0px;
 }

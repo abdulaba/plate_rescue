@@ -14,47 +14,56 @@
 </div>
 
 
-
-<% @restaurants.each do |restaurant| %>
-  <div class="card-myplates food-card-hover shadow mb-2">
-    <% if restaurant.photo.present? %>
-      <%= image_tag restaurant.photo, alt: restaurant.name, width: 200, height: 200 %>
-    <% end %>
-    <div class="myplate-product-infos">
-      <h2><%= link_to restaurant.name, restaurant_path(restaurant), class: "text-decoration-none" %></h2>
-      <% if current_user && current_user.id == restaurant.user_id %>
-        <% total_earned = 0 %>
-        <% restaurant_checkouts = @checkouts.where(restaurant_id: restaurant.id) %>
-
-        <% restaurant_checkouts.each do |checkout| %>
-          <% total_cost = 0 %>
-          <% dish_quantities = Hash.new(0) %>
-          <% checkout.dish.each do |dish| %>
-            <% dish_quantities[dish["name"]] += 1 %>
-          <% end %>
-          <% dish_quantities.each do |dish_name, quantity| %>
-            <% dish = checkout.dish.find { |d| d["name"] == dish_name } %>
-            <% dish_cost = quantity * dish["new_price"] %>
-            <% total_cost += dish_cost %>
-          <% end %>
-          <% total_earned += total_cost %>
-        <% end %>
-        <h6 class="mt-2"><strong>Total Earned: <%= number_to_currency(total_earned, precision: 2) %></strong></h6>
-      <% else %>
-        <p>Unauthorized to view plates sold by this restaurant.</p>
-      <% end %>
-      <p>
-        <%= link_to edit_restaurant_path(restaurant), class: 'text-decoration-none' do %>
-          <i class="fa-solid fa-pen-to-square fa-2x" style="color: #4F772D;"></i>
-         <% end %>
-       <%= link_to restaurant_path(restaurant), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'text-decoration-none' do %>
-          <i class="fa-solid fa-trash fa-2x" style="color: #4F772D;"></i>
-        <% end %>
-      </p>
+<div class="row mt-3">
+  <% @restaurants.each do |restaurant| %>
+    <div class="col-6 col-md-4">
+      <a href="<%= restaurant_path(restaurant) %>" class="text-decoration-none">
+        <div class="food-card bg-white rounded-lg overflow-hidden mb-4 shadow food-card-hover">
+          <div class="food-card_img position-relative">
+            <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= url_for(restaurant.photo) %>')">
+              <div class="cards justify-content-center align-items-center p-5">
+                <h3 class="text-decoration-none" style="color: white;"><%= restaurant.name %></h3>
+                <div class="edit-delete-links d-flex justify-content-between">
+                  <p class="text-center">
+                    <%= link_to edit_restaurant_path(restaurant), class: 'text-decoration-none' do %>
+                      <i class="fa-solid fa-pen-to-square fa-2x" style="color: white;"></i>
+                    <% end %>
+                  </p>
+                  <p class="text-center">
+                    <%= link_to restaurant_path(restaurant), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'text-decoration-none trash-icon' do %>
+                      <i class="fa-solid fa-trash fa-2x ms-2" style="color: white;"></i>
+                    <% end %>
+                  </p>
+                </div>
+                <% if current_user && current_user.id == restaurant.user_id %>
+                  <% total_earned = 0 %>
+                  <% restaurant_checkouts = @checkouts.where(restaurant_id: restaurant.id) %>
+                  <% restaurant_checkouts.each do |checkout| %>
+                    <% total_cost = 0 %>
+                    <% dish_quantities = Hash.new(0) %>
+                    <% checkout.dish.each do |dish| %>
+                      <% dish_quantities[dish["name"]] += 1 %>
+                    <% end %>
+                    <% dish_quantities.each do |dish_name, quantity| %>
+                      <% dish = checkout.dish.find { |d| d["name"] == dish_name } %>
+                      <% dish_cost = quantity * dish["new_price"] %>
+                      <% total_cost += dish_cost %>
+                    <% end %>
+                    <% total_earned += total_cost %>
+                  <% end %>
+                  <span><h2 style="color: white;"><strong>Total Earned: <%= number_to_currency(total_earned, precision: 2) %></strong></h2></span>
+                <% else %>
+                  <p>Unauthorized to view plates sold by this restaurant.</p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
     </div>
-  </div>
-<% end %>
-<div>
+  <% end %>
 </div>
+
+
 
 </div>
