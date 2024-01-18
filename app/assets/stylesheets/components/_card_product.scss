@@ -41,7 +41,7 @@ body {
   padding: 15px;
 }
 .food-card .food-card_content .food-card_title-section {
-  height: 100px;
+  height: auto;
 }
 .food-card .food-card_content .food-card_title-section .food-card_title {
   //margin-bottom: 8px;
@@ -90,6 +90,12 @@ body {
 }
 .okicon {
   background-color: #31572C;
+  padding: 4px;
+  border-radius: 50%;
+  color: white;
+}
+.cookicon {
+  background-color: #90A955;
   padding: 4px;
   border-radius: 50%;
   color: white;
@@ -238,3 +244,22 @@ body {
 .h3 {
   margin-bottom: 0px !important;
 }
+
+
+  .restaurant_card {
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+
+  @media (min-width: 768px) {
+    .restaurant_card {
+      width: 30%;
+    }
+  }
+
+  // ajustar la tarjeta para mobile
+  @media (max-width: 767px) {
+    .restaurant_card {
+      width: 100%;
+    }
+  }
