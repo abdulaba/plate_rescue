@@ -1,4 +1,5 @@
 <body>
+<div class="container">
   <h1 class="mt-4 mb-4">My Orders</h1>
 
   <% @checkouts.each do |checkout| %>
@@ -19,7 +20,7 @@
           <div class="pizza__content">
             <div class="pizza__title">
               <h1 class="pizza__heading"><%= @restaurant.name %></h1>
-              <div class="pizza__tag pizza__tag--1 pizza__tag--date"><%= checkout.created_at %></div>
+              <h2 class="pizza__tag pizza__tag--1 pizza__tag--date"><%= checkout.created_at.strftime("%Y-%m-%d at %H:%M") %></h2>
             </div>
 
             <p class="pizza__description">
@@ -27,8 +28,7 @@
             </p>
 
             <div class="pizza__details" data-controller="review">
-              <p class="pizza__detail"><span class="emoji">⏱</span> Delivered </p>
-              <p class="pizza__detail"><span class="emoji">⭐️</span><%= "#{rand(3.0..5.0).round(1)} / 5" %></p>
+              <p class="pizza__detail"><span class="emoji">⏱</span> Pending status </p>
               <% if @restaurant.reviews.pluck(:user_id).include?(current_user.id) %>
               <% else %>
                 <%= link_to 'Add Review', new_restaurant_review_path(@restaurant) %>
@@ -43,3 +43,4 @@
     <% end %>
   <% end %>
 </body>
+</div>
