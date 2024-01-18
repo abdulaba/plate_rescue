@@ -6,7 +6,7 @@
         <div class="card__back"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 24" height="24" width="14"><path stroke-linejoin="round" stroke-linecap="round" stroke-width="3" stroke="#000" d="M12 2L2 12L12 22"></path></svg></div>
     </div>
   <% if @plate.photo.attached? %>
-    <div class="card__img"><%= image_tag @plate.photo.url, class: 'card-img-top', alt: @plate.name %>
+    <div class="card__img"><%= image_tag @plate.photo, class: 'card-img-top', alt: @plate.name %>
     <% end %></div>
     <div class="card__title"><%= @plate.name %></div>
     <div class="card__subtitle"><%= @plate.description %></div>

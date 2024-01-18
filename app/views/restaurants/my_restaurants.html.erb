@@ -18,7 +18,7 @@
 <% @restaurants.each do |restaurant| %>
   <div class="card-myplates food-card-hover shadow mb-2">
     <% if restaurant.photo.present? %>
-      <%= image_tag restaurant.photo.url, alt: restaurant.name, width: 200, height: 200 %>
+      <%= image_tag restaurant.photo, alt: restaurant.name, width: 200, height: 200 %>
     <% end %>
     <div class="myplate-product-infos">
       <h2><%= link_to restaurant.name, restaurant_path(restaurant), class: "text-decoration-none" %></h2>

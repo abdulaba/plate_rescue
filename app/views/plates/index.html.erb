@@ -87,7 +87,7 @@
                   <div class="card__wrapper">
                   </div>
                   <% if plate.photo.attached? %>
-                    <div class="card__img"><%= image_tag plate.photo.url, class: 'card-img-top', alt: plate.name %> </div>
+                    <div class="card__img"><%= image_tag plate.photo, class: 'card-img-top', alt: plate.name %> </div>
                   <% end %>
                   <div class="card__title"><%= plate.name %></div>
                   <div class="card__subtitle"><%= plate.description %></div>
