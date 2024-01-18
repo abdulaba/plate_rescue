@@ -9,6 +9,10 @@
 #   end
 require 'open-uri'
 puts "Cleaning the database"
+Review.destroy_all
+Checkout.destroy_all
+Cart.destroy_all
+Selectedplate.destroy_all
 CategoryPlate.destroy_all
 Category.destroy_all
 Plate.destroy_all
@@ -53,6 +57,19 @@ sofia_alfaro = User.create!(
 avatar3 = URI.open("https://avatars.githubusercontent.com/u/148254339?v=4")
 sofia_alfaro.photo.attach(io: avatar3, filename: 'avatar3.png', content_type: 'image/png')
 sofia_alfaro.save!
+puts "Users created successfully"
+
+sofia_garcia = User.create!(
+  first_name: "Sofia",
+  last_name: "Garcia",
+  telephone: "232-3458",
+  email: "sofiagarcia@gmail.com",
+  address: "Arce 560, Buenos Aires, Argentina",
+  password: "123456"
+)
+avatar4 = URI.open("https://avatars.githubusercontent.com/u/148254339?v=4")
+sofia_garcia.photo.attach(io: avatar4, filename: 'avatar3.png', content_type: 'image/png')
+sofia_garcia.save!
 puts "Users created successfully"
 
 #Restaurants
@@ -207,7 +224,7 @@ restaurant13.photo.attach(io: photorestaurant13, filename: 'photorestaurant13.pn
 restaurant13.save!
 
 restaurant14 = Restaurant.create!(
-  name: "Empanadas del Noroeste",
+  name: "Empanadas del Norte",
   address: "Calle Mitre 789, Buenos Aires, Argentina",
   opening_date: "Monday-Sunday",
   opening_time: "12pm-11pm",
@@ -282,6 +299,66 @@ restaurant20 = Restaurant.create!(
 photorestaurant20 = URI.open("https://images.unsplash.com/photo-1559742811-822873691df8?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
 restaurant20.photo.attach(io: photorestaurant20, filename: 'photorestaurant20.png', content_type: 'image/png')
 restaurant20.save!
+
+
+restaurant21 = Restaurant.create!(
+  name: "Thai Delight",
+  address: "Calle Thailandia 123, Buenos Aires, Argentina",
+  opening_date: "Wednesday-Sunday",
+  opening_time: "5pm-11pm",
+  user_id: ana_cabral.id
+)
+photorestaurant21 = URI.open("https://images.unsplash.com/photo-1583475020839-105dddecc00a?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant21.photo.attach(io: photorestaurant21, filename: 'photorestaurant21.png', content_type: 'image/png')
+restaurant21.save!
+
+
+restaurant22 = Restaurant.create!(
+  name: "MexiCuisine",
+  address: "Av. Mexico 567, Buenos Aires, Argentina",
+  opening_date: "Monday-Saturday",
+  opening_time: "12pm-9pm",
+  user_id: ana_cabral.id
+)
+photorestaurant22 = URI.open("https://plus.unsplash.com/premium_photo-1676466896858-f1b496f2a779?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant22.photo.attach(io: photorestaurant22, filename: 'photorestaurant22.png', content_type: 'image/png')
+restaurant22.save!
+
+
+restaurant23 = Restaurant.create!(
+  name: "Green Eats",
+  address: "Calle Veggie 789, Buenos Aires, Argentina",
+  opening_date: "Sunday-Thursday",
+  opening_time: "10am-8pm",
+  user_id: ana_cabral.id
+)
+photorestaurant23 = URI.open("https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant23.photo.attach(io: photorestaurant23, filename: 'photorestaurant23.png', content_type: 'image/png')
+restaurant23.save!
+
+
+restaurant24 = Restaurant.create!(
+  name: "Mamma's Pizzeria",
+  address: "Av. Scalabrini Ortiz 456, Buenos Aires, Argentina",
+  opening_date: "Monday-Sunday",
+  opening_time: "11am-10pm",
+  user_id: ana_cabral.id
+)
+photorestaurant24 = URI.open("https://images.unsplash.com/photo-1558138838-76294be30005?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant24.photo.attach(io: photorestaurant24, filename: 'photorestaurant24.png', content_type: 'image/png')
+restaurant24.save!
+
+restaurant25 = Restaurant.create!(
+  name: "Sushi Haven",
+  address: "Calle Sushiman 789, Buenos Aires, Argentina",
+  opening_date: "Tuesday-Sunday",
+  opening_time: "6pm-11pm",
+  user_id: ana_cabral.id
+)
+photorestaurant25 = URI.open("https://plus.unsplash.com/premium_photo-1675278298876-9f988904907c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant25.photo.attach(io: photorestaurant25, filename: 'photorestaurant25.png', content_type: 'image/png')
+restaurant25.save!
+
 
 
 #Plates
@@ -641,6 +718,108 @@ file27 = URI.open("https://images.unsplash.com/photo-1603360946369-dc9bb6258143?
 plate27.photo.attach(io: file27, filename: "plate27.png", content_type: "image/png")
 plate27.save!
 
+
+# Creating more plates for different restaurants (starting from 28)
+
+# Plate for restaurant21 (Thai Delight)
+plate28 = Plate.new(
+  name: "Pad Thai Noodles",
+  restaurant_id: restaurant21.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 5,
+  new_price: 13.50,
+  old_price: 17.00,
+  description: "Classic Thai stir-fried noodles with shrimp, tofu, peanuts, and lime."
+)
+file28 = URI.open("https://images.unsplash.com/photo-1559314809-0d155014e29e?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate28.photo.attach(io: file28, filename: 'plate28.png', content_type: 'image/png')
+plate28.save!
+
+# Plate for restaurant22 (MexiCuisine)
+plate29 = Plate.new(
+  name: "Tacos al Pastor",
+  restaurant_id: restaurant22.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 4,
+  new_price: 9.50,
+  old_price: 12.00,
+  description: "Savor the essence of Mexico with our authentic street-style tacos – marinated pork, juicy pineapple, and vibrant seasonings, all nestled in soft corn tortillas. Gluten-free and nut-free, these tacos promise a flavorful journey, free from common allergens."
+)
+file29 = URI.open("https://plus.unsplash.com/premium_photo-1681406995032-c3ceeb24d7f9?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate29.photo.attach(io: file29, filename: 'plate29.png', content_type: 'image/png')
+plate29.save!
+
+# Plate for restaurant23 (Green Eats)
+plate30 = Plate.new(
+  name: "Quinoa Salad Bowl",
+  restaurant_id: restaurant23.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 6,
+  new_price: 10.50,
+  old_price: 14.00,
+  description: "Elevate your palate with our quinoa salad, a vibrant medley of fluffy quinoa, crisp veggies, and zesty dressing. Packed with nutrients, it's gluten-free and nut-free, ensuring a wholesome experience for everyone. Embrace freshness and flavor without allergen concerns."
+)
+file30 = URI.open("https://images.unsplash.com/photo-1623428187425-873f16e10554?q=80&w=2728&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate30.photo.attach(io: file30, filename: 'plate30.png', content_type: 'image/png')
+plate30.save!
+
+# Plate for restaurant24 (Mamma's Pizzeria)
+plate31 = Plate.new(
+  name: "Pepperoni Cheese Pizza",
+  restaurant_id: restaurant24.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 8,
+  new_price: 12.50,
+  old_price: 16.00,
+  description: "Indulge in the classic allure of our pepperoni pizza. A perfect harmony of gooey cheese, zesty tomato sauce, and savory pepperoni on a golden crust. Please note it contains gluten and dairy; enjoy this flavorful delight unless you have sensitivity to these allergens."
+)
+file31 = URI.open("https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?q=80&w=2676&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate31.photo.attach(io: file31, filename: 'plate31.png', content_type: 'image/png')
+plate31.save!
+
+# Plate for restaurant25 (Sushi Haven)
+plate32 = Plate.new(
+  name: "Dragon Roll",
+  restaurant_id: restaurant25.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 7,
+  new_price: 14.50,
+  old_price: 18.00,
+  description: "Dive into the exquisite world of sushi, where delicate rice, fresh fish, and crisp vegetables unite in a symphony of flavors. Our sushi is free from gluten and nuts, providing a delectable experience for all. Revel in the artistry of this Japanese culinary delight without worry about common allergens."
+)
+file32 = URI.open("https://plus.unsplash.com/premium_photo-1670333291474-cb722ca783a5?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate32.photo.attach(io: file32, filename: 'plate32.png', content_type: 'image/png')
+plate32.save!
+
+# Additional plates (starting from 33)
+plate33 = Plate.new(
+  name: "Champignon Pizza",
+  restaurant_id: restaurant1.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 5,
+  new_price: 11.50,
+  old_price: 15.00,
+  description: "Savor the earthy goodness of our champignon pizza, a tantalizing blend of creamy mushrooms, melted cheese, and aromatic herbs atop a golden crust. Please be aware that this pizza contains gluten and dairy, ensuring a rich and satisfying experience for those without sensitivity to these allergens."
+)
+file33 = URI.open("https://images.unsplash.com/photo-1635832801146-102d3bb7f88e?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fHBpenphfGVufDB8MHwwfHx8MA%3D%3D")
+plate33.photo.attach(io: file33, filename: 'plate33.png', content_type: 'image/png')
+plate33.save!
+
+plate34 = Plate.new(
+  name: "Spicy Tuna Roll",
+  restaurant_id: restaurant2.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 6,
+  new_price: 13.50,
+  old_price: 17.00,
+  description: "A sushi roll with a kick, featuring spicy tuna, avocado, and Sriracha. WARNING: SPICY!"
+)
+file34 = URI.open("https://images.unsplash.com/photo-1623947459509-73603a441a00?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate34.photo.attach(io: file34, filename: 'plate34.png', content_type: 'image/png')
+plate34.save!
+
+
+
 #Categories
 puts "Creating categories"
 
@@ -784,7 +963,7 @@ categoryplate16 = CategoryPlate.create!(
   plate_id: plate18.id
 )
 
-categoryplate17 = CategoryPate.create!(
+categoryplate17 = CategoryPlate.create!(
   category_id: category4.id,
   plate_id: plate19.id
 )
@@ -828,3 +1007,242 @@ categoryplate25 = CategoryPlate.create!(
   category_id: category4.id,
   plate_id: plate27.id
 )
+
+categoryplate26 = CategoryPlate.create!(
+  category_id: category2.id,
+  plate_id: plate28.id
+)
+
+categoryplate27 = CategoryPlate.create!(
+  category_id: category6.id,
+  plate_id: plate29.id
+)
+
+categoryplate28 = CategoryPlate.create!(
+  category_id: category5.id,
+  plate_id: plate30.id
+)
+categoryplate29 = CategoryPlate.create!(
+  category_id: category8.id,
+  plate_id: plate30.id
+)
+categoryplate30 = CategoryPlate.create!(
+  category_id: category1.id,
+  plate_id: plate31.id
+)
+categoryplate31 = CategoryPlate.create!(
+  category_id: category7.id,
+  plate_id: plate32.id
+)
+categoryplate32 = CategoryPlate.create!(
+  category_id: category1.id,
+  plate_id: plate33.id
+)
+categoryplate33 = CategoryPlate.create!(
+  category_id: category7.id,
+  plate_id: plate34.id
+)
+
+# Creating reviews for each restaurant
+
+# Review for restaurant1 (Ristorante delizioso)
+review1 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant1.id,
+  rating: rand(1..5),
+  comment: "Great place with a cozy ambiance. Loved the authentic Italian flavors!"
+)
+
+# Review for restaurant2 (La Taquería auténtica)
+review2 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant2.id,
+  rating: rand(1..5),
+  comment: "Tacos were amazing! Really enjoyed the vibrant atmosphere."
+)
+
+# Review for restaurant3 (Sabor del Este)
+review3 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant3.id,
+  rating: rand(1..5),
+  comment: "Delicious flavors from the East. The dumplings were a favorite!"
+)
+
+# Review for restaurant4 (Veggie Haven)
+review4 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant4.id,
+  rating: rand(1..5),
+  comment: "As a vegetarian, this place is a haven for tasty and creative veggie dishes."
+)
+
+# Review for restaurant5 (Carnes y Brasas)
+review5 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant5.id,
+  rating: rand(1..5),
+  comment: "The grilled meats here are exceptional! A meat lover's paradise."
+)
+
+# Review for restaurant6 (Pasta Paradiso)
+review6 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant6.id,
+  rating: rand(1..5),
+  comment: "Pasta perfection! Loved the variety and homemade taste."
+)
+
+# Review for restaurant7 (Tokyo Bites)
+review7 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant7.id,
+  rating: rand(1..5),
+  comment: "Authentic Japanese cuisine. Sushi was fresh and flavorful."
+)
+
+# Review for restaurant8 (El Sazón Exótico)
+review8 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant8.id,
+  rating: rand(1..5),
+  comment: "Exotic flavors and a diverse menu. A delightful culinary experience."
+)
+
+# Review for restaurant9 (Kaime)
+review9 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant9.id,
+  rating: rand(1..5),
+  comment: "Unique fusion cuisine. The dishes were beautifully presented."
+)
+
+# Review for restaurant10 (BBQ Grill Master)
+review10 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant10.id,
+  rating: rand(1..5),
+  comment: "A barbecue lover's dream! The smoky flavors were fantastic."
+)
+
+# Review for restaurant11 (Parrilla del Norte)
+review11 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant11.id,
+  rating: rand(1..5),
+  comment: "Top-notch grilled meats. The steaks were perfectly cooked."
+)
+
+# Review for restaurant12 (El Fogón Patagónico)
+review12 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant12.id,
+  rating: rand(1..5),
+  comment: "Patagonian cuisine at its best. Loved the hearty and flavorful dishes."
+)
+
+# Review for restaurant13 (Sabores Cuyanos)
+review13 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant13.id,
+  rating: rand(1..5),
+  comment: "Cuyan flavors are truly unique. Enjoyed every bite of the regional specialties."
+)
+
+# Review for restaurant14 (Empanadas del Noroeste)
+review14 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant14.id,
+  rating: rand(1..5),
+  comment: "Empanadas were delicious! Each bite was a burst of flavor."
+)
+
+# Review for restaurant15 (Sushi Roll Bar)
+review15 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant15.id,
+  rating: rand(1..5),
+  comment: "Sushi perfection! Creative rolls and fresh ingredients."
+)
+
+# Review for restaurant16 (Dulces Tucumanos)
+review16 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant16.id,
+  rating: rand(1..5),
+  comment: "Tucuman sweets were a delightful treat. Loved the variety."
+)
+
+# Review for restaurant17 (El Buen Asado)
+review17 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant17.id,
+  rating: rand(1..5),
+  comment: "Authentic Argentine barbecue. The flavor of the meat was exceptional."
+)
+
+# Review for restaurant18 (Asian Fusion Bistro)
+review18 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant18.id,
+  rating: rand(1..5),
+  comment: "Creative fusion dishes with a touch of Asian flair. Enjoyed the unique combinations."
+)
+
+# Review for restaurant19 (Mediterranean Delights)
+review19 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant19.id,
+  rating: rand(1..5),
+  comment: "Mediterranean cuisine at its finest. The flavors transported me to the Mediterranean."
+)
+
+# Review for restaurant20 (Café de Paris)
+review20 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant20.id,
+  rating: rand(1..5),
+  comment: "Charming French café with delectable pastries. A must-visit for pastry enthusiasts."
+)
+
+# Review for restaurant21 (Thai Delight)
+review21 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant21.id,
+  rating: rand(1..5),
+  comment: "Delightful Thai flavors. The Pad Thai noodles were a standout."
+)
+
+# Review for restaurant22 (MexiCuisine)
+review22 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant22.id,
+  rating: rand(1..5),
+  comment: "Authentic Mexican taste. Tacos al Pastor were a hit!"
+)
+
+# Review for restaurant23 (Green Eats)
+review23 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant23.id,
+  rating: rand(1..5),
+  comment: "Healthy and delicious quinoa salad. A perfect spot for the health-conscious."
+)
+
+# Review for restaurant24 (Mamma's Pizzeria)
+review24 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant24.id,
+  rating: rand(1..5),
+  comment: "Classic Four Cheese Pizza. A cheesy delight!"
+)
+
+# Review for restaurant25 (Sushi Haven)
+review25 = Review.create!(
+  user_id: sofia_alfaro.id,
+  restaurant_id: restaurant25.id,
+  rating: rand(1..5),
+  comment: "The Dragon Roll was visually stunning and delicious. A sushi lover's paradise."
+)
+
+puts "Reviews created successfully"
