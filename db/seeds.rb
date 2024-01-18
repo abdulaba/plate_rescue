@@ -171,6 +171,119 @@ photorestaurant10 = URI.open("https://images.unsplash.com/photo-1552604617-eea98
 restaurant10.photo.attach(io: photorestaurant10, filename: 'photorestaurant10.png', content_type: 'image/png')
 restaurant10.save!
 
+# Additional Restaurants in Argentina
+
+restaurant11 = Restaurant.create!(
+  name: "Parrilla del Norte",
+  address: "Av. Belgrano 789, Buenos Aires, Argentina",
+  opening_date: "Monday-Sunday",
+  opening_time: "12pm-10pm",
+  user_id: sofia_alfaro.id
+)
+photorestaurant11 = URI.open("https://images.unsplash.com/photo-1508615263227-c5d58c1e5821?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant11.photo.attach(io: photorestaurant11, filename: 'photorestaurant11.png', content_type: 'image/png')
+restaurant11.save!
+
+restaurant12 = Restaurant.create!(
+  name: "El Fogón Patagónico",
+  address: "Calle San Martín 456, Buenos Aires, Argentina",
+  opening_date: "Tuesday-Saturday",
+  opening_time: "11am-9pm",
+  user_id: ana_cabral.id
+)
+photorestaurant12 = URI.open("https://images.unsplash.com/photo-1622715395504-2a802893a0f9?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant12.photo.attach(io: photorestaurant12, filename: 'photorestaurant12.png', content_type: 'image/png')
+restaurant12.save!
+
+restaurant13 = Restaurant.create!(
+  name: "Sabores Cuyanos",
+  address: "Av. San Juan 890, Buenos Aires, Argentina",
+  opening_date: "Wednesday-Sunday",
+  opening_time: "1pm-10pm",
+  user_id: francisco_macias.id
+)
+photorestaurant13 = URI.open("https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=2912&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant13.photo.attach(io: photorestaurant13, filename: 'photorestaurant13.png', content_type: 'image/png')
+restaurant13.save!
+
+restaurant14 = Restaurant.create!(
+  name: "Empanadas del Noroeste",
+  address: "Calle Mitre 789, Buenos Aires, Argentina",
+  opening_date: "Monday-Sunday",
+  opening_time: "12pm-11pm",
+  user_id: sofia_alfaro.id
+)
+photorestaurant14 = URI.open("https://images.unsplash.com/photo-1619926096619-5956ab4dfb1b?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant14.photo.attach(io: photorestaurant14, filename: 'photorestaurant14.png', content_type: 'image/png')
+restaurant14.save!
+
+restaurant15 = Restaurant.create!(
+  name: "Sushi Roll Bar",
+  address: "Av. Pellegrini 1200, Buenos Aires, Argentina",
+  opening_date: "Wednesday-Friday",
+  opening_time: "1pm-10pm",
+  user_id: ana_cabral.id
+)
+photorestaurant15 = URI.open("https://images.unsplash.com/photo-1617196034183-421b4917c92d?q=80&w=2976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant15.photo.attach(io: photorestaurant15, filename: 'photorestaurant15.png', content_type: 'image/png')
+restaurant15.save!
+
+restaurant16 = Restaurant.create!(
+  name: "Dulces Tucumanos",
+  address: "Calle 9 de Julio 678, San Miguel de Tucumán, Argentina",
+  opening_date: "Monday-Sunday",
+  opening_time: "10am-8pm",
+  user_id: francisco_macias.id
+)
+photorestaurant16 = URI.open("https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant16.photo.attach(io: photorestaurant16, filename: 'photorestaurant16.png', content_type: 'image/png')
+restaurant16.save!
+
+restaurant17 = Restaurant.create!(
+  name: "El Buen Asado",
+  address: "Av. López y Planes 432, Buenos Aires, Argentina",
+  opening_date: "Tuesday-Saturday",
+  opening_time: "6pm-11pm",
+  user_id: ana_cabral.id
+)
+photorestaurant17 = URI.open("https://images.unsplash.com/photo-1594041680534-e8c8cdebd659?q=80&w=2367&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant17.photo.attach(io: photorestaurant17, filename: 'photorestaurant17.png', content_type: 'image/png')
+restaurant17.save!
+
+restaurant18 = Restaurant.create!(
+  name: "La Cabaña Mendocina",
+  address: "Calle San Martín 123, Buenos Aires, Argentina",
+  opening_date: "Monday-Friday",
+  opening_time: "11am-9pm",
+  user_id: sofia_alfaro.id
+)
+photorestaurant18 = URI.open("https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant18.photo.attach(io: photorestaurant18, filename: 'photorestaurant18.png', content_type: 'image/png')
+restaurant18.save!
+
+restaurant19 = Restaurant.create!(
+  name: "Delicias Jujuyanas",
+  address: "Av. Belgrano 567, Buenos Aires, Argentina",
+  opening_date: "Monday-Sunday",
+  opening_time: "12pm-10pm",
+  user_id: ana_cabral.id
+)
+photorestaurant19 = URI.open("https://images.unsplash.com/photo-1604953781841-004f1848ed3d?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant19.photo.attach(io: photorestaurant19, filename: 'photorestaurant19.png', content_type: 'image/png')
+restaurant19.save!
+
+restaurant20 = Restaurant.create!(
+  name: "Mariscos del Paraná",
+  address: "Calle Corrientes 1500, Buenos Aires, Argentina",
+  opening_date: "Tuesday-Sunday",
+  opening_time: "1pm-11pm",
+  user_id: francisco_macias.id
+)
+photorestaurant20 = URI.open("https://images.unsplash.com/photo-1559742811-822873691df8?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+restaurant20.photo.attach(io: photorestaurant20, filename: 'photorestaurant20.png', content_type: 'image/png')
+restaurant20.save!
+
+
 #Plates
 puts "Creating plates"
 
@@ -385,6 +498,149 @@ file16 = URI.open("https://unsplash.com/photos/a-close-up-of-a-fish-on-a-cutting
 plate16.photo.attach(io: file16, filename: 'plate16.png', content_type: 'image/png')
 plate16.save!
 
+plate17 = Plate.new(
+  name: "Norteño Grilled Steak",
+  restaurant_id: restaurant11.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 6,
+  new_price: 15.00,
+  old_price: 28.00,
+  description: "A hearty grilled steak with traditional Northern flavors, a Parrilla del Norte specialty."
+)
+file17 = URI.open("https://images.unsplash.com/photo-1687877723436-061cc6e37fe8?q=80&w=2334&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate17.photo.attach(io: file17, filename: 'plate17.png', content_type: 'image/png')
+plate17.save!
+
+plate18 = Plate.new(
+  name: "Patagonian Lamb Skewers",
+  restaurant_id: restaurant12.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 5,
+  new_price: 14.50,
+  old_price: 26.00,
+  description: "Tender lamb skewers seasoned Patagonian style, a must-try at El Fogón Patagónico."
+)
+file18 = URI.open("https://images.unsplash.com/photo-1687795798426-b62055363dc0?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate18.photo.attach(io: file18, filename: 'plate18.png', content_type: 'image/png')
+plate18.save!
+
+plate19 = Plate.new(
+  name: "Cuyano Beef Stew",
+  restaurant_id: restaurant13.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 8,
+  new_price: 12.50,
+  old_price: 24.00,
+  description: "A hearty beef stew inspired by the flavors of Cuyo, served at Sabores Cuyanos."
+)
+file19 = URI.open("https://images.unsplash.com/photo-1608500219063-e5164085cd6f?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate19.photo.attach(io: file19, filename: 'plate19.png', content_type: 'image/png')
+plate19.save!
+
+plate20 = Plate.new(
+  name: "Noroeste Empanada Platter",
+  restaurant_id: restaurant14.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 7,
+  new_price: 11.00,
+  old_price: 21.50,
+  description: "A delightful platter of empanadas showcasing the flavors of the Northwest, served at Empanadas del Noroeste."
+)
+file20 = URI.open("https://images.unsplash.com/photo-1609525313344-a56b96f20718?q=80&w=2980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate20.photo.attach(io: file20, filename: 'plate20.png', content_type: 'image/png')
+plate20.save!
+
+plate21 = Plate.new(
+  name: "Sushi Rolls Sampler",
+  restaurant_id: restaurant15.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 9,
+  new_price: 16.50,
+  old_price: 30.00,
+  description: "An exquisite sampler of sushi rolls from Sushi Roll Bar, featuring a variety of flavors and textures."
+)
+file21 = URI.open("https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=2825&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate21.photo.attach(io: file21, filename: 'plate21.png', content_type: 'image/png')
+plate21.save!
+
+plate22 = Plate.new(
+  name: "Tucuman Sweet Delights Platter",
+  restaurant_id: restaurant16.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 6,
+  new_price: 13.00,
+  old_price: 25.50,
+  description: "A platter featuring the sweet delights of Tucumán, a specialty at Dulces Tucumanos."
+)
+file22 = URI.open("https://images.unsplash.com/photo-1485745655111-3272a37e76a5?q=80&w=2916&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate22.photo.attach(io: file22, filename: 'plate22.png', content_type: 'image/png')
+plate22.save!
+
+plate23 = Plate.new(
+  name: "Asado Feast",
+  restaurant_id: restaurant17.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 10,
+  new_price: 20.00,
+  old_price: 35.50,
+  description: "A grand feast of Argentinian asado, a signature dish at El Buen Asado."
+)
+file23 = URI.open("https://plus.unsplash.com/premium_photo-1663036447682-8f0d918adbed?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate23.photo.attach(io: file23, filename: 'plate23.png', content_type: 'image/png')
+plate23.save!
+
+plate24 = Plate.new(
+  name: "Mendocina Grilled Chicken",
+  restaurant_id: restaurant18.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 8,
+  new_price: 14.00,
+  old_price: 27.00,
+  description: "Tender grilled chicken with Mendocina spices, a specialty at La Cabaña Mendocina."
+)
+file24 = URI.open("https://plus.unsplash.com/premium_photo-1661419883163-bb4df1c10109?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate24.photo.attach(io: file24, filename: 'plate24.png', content_type: 'image/png')
+plate24.save!
+
+plate25 = Plate.new(
+  name: "Jujuyan Dessert Platter",
+  restaurant_id: restaurant19.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 7,
+  new_price: 11.50,
+  old_price: 20.00,
+  description: "A delightful platter of Jujuyan desserts, a sweet treat from Delicias Jujuyanas."
+)
+file25 = URI.open("https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate25.photo.attach(io: file25, filename: 'plate25.png', content_type: 'image/png')
+plate25.save!
+
+plate26 = Plate.new(
+  name: "Paraná Seafood Feast",
+  restaurant_id: restaurant20.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 9,
+  new_price: 24.00,
+  old_price: 38.50,
+  description: "A grand feast of fresh seafood from the Paraná River, a highlight at Mariscos del Paraná."
+)
+file26 = URI.open("https://plus.unsplash.com/premium_photo-1674498271265-75a1122411b5?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate26.photo.attach(io: file26, filename: 'plate26.png', content_type: 'image/png')
+plate26.save!
+
+plate27 = Plate.new(
+  name: "Parrilla Mixta",
+  restaurant_id: restaurant11.id,
+  cooked_date: Date.today - rand(0..5),
+  stock: 5,
+  new_price: 17.50,
+  old_price: 32.00,
+  description: "A mixed grill platter featuring a variety of meats, a highlight at Parrilla del Norte."
+)
+file27 = URI.open("https://images.unsplash.com/photo-1603360946369-dc9bb6258143?q=80&w=2999&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+plate27.photo.attach(io: file27, filename: "plate27.png", content_type: "image/png")
+plate27.save!
+
 #Categories
 puts "Creating categories"
 
@@ -518,5 +774,57 @@ categoryplate14 = CategoryPlate.create!(
   plate_id: plate14.id
 )
 
+categoryplate15 = CategoryPlate.create!(
+  category_id: category4.id,
+  plate_id: plate17.id
+)
 
-#category images
+categoryplate16 = CategoryPlate.create!(
+  category_id: category4.id,
+  plate_id: plate18.id
+)
+
+categoryplate17 = CategoryPate.create!(
+  category_id: category4.id,
+  plate_id: plate19.id
+)
+
+categoryplate18 = CategoryPlate.create!(
+  category_id: category1.id,
+  plate_id: plate20.id
+)
+
+categoryplate19 = CategoryPlate.create!(
+  category_id: category7.id,
+  plate_id: plate21.id
+)
+
+categoryplate20 = CategoryPlate.create!(
+  category_id: category3.id,
+  plate_id: plate22.id
+)
+
+categoryplate21 = CategoryPlate.create!(
+  category_id: category4.id,
+  plate_id: plate23.id
+)
+
+categoryplate22 = CategoryPlate.create!(
+  category_id: category4.id,
+  plate_id: plate24.id
+)
+
+categoryplate23 = CategoryPlate.create!(
+  category_id: category3.id,
+  plate_id: plate25.id
+)
+
+categoryplate24 = CategoryPlate.create!(
+  category_id: category7.id,
+  plate_id: plate26.id
+)
+
+categoryplate25 = CategoryPlate.create!(
+  category_id: category4.id,
+  plate_id: plate27.id
+)
