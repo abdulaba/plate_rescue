@@ -5,6 +5,6 @@ class PagesController < ApplicationController
     @cart = current_user&.cart
     @restaurants = Restaurant.limit(8).shuffle
     @reviews = Review.limit(3).shuffle
-    render :home
+    # render :home
   end
 end
