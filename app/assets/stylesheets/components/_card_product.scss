@@ -83,31 +83,17 @@ body {
   box-shadow: none;
 }
 
-.rating-box {
+.rating_box {
   display: flex;
   align-items: center;
+  padding-left: 20px;
 }
 
 .rating-stars {
   width: 70px;
 }
-.rating-stars:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: #eee;
-}
-.rating-stars .filled-star {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: #f47a00;
-}
+
+
 .rating-stars img {
   height: 100%;
   width: 100%;
@@ -240,5 +226,9 @@ body {
 .card-title {
   justify-content:flex-start;
   text-align:left;
-  padding: 3px;
+  padding-left: 20px;
+}
+
+.h3 {
+  margin-bottom: 0px !important;
 }
