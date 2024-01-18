@@ -17,8 +17,10 @@
 
   <div class="row justify-content-center">
     <div class="col-lg-10">
+  <%# si hay restaurants disponibles en la location que inserto el user entonces: %>
+    <% if @restaurants.any? %>
       <h3 class="display-4 mb-5" style="font-weight: 500;">Explore Our Restaurants in <%= params[:city]&.capitalize || 'the City' %></h3>
-        <%# aca empiezan las cards %>
+        <%# aca empiezan las cards de cada restaurant %>
         <div class="container">
           <div class="row mt-3">
             <% @restaurants.each do |restaurant| %>
@@ -26,7 +28,7 @@
                 <a href="<%= restaurant_plates_path(restaurant) %>" class="text-decoration-none position-relative">
                   <div class="food-card bg-white rounded-lg overflow-hidden mb-4 shadow food-card-hover">
                     <div class="food-card_img position-relative">
-                      <!--Aca va el box donde ponemos el discount-->
+                      <%# Aca va el box del discout promedio que tiene ese restaurant %>
                       <div class="discount-box">
                         <% total_discount_percentage = 0 %>
                         <% total_plates = restaurant.plates.size %>
@@ -44,9 +46,9 @@
                       <% end %>
                       <a href="#!"><i class="far fa-heart"></i></a>
                     </div>
-                    <div class="card-title">
-                      <h3><%= restaurant.name %></h3>
-                    </div>
+                      <div class="card-title">
+                        <h3 style="display: inline-block;"><%= restaurant.name %></h3>
+                      </div>
                     <div class="rating_box pb-3">
                       <% restaurant.reviews.each do |review| %>
                       <% end %>
@@ -64,5 +66,9 @@
           </div>
         </div>
     </div>
+    <%# si no hay restaurants en esa location entonces: %>
+    <% else %>
+      <h3 class="display-4 mb-5" style="font-weight: 500;">Sorry, we don't have any restaurants in that location yet!</h3>
+    <% end %>
   </div>
 </div>
