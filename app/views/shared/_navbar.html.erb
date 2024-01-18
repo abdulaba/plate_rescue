@@ -27,7 +27,9 @@
 
         <% if user_signed_in? %>
           <div class="mini-banner">
+            <%= link_to @cart do %>
             <i class="fa-solid fa-cart-shopping fa-2x" style="color: #ECF39E;"></i>
+            <% end %>
               <span class="cart-count"><%= @cart&.plates&.count || 0 %></span>
           </div>
           <li class="nav-item dropdown">
