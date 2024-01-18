@@ -26,41 +26,38 @@
   <i class="fa-solid fa-arrow-left fa-2x" style="color: #4F772D;"></i>
 <% end %>
 
+
 <% if current_user && current_user.id == @restaurant.user_id %>
-  <div class="sold-container col mt-4 mb-4">
-  <h3>Latest Purchases for <%= @restaurant.name %> </h3>
-    <div class="row">
-    <% @checkouts.each do |checkout| %>
-    <div class="col-md-4">
-    <div class="card-myrest mb-2">
-      <div class="myrest-product-infos">
-      <% total_cost = 0 %>
-      <% total_earned = 0 %>
-      <h5 class= "myrest-title"><%= checkout.created_at.strftime("%B %d, %Y") %></h5>
-      </div>
-      <div class="card-body">
-      <ul class="list-group">
-        <% dish_quantities = Hash.new(0) %>
-        <% checkout.dish.each do |dish| %>
-          <% dish_quantities[dish["name"]] += 1 %>
-        <% end %>
-
-        <% dish_quantities.each do |dish_name, quantity| %>
-          <% dish = checkout.dish.find { |d| d["name"] == dish_name } %>
-          <% dish_cost = quantity * dish["new_price"] %>
-          <% total_cost += dish_cost %>
-
-          <li class="list-group-item"><%= "#{quantity}x #{dish_name} #{number_to_currency(dish['new_price'], precision: 2)}" %></li>
-        <% end %>
-      </ul>
-      <p class="mt-2 total-title"><strong>Total: <%= number_to_currency(total_cost, precision: 2) %></strong></p>
-      <% total_earned += total_cost %>
-      </div>
-      </div>
-      </div>
-    <% end %>
-  </div>
-      <h5 class="mt-2 total-sold-container"><strong>Total Earned by <%= @restaurant.name %>: <%= number_to_currency(@total_earned, precision: 2) %></strong></h5>
+  <div class="sold-container mt-4 mb-4">
+    <h3 style="color: #4F772D;" class="text-center">Latest Purchases for <strong><%= @restaurant.name %> </strong></h3>
+      <div class="row justify-content-center">
+      <% @checkouts.each do |checkout| %>
+        <div class="col-md-3">
+          <div class="card-mybody mb-2">
+            <div class="myrest-product-infos">
+              <% total_cost = 0 %>
+            </div>
+            <div class="card-mybody">
+              <ul class="list-group">
+                <li class="list-group-item mt-3" style="color: #4F772D;"><%= checkout.created_at.strftime("%B %d, %Y") %></li>
+                <% dish_quantities = Hash.new(0) %>
+                <% checkout.dish.each do |dish| %>
+                  <% dish_quantities[dish["name"]] += 1 %>
+                <% end %>
+                <% dish_quantities.each do |dish_name, quantity| %>
+                  <% dish = checkout.dish.find { |d| d["name"] == dish_name } %>
+                  <% dish_cost = quantity * dish["new_price"] %>
+                  <% total_cost += dish_cost %>
+                  <li class="list-group-item mb-2" style="color: #4F772D;"><%= "#{quantity}x #{dish_name} #{number_to_currency(dish['new_price'], precision: 2)}" %></li>
+                <% end %>
+                <h6 class="mb-3" style="color: #4F772D;"><strong>Total: <%= number_to_currency(total_cost, precision: 2) %></strong></h6>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+      <h5 class="mt-2 total-sold-container text-center" style="color: #4F772D;"><strong>Total Earned by <%= @restaurant.name %>: <%= number_to_currency(@total_earned, precision: 2) %></strong></h5>
   </div>
 <% else %>
   <p>Unauthorized to view plates sold by this restaurant.</p>
@@ -68,34 +65,40 @@
 
 
 
-     <% @restaurant.plates.each do |plate| %>
-  <div class="card-myplates mb-2 d-flex">
-    <% if plate.photo.attached? %>
-      <%= image_tag plate.photo, alt: plate.name, width: 200, height: 200 %>
-    <% end %>
-    <div class="myplate-product-infos">
-      <h2 style="color: #4F772D;" ><%= plate.name %></h2>
-      <p><%= plate.description %></p>
-      <p><%= plate.cooked_date.strftime("%B %d, %Y") %></p>
-      <p><del><%= number_to_currency(plate.old_price, precision: 2) %></del></p>
-      <p><%= number_to_currency(plate.new_price, precision: 2) %></p>
-      <p><%= plate.stock %> items on stock</p>
-      <div>
-        <%= link_to edit_plate_path(plate), class: 'text-decoration-none' do %>
-          <i class="fa-solid fa-pen-to-square" style="color: #4F772D;"></i>
+
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <% @restaurant.plates.each do |plate| %>
+        <div class="card-myplates mb-2 d-flex">
+          <% if plate.photo.attached? %>
+            <%= image_tag plate.photo, alt: plate.name, width: 200, height: 200 %>
+          <% end %>
+          <div class="myplate-product-infos ms-3">
+            <h2 style="color: #4F772D;"><%= plate.name %></h2>
+            <p><%= plate.description %></p>
+            <p><%= plate.cooked_date.strftime("%B %d, %Y") %></p>
+            <p><del><%= number_to_currency(plate.old_price, precision: 2) %></del></p>
+            <p><%= number_to_currency(plate.new_price, precision: 2) %></p>
+            <p><%= plate.stock %> items on stock</p>
+            <div>
+              <%= link_to edit_plate_path(plate), class: 'text-decoration-none' do %>
+                <i class="fa-solid fa-pen-to-square" style="color: #4F772D;"></i>
+              <% end %>
+              <%= link_to plate_path(plate), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'text-decoration-none' do %>
+                <i class="fa-solid fa-trash" style="color: #4F772D;"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <p class="my-button-style text-center">
+        <%= link_to new_restaurant_plate_path(@restaurant), class: 'my-buttons text-decoration-none d-flex flex-column align-items-center justify-content-center', style: 'color:inherit;' do %>
+          <i class="fa-solid fa-bowl-food"></i> New plate
         <% end %>
-        <%= link_to plate_path(plate), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'text-decoration-none' do %>
-          <i class="fa-solid fa-trash" style="color: #4F772D;"></i>
-        <% end %>
-      </div>
+      </p>
     </div>
   </div>
-<% end %>
-
-
-<p class="my-button-style text-center">
-    <%= link_to new_restaurant_plate_path(@restaurant), class: 'my-button text-decoration-none d-flex flex-column align-items-center justify-content-center', style: 'color:inherit;' do %>
-    <i class="fa-solid fa-bowl-food"></i> New plate <% end %>
-</p>
-
 </div>
