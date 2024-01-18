@@ -1,6 +1,6 @@
 body {
   background: #f9f9f9;
-  font-family: "Figtree", sans-serif;
+  font-family: "", sans-serif;
 }
 
 .main-content {
@@ -87,6 +87,12 @@ body {
   display: flex;
   align-items: center;
   padding-left: 20px;
+}
+.okicon {
+  background-color: #31572C;
+  padding: 4px;
+  border-radius: 50%;
+  color: white;
 }
 
 .rating-stars {

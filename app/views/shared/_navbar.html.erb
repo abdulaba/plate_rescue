@@ -27,10 +27,14 @@
 
         <% if user_signed_in? %>
           <div class="mini-banner">
-            <%= link_to @cart do %>
+          <%unless @cart.nil? %>
+          <% else %>
+            <%= link_to @cart, class:"text-decoration-none" do %>
             <i class="fa-solid fa-cart-shopping fa-2x" style="color: #ECF39E;"></i>
+            <span class="cart-count" style="color: #ECF39E;"><%= @cart&.plates&.count || 0 %></span>
             <% end %>
-              <span class="cart-count"><%= @cart&.plates&.count || 0 %></span>
+          <% end %>
+
           </div>
           <li class="nav-item dropdown">
             <%= image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>

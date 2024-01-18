@@ -80,7 +80,7 @@ Enjoy :)
     </div>
   </div>
   <form class="form" autocomplete="off" novalidate action="/carts/<%=@cart.id%>/checkouts" method= "POST">
-    <input type="text" value= "<%=ids.to_json%>" name="ids">
+    <input type="text" hidden value= "<%=ids.to_json%>" name="ids">
 
     <fieldset>
       <label for="card-number">Card Number</label>

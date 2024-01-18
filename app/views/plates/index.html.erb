@@ -8,7 +8,7 @@
         <% end %>
         <% if @restaurant.reviews.count > 0 %>
           <% promedio = @restaurant.reviews.pluck(:rating).sum.to_f / @restaurant.reviews.count %>
-         <div class="rating_line"> <%= promedio %><span class="emoji">⭐️</span><span>(<%= @restaurant.reviews.count %>)</span></div>
+         <div class="rating_line"><i class="okicon fa-solid fa-thumbs-up"></i><span><%= promedio %></span></div>
         <% else %>
           <p>No reviews yet.</p>
         <% end %>
@@ -17,14 +17,20 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container pt-3">
+<a class="text-decoration-none " href="/restaurants">
+  <i class="fa-solid fa-arrow-left fa-2x" style="color: #4F772D;"></i>
+</a>
   <div class="row mt-3">
     <% @restaurant.plates.each do |plate| %>
       <div class="restaurant_card col-5 col-md-3">
         <div class="food-card bg-white rounded-lg overflow-hidden mb-4 shadow food-card-hover">
           <div class="food-card_img position-relative">
-            <%= image_tag plate.photo %>
+            <%= image_tag plate.photo, class:"img-fluid product_img" %>
             <a href="#!"><i class="far fa-heart"></i></a>
+            <button class= "quic_view d-flex " data-bs-toggle="modal" data-bs-target="#modal<%= plate.id %>">
+              <i class="fa-solid fa-eye"></i>
+          </button>
           </div>
           <div class="food-card_content">
             <div class="food-card_title-section overflow-hidden">
@@ -32,10 +38,9 @@
                 <%= plate.name %>
               </h3>
               <div class="rating_line">
-
                 <% if @restaurant.reviews.count > 0 %>
                   <% promedio = @restaurant.reviews.pluck(:rating).sum.to_f / @restaurant.reviews.count %>
-                <div class="rating_line"> <%= promedio %><span class="emoji">⭐️</span><span>(<%= @restaurant.reviews.count %>)</span></div>
+                <div class="rating_line"><i class="okicon fa-solid fa-thumbs-up"></i> <span><%= promedio %></span></div>
                 <% else %>
                   <p>No reviews yet.</p>
                 <% end %>
@@ -61,13 +66,10 @@
                     <% mensaje="No stock" %>
                     <% fondo= "bg-secondary" %>
                   <%else%>
-                    <% mensaje = "Add 1 to order" %>
+                    <% mensaje = "Add to Cart" %>
                   <%end%>
-                    <button class="CartBtn <%=fondo%>" data-bs-toggle="modal" data-bs-target="#modal<%= plate.id %>">
-                      <span class="IconContainer">
-                      </span>
-                      <p class="text"><%= mensaje %></p>
-                    </button>
+                  <%= button_to "#{mensaje}", selectedplates_path(plate_id: plate.id), method: :post, class: "text CartBtn #{fondo}" %>
+
                   </div>
                 </div>
               </div>

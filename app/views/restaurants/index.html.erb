@@ -35,7 +35,7 @@
                           <% total_discount_percentage += plate_discount_percentage %>
                         <% end %>
                         <% average_discount_percentage = total_plates > 0 ? (total_discount_percentage / total_plates).round(2) : 0 %>
-                        <span> <%= average_discount_percentage %> % off </span>
+                        <span> <%= average_discount_percentage.to_i %> % off </span>
                       </div>
                       <% if restaurant.photo.present? %>
                         <%= cl_image_tag restaurant.photo.key, width: 300, height: 200, crop: :fill, class: "card-img-top img-fluid rounded mb-2", style: "border-radius: 50px;" %>
@@ -52,7 +52,7 @@
                       <% end %>
                       <% if restaurant.reviews.count > 0 %>
                         <% promedio = restaurant.reviews.pluck(:rating).sum.to_f / restaurant.reviews.count %>
-                        <div class="rating_line"><span class="emoji">⭐️</span><span> <%= promedio %>(<%= restaurant.reviews.count %>)</span></div>
+                        <div class="rating_line"><i class="okicon fa-solid fa-thumbs-up"></i><span> <%= promedio %></span></div>
                       <% else %>
                         <p>No reviews yet.</p>
                       <% end %>
