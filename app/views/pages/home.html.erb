@@ -5,13 +5,14 @@
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
         <%= text_field_tag :city, nil, class: "form-control", placeholder: "Enter delivery address" %>
-        <button type="submit" class="main-button" style="margin-left: 10px"> Search</button>
+        <button type="submit" class="main-button ms-1" > Search</button>
       </div>
     <% end %>
   </div>
 </div>
 
-<h2 class="text-center mt-5 mb-5"> How to plate rescue? </h2>
+
+<h1 class="home_h2 text-center my-5" > How to plate rescue? </h1>
 <div class="info-cards mp-2 mt-3 w-75 mx-auto">
     <div class="info-card green-soft">
         <p class="tip"> 1. Search your craving </p>
@@ -30,7 +31,7 @@
 
 <div class="container mt-5 mb-5">
   <div class="row justify-content-center">
-    <h2 class="text-center mt-5 mb-5">Our Mission</h2>
+    <h2 class="home_h2 text-center mt-5 mb-5">Our Mission</h2>
     <div class="col-md-4 text-center mb-5">
       <i class="fa-solid fa-utensils fa-2x mb-3"></i>
       <h5>22%</h5>
@@ -51,7 +52,7 @@
 
 
 <div class="restaurant-gallery container mb-5" style="max-width: 900px;">
-  <h2 class="text-center m-5">Find the best restaurant in your city!</h2>
+  <h2 class="home_h2 text-center m-5">Find the best restaurant in your city!</h2>
   <% @restaurants.each_slice(4) do |restaurant_group| %>
     <div class="row justify-content-center">
       <% restaurant_group.each do |restaurant| %>

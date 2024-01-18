@@ -1,6 +1,6 @@
 body {
   background: #f9f9f9;
-  font-family: "roboto", sans-serif;
+  font-family: "", sans-serif;
 }
 
 .main-content {
@@ -41,7 +41,7 @@ body {
   padding: 15px;
 }
 .food-card .food-card_content .food-card_title-section {
-  height: 100px;
+  height: auto;
 }
 .food-card .food-card_content .food-card_title-section .food-card_title {
   //margin-bottom: 8px;
@@ -83,31 +83,29 @@ body {
   box-shadow: none;
 }
 
-.rating-box {
+.rating_box {
   display: flex;
   align-items: center;
+  padding-left: 20px;
+}
+.okicon {
+  background-color: #31572C;
+  padding: 4px;
+  border-radius: 50%;
+  color: white;
+}
+.cookicon {
+  background-color: #90A955;
+  padding: 4px;
+  border-radius: 50%;
+  color: white;
 }
 
 .rating-stars {
   width: 70px;
 }
-.rating-stars:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: #eee;
-}
-.rating-stars .filled-star {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: #f47a00;
-}
+
+
 .rating-stars img {
   height: 100%;
   width: 100%;
@@ -240,5 +238,28 @@ body {
 .card-title {
   justify-content:flex-start;
   text-align:left;
-  padding: 3px;
+  padding-left: 20px;
 }
+
+.h3 {
+  margin-bottom: 0px !important;
+}
+
+
+  .restaurant_card {
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+
+  @media (min-width: 768px) {
+    .restaurant_card {
+      width: 30%;
+    }
+  }
+
+  // ajustar la tarjeta para mobile
+  @media (max-width: 767px) {
+    .restaurant_card {
+      width: 100%;
+    }
+  }

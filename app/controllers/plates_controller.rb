@@ -29,7 +29,7 @@ class PlatesController < ApplicationController
         next if category_id.empty?
         CategoryPlate.create(plate: @plate, category_id: category_id)
       end
-      redirect_to my_restaurants_path, notice: "Plate was successfully created."
+      redirect_to restaurant_path(@restaurant), notice: "Plate was successfully created."
     else
       render :new, status: :unprocessable_entity
     end

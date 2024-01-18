@@ -36,7 +36,7 @@
       <div class="myrest-product-infos">
       <% total_cost = 0 %>
       <% total_earned = 0 %>
-      <h5 class= "myrest-title"><%= checkout.created_at.strftime("%B %d, %Y") %></h5>
+      <h5 class= "myrest-title"><%= checkout.created_at&.strftime("%B %d, %Y") %></h5>
       </div>
       <div class="card-body">
       <ul class="list-group">
@@ -76,7 +76,7 @@
     <div class="myplate-product-infos">
       <h2 style="color: #4F772D;" ><%= plate.name %></h2>
       <p><%= plate.description %></p>
-      <p><%= plate.cooked_date.strftime("%B %d, %Y") %></p>
+      <p><%= plate.cooked_date&.strftime("%B %d, %Y") %></p>
       <p><del><%= number_to_currency(plate.old_price, precision: 2) %></del></p>
       <p><%= number_to_currency(plate.new_price, precision: 2) %></p>
       <p><%= plate.stock %> items on stock</p>
