@@ -44,12 +44,15 @@
 }
 
 .info-cards .info-card:hover {
-  transform: scale(1.2, 1.2);
+  transform: scale(1.1, 1.1);
 }
 
 .info-cards:hover > .info-card:not(:hover) {
   //filter: blur(10px);
   transform: scale(0.9, 0.9);
+}
+.second-text {
+font-size: 16px !important;
 }
 
 .row {
