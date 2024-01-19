@@ -28,10 +28,10 @@
             </p>
 
             <div class="pizza__details" data-controller="review">
-              <p class="pizza__detail"><span class="emoji">⏱</span> Pending status </p>
+              <p class="pizza__detail"><span class="emoji">⏱</span> Delivered </p>
               <% if @restaurant.reviews.pluck(:user_id).include?(current_user.id) %>
               <% else %>
-                <%= link_to 'Add Review', new_restaurant_review_path(@restaurant) %>
+                <%= link_to 'Add Review', new_restaurant_review_path(@restaurant), class:"text-decoration-none", style:"color:#4F772D;" %>
               <% end %>
             </div>
           </div>
