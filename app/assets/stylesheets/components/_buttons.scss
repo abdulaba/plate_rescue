@@ -60,6 +60,8 @@
   overflow: hidden;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.103);
   position: relative;
+  color: white;
+  font-weight: 600;
 }
 
 .IconContainer {
@@ -89,11 +91,11 @@
   //display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: black;
   //z-index: 1;
   transition-duration: .5s;
   font-size: 1.04em;
-  font-weight: 600;
+  //font-weight: 600;
   margin-bottom:0px;
 }
 

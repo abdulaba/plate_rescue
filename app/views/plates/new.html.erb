@@ -2,11 +2,10 @@
 <h1><%= @restaurant.name %></h1>
 <%= simple_form_for [@restaurant, @plate] do |f| %>
   <%= f.input :name %>
-  <%= f.input :description %>
+  <%= f.input :description, style:"color: black;" %>
   <%= f.input :stock %>
   <%= f.input :old_price %>
   <%= f.input :new_price %>
-  <%= f.label :category_ids, "Categories" %>
   <%= f.input :cooked_date, as: :date, label: 'Cooked date', class: 'form-control', html5: true %>
   <%= f.input :category_ids,
                 as: :select,

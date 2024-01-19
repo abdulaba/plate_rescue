@@ -65,7 +65,7 @@
                   <%else%>
                     <% mensaje = "Add to Cart" %>
                   <%end%>
-                  <%= button_to "#{mensaje}", selectedplates_path(plate_id: plate.id), method: :post, class: "text CartBtn #{fondo}" %>
+                  <%= button_to "#{mensaje}", selectedplates_path(plate_id: plate.id), method: :post, class: "CartBtn #{fondo}" %>
 
                   </div>
                 </div>

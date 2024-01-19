@@ -53,6 +53,7 @@ class RestaurantsController < ApplicationController
   end
 
   def new
+    @cart = current_user&.cart
     @restaurant = Restaurant.new
   end
   def create
