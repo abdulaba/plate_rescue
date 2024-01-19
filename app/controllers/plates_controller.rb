@@ -37,6 +37,7 @@ class PlatesController < ApplicationController
   end
 
   def edit
+    @cart = current_user&.cart
     #@restaurant = Restaurant.find(params[:restaurant_id])
     @plate = Plate.find(params[:id])
     @categories = Category.all
