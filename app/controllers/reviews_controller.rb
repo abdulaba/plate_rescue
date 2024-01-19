@@ -5,6 +5,7 @@ class ReviewsController < ApplicationController
   end
 
   def new
+    @cart = current_user&.cart
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review = @restaurant.reviews.build
   end
